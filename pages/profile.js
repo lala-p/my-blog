@@ -1,15 +1,14 @@
 import React from 'react'
 import PageContainer from '../components/PageContainer'
 
-
-const Home = () => {
+const Profile = () => {
 
         
     return (
-        <PageContainer menu='home'>
-            home
+        <PageContainer menu='profile'>
+            profile
         </PageContainer>
     )
 }
 
-export default Home
+export default Profile

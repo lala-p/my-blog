@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../styles/globals.css'
 import wrapper from '../wrapper'
 
 function MyApp({ Component, pageProps }) {

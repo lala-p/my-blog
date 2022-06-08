@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 const Post = () => {
 
-    const router = useRouter()
-    const postCode = router.query.postCode
+  const router = useRouter()
+  const postCode = router.query.postCode
+  
+  useEffect(() => {
+    console.log(postCode)
+
+  }, [])
+
 
   return (
     <div>

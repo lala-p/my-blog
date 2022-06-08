@@ -1,16 +1,17 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Link from 'next/link'
+import styled from 'styled-components'
+ 
+import PageContainer from '../components/PageContainer'
+
 
 const Search = () => {
 
-    const currentMode =  useSelector((state) => state.mode.currentMode)
-
-
     return (
-        <div>
-            it's search. <br /> 
-            currentMode : {currentMode}
-        </div>
+        <PageContainer menu='search'>
+            search
+        </PageContainer>
     )
 }
 

@@ -1,11 +1,16 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
-import modeSlice from './modeSlice'
+import menuSlice from './menuSlice'
+import noticeSlice from './noticeSlice'
+import testSlice from './testSlice'
+
 
 const rootReducer = combineReducers(
     {
-        mode: modeSlice,
-
+        menu  : menuSlice,
+        notice: noticeSlice,
+        test  : testSlice,
+    
     }
 )
 
