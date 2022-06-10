@@ -6,7 +6,40 @@ import Image from 'next/image'
 import SelectNone from './SelectNone'
 import Text from './Text'
 
- 
+
+export const TextLink = props => {
+    
+    return (
+        <Link href={props.link}>
+                <Text>{props.children}</Text>
+        </Link>
+    )
+}
+
+export const TextBoxLink = props => {
+    
+    const Container = styled.div`
+        width: 200px;     
+        height: 30px;
+        
+        text-align: center;
+        background-color: blue;
+        
+        cursor: pointer;
+
+    `
+
+    return (
+        <Link href={props.link}>
+            <Container>
+                <Text>{props.children}</Text>
+            </Container>
+        </Link>
+    )
+
+}
+
+
 export const ReturnIconTextLink = props => {
 
     const Container = styled.span`
@@ -78,3 +111,4 @@ export const RightIconTextLink = props => {
         </Container>
     )
 }
+
