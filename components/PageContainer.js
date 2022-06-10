@@ -9,6 +9,19 @@ import MenuTab from './MenuTab'
 
 const Container = styled.div`
     display: flex;
+    height: 100vh;
+    background-color: #323232;
+    overflow: auto;
+    
+`
+
+const ChildrenContainer = styled.div`
+    @media( max-width: 512px ) {
+        margin-left: 0px;
+    }    
+
+    width: 100%;
+    margin-left: 55px;
     
 `
 
@@ -30,7 +43,9 @@ const PageContainer = props => {
     return (
         <Container>
             <MenuTab />
-            {props.children}
+            <ChildrenContainer>
+                {props.children}
+            </ChildrenContainer>
         </Container>
     )
 }
