@@ -216,7 +216,7 @@ const Notice = () => {
 
     const dispatch = useDispatch()
     
-    const noticeCode = parseInt(router.query.noticeCode) - 1
+    const noticeCode = parseInt(router.query.noticeCode)
     const currentNoticeMode = useSelector((state) => state.notice.currentMode)
     
     const [currentNoticeData, setCurrentNoticeData] = useState(null)    
@@ -228,17 +228,17 @@ const Notice = () => {
         if (!router.isReady) return;
 
         dispatch(noticeActions.setCurrentNoticeMode('detail'))
-        dispatch(noticeActions.setCurrentNoticeCode(noticeCode + 1))
-        setCurrentNoticeData(noticeData[noticeCode])
+        dispatch(noticeActions.setCurrentNoticeCode(noticeCode))
+        setCurrentNoticeData(noticeData[noticeCode  - 1])
         
-        if (noticeCode != 0) {
-            setPreviousNoticeData(noticeData[noticeCode - 1])
+        if (noticeCode != 0 && noticeCode != 1) {
+            setPreviousNoticeData(noticeData[noticeCode - 2])
         } else {
             setPreviousNoticeData(null)
         }
 
-        if (noticeCode + 1 != noticeData.length) {
-            setNextNoticeData(noticeData[noticeCode + 1])
+        if (noticeCode != noticeData.length) {
+            setNextNoticeData(noticeData[noticeCode])
         } else {
             setNextNoticeData(null)
         }
@@ -269,12 +269,12 @@ const Notice = () => {
                 <NoticeFooter>
                     <NoticeNavContainer>
                     { previousNoticeData != null ?     
-                        <Previous link={'/notice/'+(noticeCode)} date={previousNoticeData.created_date}>{previousNoticeData.title}</Previous>
+                        <Previous link={'/notice/'+(noticeCode - 1)} date={previousNoticeData.created_date}>{previousNoticeData.title}</Previous>
                         :
                         <PreviousNull />
                     }
                     { nextNoticeData != null ?     
-                        <Next link={'/notice/'+(noticeCode + 2)} date={nextNoticeData.created_date}>{nextNoticeData.title}</Next>
+                        <Next link={'/notice/'+(noticeCode + 1)} date={nextNoticeData.created_date}>{nextNoticeData.title}</Next>
                         :
                         <NextNull />
                     }   

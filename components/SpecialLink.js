@@ -22,11 +22,10 @@ export const ListIconTextBoxLink = props => {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
-        cursor: pointer;
 
-        border: 1px solid #FFFFFF;
-        // background-color: blue;
         padding: 10px 60px 10px 60px;
+        border: 1px solid #FFFFFF;
+        cursor: pointer;
 
     `
     const ImageBox = styled.span`
