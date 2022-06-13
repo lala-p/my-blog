@@ -16,28 +16,49 @@ export const TextLink = props => {
     )
 }
 
-export const TextBoxLink = props => {
-    
-    const Container = styled.div`
-        width: 200px;     
-        height: 30px;
-        
-        text-align: center;
-        background-color: blue;
-        
+export const ListIconTextBoxLink = props => {
+
+    const Container = styled.span`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
         cursor: pointer;
 
+        border: 1px solid #FFFFFF;
+        // background-color: blue;
+        padding: 10px 60px 10px 60px;
+
     `
+    const ImageBox = styled.span`
+        position:relative;
+
+        min-width: 20px;
+        min-height: 20px;
+
+        max-width: 20px;
+        max-height: 20px;
+
+        margin-right: 10px;
+        
+        
+    `
+   
 
     return (
         <Link href={props.link}>
             <Container>
-                <Text>{props.children}</Text>
+                <ImageBox>
+                    <SelectNone>
+                        <Image src='/image/list24.png' layout='fill' objectFit='cover' alt='list24' />
+                    </SelectNone>
+                </ImageBox>
+                <SelectNone>
+                    <Text size='18px'>목록</Text>
+                </SelectNone>             
             </Container>
         </Link>
     )
-
-}
+} 
 
 
 export const ReturnIconTextLink = props => {
@@ -61,7 +82,7 @@ export const ReturnIconTextLink = props => {
                     <ImageBox>
                             <Image src='/image/return24.png' width={16} height={16} alt='return24' />
                     </ImageBox>                
-                        <Text>{props.children}</Text>
+                    <Text>{props.children}</Text>
                 </SelectNone>                
             </Link>
         </Container>

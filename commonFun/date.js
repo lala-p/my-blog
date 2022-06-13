@@ -1,23 +1,37 @@
-export const DateFormat = (ver, date) => {
-    switch (ver) {
-        case 0: // 2022-06-09
-            let formatedDate = ''    
-                
-            return formatedDate
+export const dateFormat = (dateToFormat, ver = 0) => {
+    if (ver == 0) {
+        const year = ('000' + dateToFormat.getFullYear()).slice(-4)
+        const month = ('0' + (dateToFormat.getMonth() + 1)).slice(-2)
+        const date = ('0' + dateToFormat.getDate()).slice(-2)
+
+        const formatedDate = `${year}-${month}-${date}`    
         
-        case 1: // 2022-06-09 00:00
-            let formatedDate = ''    
-                
-            return formatedDate        
+        return formatedDate
+
+    } else if (ver == 1) {
+        const year = ('000' + dateToFormat.getFullYear()).slice(-4)
+        const month = ('0' + (dateToFormat.getMonth() + 1)).slice(-2)
+        const date = ('0' + dateToFormat.getDate()).slice(-2)
+        const hours = ('0' + dateToFormat.getHours()).slice(-2)
+        const minutes = ('0' + dateToFormat.getMinutes()).slice(-2)
+
+        const formatedDate = `${year}-${month}-${date} ${hours}:${minutes}`    
         
-        case 2: // 2022-06-09 00:00:00
-            let formatedDate = ''    
-                
-            return formatedDate        
+        return formatedDate     
+    } else if (ver == 2) {
+        const year = ('000' + dateToFormat.getFullYear()).slice(-4)
+        const month = ('0' + (dateToFormat.getMonth() + 1)).slice(-2)
+        const date = ('0' + dateToFormat.getDate()).slice(-2)
+        const hours = ('0' + dateToFormat.getHours()).slice(-2)
+        const minutes = ('0' + dateToFormat.getMinutes()).slice(-2)
+        const seconds = ('0' + dateToFormat.getSeconds()).slice(-2)
+
+        const formatedDate2 = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`
         
-        default:
-            return false
-    }
+        return formatedDate2  
+    } else {
+        return false
+    }   
     
 }
 

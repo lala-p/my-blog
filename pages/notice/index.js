@@ -36,7 +36,7 @@ const NoticeHome = () => {
                 noticeHome 
                 <br />
                 <br />
-                <Link href='/notice/aaa'>aaa</Link>
+                <Link href='/notice/1'>first notice</Link>
             </NoticeHomeCenter>
         </PageContainer>
     )

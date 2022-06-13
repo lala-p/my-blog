@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
@@ -6,13 +6,19 @@ import Link from 'next/link'
 
 import { noticeActions } from '../../reducers/noticeSlice'
 
+import noticeData from '../../noticeData'
+
+import { dateFormat } from '../../commonFun/date'
+
 import PageContainer from '../../components/PageContainer'
 import MenuTab from '../../components/MenuTab'
 import NoticeTitle from '../../components/NoticeTitle'
 import DateBox, { UpdateDateBox } from '../../components/DateBox'
 import Text, { EllipsisText } from '../../components/Text'
-import { TextLink, TextBoxLink } from '../../components/SpecialLink'
+import { TextLink, ListIconTextBoxLink } from '../../components/SpecialLink'
 import Paragraph from '../../components/Paragraph'
+import SelectNone from '../../components/SelectNone'
+
 
 
 const isNoticeCode = () => {
@@ -57,8 +63,9 @@ const NoticeSection = styled.div`
 `
 
 const NoticeFooter = styled.div`
-    height: 300px;
-    padding: 50px 0 50px 0;
+    height: 200px;
+    padding: 40px 0 0 0;
+
     
 `
 
@@ -88,12 +95,8 @@ const Previous = props => {
     `
 
     const Box1 = styled.div`
-    @media( max-width: 1080px ) {
         width: 45vw;
-
-    }
-    
-    width: 700px;
+        max-width: 550px;
     
     `
 
@@ -103,20 +106,45 @@ const Previous = props => {
 
     return (
         <Container>
-            <Text size='14px'>이전글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
+            <SelectNone>
+                <Text size='14px'>이전글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
+            </SelectNone>
             <Box1>
                 <Link href={props.link}>
                     <EllipsisText size='14px' style={{cursor: 'pointer'}}>{props.children}</EllipsisText>
                 </Link>
             </Box1>
             <Box2>
-                <Text size='14px'>{props.date}</Text>
+                <Text size='14px'>{dateFormat(props.date, 0)}</Text>
             </Box2>
             
 
         </Container>
     )
+}
 
+const PreviousNull = () => {
+    const Container = styled.div`
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #FFFFFF;
+    `
+
+    const Box2 = styled.div`
+        margin-left: auto;
+    `
+
+    return (
+        <Container>
+            <SelectNone>
+                <Text color='#878787' size='14px'>이전글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
+            </SelectNone>
+            <Box2>
+                <Text color='#878787' size='14px'>0000-00-00</Text>
+            </Box2>
+        </Container>
+    )
 }
 
 const Next = props => {
@@ -129,12 +157,8 @@ const Next = props => {
     `
 
     const Box1 = styled.div`
-        @media( max-width: 1080px ) {
-            width: 45vw;
-
-        }
-        
-        width: 700px;
+        width: 45vw;
+        max-width: 550px;
     
     `
 
@@ -144,16 +168,43 @@ const Next = props => {
 
     return (
         <Container>
-            <Text size='14px'>다음글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
+            <SelectNone>
+                <Text size='14px'>다음글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
+            </SelectNone>
+            
             <Box1>
                 <Link href={props.link}>
                     <EllipsisText size='14px' style={{cursor: 'pointer'}}>{props.children}</EllipsisText>
                 </Link>
             </Box1>
             <Box2>
-                <Text size='14px'>{props.date}</Text>
+                <Text size='14px'>{dateFormat(props.date, 0)}</Text>
             </Box2>
             
+        </Container>
+    )
+}
+
+const NextNull = () => {
+    const Container = styled.div`
+        display: flex;
+        flex-direction: row;
+        padding-top: 5px;    
+
+    `
+
+    const Box2 = styled.div`
+        margin-left: auto;
+    `
+
+    return (
+        <Container>
+            <SelectNone>
+                <Text color='#878787' size='14px'>다음글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
+            </SelectNone>
+            <Box2>
+                <Text color='#878787' size='14px'>0000-00-00</Text>
+            </Box2>
         </Container>
     )
 }
@@ -162,51 +213,81 @@ const Next = props => {
 const Notice = () => {
 
     const router = useRouter()
-    const noticeCode = router.query.noticeCode
-    
+
     const dispatch = useDispatch()
     
+    const noticeCode = parseInt(router.query.noticeCode) - 1
     const currentNoticeMode = useSelector((state) => state.notice.currentMode)
+    
+    const [currentNoticeData, setCurrentNoticeData] = useState(null)    
+    const [previousNoticeData, setPreviousNoticeData] = useState(null)
+    const [nextNoticeData, setNextNoticeData] = useState(null)
+
 
     useEffect(() => {
         if (!router.isReady) return;
 
-        console.log(noticeCode)
         dispatch(noticeActions.setCurrentNoticeMode('detail'))
-        dispatch(noticeActions.setCurrentNoticeCode(noticeCode))
-    
-    }, [router.isReady])
+        dispatch(noticeActions.setCurrentNoticeCode(noticeCode + 1))
+        setCurrentNoticeData(noticeData[noticeCode])
+        
+        if (noticeCode != 0) {
+            setPreviousNoticeData(noticeData[noticeCode - 1])
+        } else {
+            setPreviousNoticeData(null)
+        }
 
+        if (noticeCode + 1 != noticeData.length) {
+            setNextNoticeData(noticeData[noticeCode + 1])
+        } else {
+            setNextNoticeData(null)
+        }
+
+
+    }, [router, noticeCode])
 
     return (
         <PageContainer menu='notice'>
+        { currentNoticeData != null ?
             <NoticeContainer>
                 <NoticeHeader>
-                    <NoticeTitle>특수건강진단 기관 현황(`22.6.9. 기준)xxxxx xxxx xxxxxxxx xxxxx</NoticeTitle>
+                    <NoticeTitle>{currentNoticeData.title}</NoticeTitle>
                     <DateContainer>
                         <div>
-                            <DateBox></DateBox>
+                            <DateBox date={currentNoticeData.created_date} />
                         </div>
-                        <UpdateDateBox></UpdateDateBox>
+                        { currentNoticeData.updated_date != null ?
+                            <UpdateDateBox date={currentNoticeData.updated_date} />
+                        :
+                            null
+                        }
                     </DateContainer>
                 </NoticeHeader>
                 <NoticeSection>
-                    <Paragraph>
-                        <Text>[해상도]</Text>
-                        <Text>해상도는 쉽게 말하면 한 화면에 몇 개의 점이 찍히는가입니다.</Text>
-                        <Text>1픽셀 x 1픽셀 크기를 하나의 점으로 보고, 그런 픽셀이 가로 1920개, 세로 1080개 들어가 총 207만 3천 6백 개의 점이 찍혀있는 것입니다.</Text>
-                        <Text>같은 해상도라도 모니터의 크기가 다를 수 있습니다. 32인치의 점과 13인치의 점이 크기만 다를 뿐이겠죠. </Text>
-                        <Text>그러니 같은 그림을 모니터 크기에 따라 늘렸다 줄였다 해서 보는 것이라고 생각하면 됩니다.</Text>    
-                    </Paragraph>
+                    { currentNoticeData.notice_content() }
                 </NoticeSection>
                 <NoticeFooter>
                     <NoticeNavContainer>
-                        <Previous link='/notice' date='2022-11-11'>이전글 그러니까 어쩌고 저쩌고 먼아링;ㅓ란ㅁ;ㅣ라ㅓ;ㅣㄴ알;ㅁ이ㅏsjf</Previous>
-                        <Next link='/notice' date='2022-10-02'>asdfsadfadfaxsdfasdfasdfsadfadfaxsdfasdfasdfsadfadfaxsdfasdfasdfsadfadfaxsdfasdfasdfsaddfsadfadfaxsdfasdfasdfsadfadfaxsdfasdfasdfsadfadfaxsdfasdf</Next>
+                    { previousNoticeData != null ?     
+                        <Previous link={'/notice/'+(noticeCode)} date={previousNoticeData.created_date}>{previousNoticeData.title}</Previous>
+                        :
+                        <PreviousNull />
+                    }
+                    { nextNoticeData != null ?     
+                        <Next link={'/notice/'+(noticeCode + 2)} date={nextNoticeData.created_date}>{nextNoticeData.title}</Next>
+                        :
+                        <NextNull />
+                    }   
                     </NoticeNavContainer>
-                    {/* <TextBoxLink link='/notice'>목록</TextBoxLink> */}
+                    <div style={{textAlign: 'center', paddingTop: '25px', paddingBottom: '10px'}}>
+                        <ListIconTextBoxLink link='/notice'>목록</ListIconTextBoxLink>
+                    </div>
                 </NoticeFooter>
             </NoticeContainer>
+            :
+            null
+        }
+
         </PageContainer>
     )
 }
