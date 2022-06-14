@@ -41,7 +41,6 @@ export const ListIconTextBoxLink = props => {
         
         
     `
-   
 
     return (
         <Link href={props.link}>
@@ -60,33 +59,33 @@ export const ListIconTextBoxLink = props => {
 } 
 
 
-export const ReturnIconTextLink = props => {
+// export const ReturnIconTextLink = props => {
 
-    const Container = styled.span`
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        cursor: pointer;
+//     const Container = styled.span`
+//         display: flex;
+//         flex-direction: row;
+//         align-items: center;
+//         cursor: pointer;
 
-    `
-    const ImageBox = styled.span`
-        padding-top: 5px;
-        margin-right: 7px;
-    `
+//     `
+//     const ImageBox = styled.span`
+//         padding-top: 5px;
+//         margin-right: 7px;
+//     `
 
-    return (
-        <Container>
-            <Link href={props.link}>
-                <SelectNone>
-                    <ImageBox>
-                            <Image src='/image/return24.png' width={16} height={16} alt='return24' />
-                    </ImageBox>                
-                    <Text>{props.children}</Text>
-                </SelectNone>                
-            </Link>
-        </Container>
-    )
-}   
+//     return (
+//         <Container>
+//             <Link href={props.link}>
+//                 <SelectNone>
+//                     <ImageBox>
+//                             <Image src='/image/return24.png' width={16} height={16} alt='return24' />
+//                     </ImageBox>                
+//                     <Text>{props.children}</Text>
+//                 </SelectNone>                
+//             </Link>
+//         </Container>
+//     )
+// }   
 
 
 export const TextLeftIconLink = props => {

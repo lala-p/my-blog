@@ -20,11 +20,6 @@ import Paragraph from '../../components/Paragraph'
 import SelectNone from '../../components/SelectNone'
 
 
-
-const isNoticeCode = () => {
-    return true
-}
-
 const NoticeContainer = styled.div`
     @media( max-width: 1080px ) {
         padding: 50px 0 0 0;
@@ -55,6 +50,7 @@ const NoticeHeader = styled.div`
     border-bottom: 1px solid #FFFFFF;
 
 `
+
 const NoticeSection = styled.div`
     min-height: 500px;
     padding: 50px 0 50px 0;
@@ -68,7 +64,6 @@ const NoticeFooter = styled.div`
 
     
 `
-
 
 const DateContainer = styled.div`
     @media( max-width: 512px ) {
@@ -287,7 +282,6 @@ const Notice = () => {
             :
             null
         }
-
         </PageContainer>
     )
 }
