@@ -5,37 +5,35 @@ import styled from 'styled-components'
 
 import { noticeActions } from '../../reducers/noticeSlice'
 
+import noticeData from '../../noticeData'
+
 import PageContainer from '../../components/PageContainer'
 import MenuTab from '../../components/MenuTab'
+import NoticeList from '../../components/NoticeList'
 import NoticePagenation from '../../components/NoticePagenation'
 import Text from '../../components/Text'
 
 
-const NoticeHomeCenter = styled.div`
-    
+const NoticeHomeContainer = styled.div`
+    width: 90%;
+    margin: auto;
+
 `
 
-const NoticeList = props => {
-    const Container = styled.div`
-    
-    `
+const Box = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
-    return (
-        <Container>
-
-        </Container>
-    )
-
-}
-
+const reversedNoticeData = noticeData.reverse()
+const noticeListLimit = 10
 
 const NoticeHome = () => {
 
     const dispatch = useDispatch()
 
     const currentNoticeMode = useSelector((state) => state.notice.currentMode)
-    const currentPage = useSelector((state) => state.notice.currentPage)
-
 
     useEffect(() => {
         
@@ -43,14 +41,16 @@ const NoticeHome = () => {
             dispatch(noticeActions.setCurrentNoticeMode('home'))
         }
         
-        dispatch(noticeActions.setCurrentPage(5))
-
+        console.log('a ' + noticeData.length)
+        console.log('b ' +noticeListLimit)
+        console.log('c ' +Math.floor(noticeData.length / noticeListLimit))
+    
     }, [])
 
 
     return (
         <PageContainer menu='notice'>
-            <NoticeHomeCenter>
+            <NoticeHomeContainer>
                 <Text>noticeHome</Text> 
                 <br />
                 <br />
@@ -59,12 +59,20 @@ const NoticeHome = () => {
                 </Link>
                 <br />
                 <br />
-                <NoticePagenation lastPage={25} pageLimit={10} />
-                <br />
-                <br />
-                <Text>{currentPage}</Text>
-                {/* <NoticePagenation limit={10} currenctPage={currentPage}></NoticePagenation> */}
-            </NoticeHomeCenter>
+                <Box>
+                    <NoticeList dataList={reversedNoticeData} limit={noticeListLimit} />
+                </Box>
+                <Box style={{marginTop: '50px'}}>
+                    <NoticePagenation 
+                        lastPage={
+                            noticeData.length % noticeListLimit == 0 ? 
+                            Math.floor(noticeData.length / noticeListLimit) : Math.floor(noticeData.length / noticeListLimit) + 1  
+                        } 
+                        limit={10} 
+                    />    
+                </Box>
+        
+            </NoticeHomeContainer>
         </PageContainer>
     )
 }

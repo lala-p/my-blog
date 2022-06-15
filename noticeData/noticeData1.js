@@ -91,7 +91,7 @@ noticeData1.push({
 
 noticeData1.push({
     no: 7,
-    title: '777777777777777777777777777777',
+    title: '7777777777777777777777777asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf77777',
     created_date: new Date('2022-06-07'),
     updated_date: null,
     notice_content: () => {

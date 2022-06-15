@@ -3,8 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     currentMode: 'home',
     currentPage: 1,
-    currentNoticeCode: null,
-    
+    currentNoticeNo: null,
 
 }
 
@@ -18,8 +17,8 @@ const noticeSlice = createSlice({
         setCurrentPage: (state, action) => {
             state.currentPage = action.payload
         },
-        setCurrentNoticeCode: (state, action) => {
-            state.currentNoticeCode = action.payload
+        setCurrentNoticeNo: (state, action) => {
+            state.currentNoticeNo = action.payload
         },
         
         

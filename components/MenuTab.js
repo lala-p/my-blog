@@ -9,7 +9,7 @@ import SelectNone from './SelectNone'
 
 
 const VerticalTabs = styled.div`
-    @media( min-width: 512px ) {
+    @media( min-width: 600px ) {
         position: fixed;
         display: flex;
         flex-direction: column;
@@ -88,7 +88,7 @@ const MenuIconLink = props => {
 const NoticeIconLink = props => {
 
     const currnetMode = useSelector((state) => state.notice.currentMode)
-    const currentNoticeCode = useSelector((state) => state.notice.currentNoticeCode)
+    const currentNoticeNo = useSelector((state) => state.notice.currentNoticeNo)
 
     const noticeLink = () => {
         let link = '/'
@@ -96,7 +96,7 @@ const NoticeIconLink = props => {
         if (currnetMode === 'home') {
             link = '/notice'
         } else if (currnetMode === 'detail') {
-            link = '/notice/' + currentNoticeCode
+            link = '/notice/' + currentNoticeNo
         } 
 
         return link

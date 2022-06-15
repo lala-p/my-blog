@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/router'
+import React, { useState, useEffect, useRef } from 'react'
+import Router, { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import Link from 'next/link'
@@ -18,6 +18,7 @@ import Text, { EllipsisText } from '../../components/Text'
 import { TextLink, ListIconTextBoxLink } from '../../components/SpecialLink'
 import Paragraph from '../../components/Paragraph'
 import SelectNone from '../../components/SelectNone'
+
 
 
 const NoticeContainer = styled.div`
@@ -39,6 +40,7 @@ const NoticeContainer = styled.div`
     }
 
     width: 90%;
+    height: 100%;
     max-width: 1080px;
     margin: auto;
     padding: 60px 0 0 0;
@@ -82,6 +84,8 @@ const NoticeNavContainer = styled.div`
 
 const Previous = props => {
     
+    const router = useRouter()
+    
     const Container = styled.div`
         display: flex;
         flex-direction: row;
@@ -104,10 +108,12 @@ const Previous = props => {
             <SelectNone>
                 <Text size='14px'>이전글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
             </SelectNone>
-            <Box1>
-                <Link href={props.link}>
+            <Box1 onClick={() => {
+                Router.push(props.link).then(() => window.scrollTo(0, 0))
+            }}>
+                {/* <Link href={props.link}> */}
                     <EllipsisText size='14px' style={{cursor: 'pointer'}}>{props.children}</EllipsisText>
-                </Link>
+                {/* </Link> */}
             </Box1>
             <Box2>
                 <Text size='14px'>{dateFormat(props.date, 0)}</Text>
@@ -144,6 +150,8 @@ const PreviousNull = () => {
 
 const Next = props => {
 
+    const router = useRouter()
+
     const Container = styled.div`
         display: flex;
         flex-direction: row;
@@ -167,7 +175,13 @@ const Next = props => {
                 <Text size='14px'>다음글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</Text>
             </SelectNone>
             
-            <Box1>
+            <Box1 
+                // onClick={() => {
+                //     router.push(props.link)
+                //     window.scrollTo(0, 0)
+
+                // }}
+            >
                 <Link href={props.link}>
                     <EllipsisText size='14px' style={{cursor: 'pointer'}}>{props.children}</EllipsisText>
                 </Link>
@@ -211,39 +225,41 @@ const Notice = () => {
 
     const dispatch = useDispatch()
     
-    const noticeCode = parseInt(router.query.noticeCode)
+    const noticeNo = parseInt(router.query.noticeNo)
     const currentNoticeMode = useSelector((state) => state.notice.currentMode)
     
     const [currentNoticeData, setCurrentNoticeData] = useState(null)    
     const [previousNoticeData, setPreviousNoticeData] = useState(null)
     const [nextNoticeData, setNextNoticeData] = useState(null)
 
+    
 
     useEffect(() => {
         if (!router.isReady) return;
 
         dispatch(noticeActions.setCurrentNoticeMode('detail'))
-        dispatch(noticeActions.setCurrentNoticeCode(noticeCode))
-        setCurrentNoticeData(noticeData[noticeCode  - 1])
+        dispatch(noticeActions.setCurrentNoticeNo(noticeNo))
+        setCurrentNoticeData(noticeData[noticeNo  - 1])
         
-        if (noticeCode != 0 && noticeCode != 1) {
-            setPreviousNoticeData(noticeData[noticeCode - 2])
+        if (noticeNo != 0 && noticeNo != 1) {
+            setPreviousNoticeData(noticeData[noticeNo - 2])
         } else {
             setPreviousNoticeData(null)
         }
 
-        if (noticeCode != noticeData.length) {
-            setNextNoticeData(noticeData[noticeCode])
+        if (noticeNo != noticeData.length) {
+            setNextNoticeData(noticeData[noticeNo])
         } else {
             setNextNoticeData(null)
         }
 
 
-    }, [router, noticeCode])
+    }, [router])
+
 
     return (
         <PageContainer menu='notice'>
-        { currentNoticeData != null ?
+        { currentNoticeData != null ?  
             <NoticeContainer>
                 <NoticeHeader>
                     <NoticeTitle>{currentNoticeData.title}</NoticeTitle>
@@ -264,16 +280,22 @@ const Notice = () => {
                 <NoticeFooter>
                     <NoticeNavContainer>
                     { previousNoticeData != null ?     
-                        <Previous link={'/notice/'+(noticeCode - 1)} date={previousNoticeData.created_date}>{previousNoticeData.title}</Previous>
+                        <Previous link={'/notice/'+(noticeNo - 1)} date={previousNoticeData.created_date}>{previousNoticeData.title}</Previous>
                         :
                         <PreviousNull />
                     }
                     { nextNoticeData != null ?     
-                        <Next link={'/notice/'+(noticeCode + 1)} date={nextNoticeData.created_date}>{nextNoticeData.title}</Next>
+                        <Next link={'/notice/'+(noticeNo + 1)} date={nextNoticeData.created_date}>{nextNoticeData.title}</Next>
                         :
                         <NextNull />
                     }   
                     </NoticeNavContainer>
+                    <div onClick={() => {
+                        console.log('asasasasasa')
+                        window.scrollTo(0, 0)
+                    }}>
+                        asdasdasd
+                    </div>
                     <div style={{textAlign: 'center', paddingTop: '25px', paddingBottom: '10px'}}>
                         <ListIconTextBoxLink link='/notice'>목록</ListIconTextBoxLink>
                     </div>

@@ -16,7 +16,7 @@ const Container = styled.div`
 `
 
 const ChildrenContainer = styled.div`
-    @media( max-width: 512px ) {
+    @media( max-width: 600px ) {
         margin-left: 0px;
     }    
 

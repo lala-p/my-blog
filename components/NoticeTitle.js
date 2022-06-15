@@ -49,7 +49,7 @@ const TitleText = styled.span`
     font-size: 40px;
     font-weight: 600;
     color: #FFFFFF;
-    word-breack: keep-all;
+    word-break: break-all;
     width: 100%;
     margin-right: 20px;
     

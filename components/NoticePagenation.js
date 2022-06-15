@@ -14,18 +14,12 @@ const NPContainer = styled.div`
     display: inline-flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-;
 
 
 `
 
-
-const PreviousPagesButton = props => {
-    const Container = styled.div`
-        ${!props.isFirstPages ? 'cursor: pointer' : 'visibility: hidden'};
-
-    `
-    const ImageBox = styled.div`
+const ImageBox = styled.div`
         position:relative;
         
         min-width: 16px;
@@ -33,7 +27,12 @@ const PreviousPagesButton = props => {
 
         max-width: 16px;
         max-height: 16px;
+    
+`
 
+const PreviousPagesButton = props => {
+    const Container = styled.div`
+        ${!props.isFirstPages ? 'cursor: pointer' : 'visibility: hidden'};
 
     `
 
@@ -54,18 +53,6 @@ const NextPagesButton = props => {
         ${!props.isLastPages ? 'cursor: pointer' : 'visibility: hidden'};
 
     `
-
-    const ImageBox = styled.div`
-        position:relative;
-        
-        min-width: 16px;
-        min-height: 16px;
-
-        max-width: 16px;
-        max-height: 16px;
-
-        
-    `
     
     return (
         <Container onClick={!props.isLastPages ? props.do : null}>
@@ -74,8 +61,6 @@ const NextPagesButton = props => {
                     <Image src='/image/right64.png' layout='fill' objectFit='cover' alt='right64' />
                 </SelectNone>
             </ImageBox>
-
-
         </Container>
     )
 }
@@ -83,21 +68,8 @@ const NextPagesButton = props => {
 
 const FirstPageButton = props => {
 
-    
-
     const Container = styled.div`
         ${!props.isFirstPage ? 'cursor: pointer' : 'visibility: hidden'};
-
-    `
-
-    const ImageBox = styled.div`
-        position:relative;
-        
-        min-width: 16px;
-        min-height: 16px;
-
-        max-width: 16px;
-        max-height: 16px;
 
     `
     
@@ -119,17 +91,6 @@ const LastPageButton = props => {
 
     const Container = styled.div`
         ${!props.isLastPage ? 'cursor: pointer' : 'visibility: hidden'};
-    `
-
-    const ImageBox = styled.div`
-        position:relative;
-        
-        min-width: 16px;
-        min-height: 16px;
-
-        max-width: 16px;
-        max-height: 16px;
-    
     `
 
     return (
@@ -228,7 +189,7 @@ const Box = styled.div`
 
 const getPages = (currentPageNum, lastPageNum, limit) => {
     let pages = new Array()
-    
+
     const startNum = currentPageNum % limit == 0 ? currentPageNum - limit + 1 : currentPageNum - (currentPageNum % limit) + 1
 
     for (let num = startNum; num < startNum + limit; num++) {
@@ -247,7 +208,9 @@ const NoticePagenation = props => {
     const dispatch = useDispatch()
 
     const currentPage = useSelector((state) => state.notice.currentPage)
-    const pages = getPages(currentPage, props.lastPage, props.pageLimit)
+
+    const noticePagesLimit = useSelector((state) => state.notice.noticePagesLimit)
+    const pages = getPages(currentPage, props.lastPage, props.limit)
 
     return (
         <NPContainer>
