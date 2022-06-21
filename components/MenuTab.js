@@ -1,126 +1,90 @@
-import React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
 
-import SelectNone from './SelectNone'
+import PostTab from './PostTab'
 
+const MenuIconBox = props => {
+    const Box = styled.div`
 
-
-const VerticalTabs = styled.div`
-    @media( min-width: 600px ) {
-        position: fixed;
-        display: flex;
-        flex-direction: column;
-        min-width: 55px;
-        height: 100vh;
-        padding-top: 10px;
-        background-color: #2B2B2B;    
-        
-
-    }
-    display: none;
-
-`
-
-const MenuIconBox =  styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 48px;
-    cursor: pointer;
-`
-
-const MenuIconLink = props => {
-
-    const router = useRouter()
-
-    const currentMenu = useSelector((state) => state.menu.currentMenu)
-
-    const linkHandler = () => {
-        router.push(props.link)
-    }
-
-    const img_style = { 
-        width: '26px', 
-        height: '26px', 
-
-    }
+    `
 
     return (
-        <MenuIconBox onClick={linkHandler}>
-            <SelectNone>
-            { currentMenu != props.menu ? 
-                <img src={props.img} style={img_style} /> :
-                <img src={props.active_img} style={img_style} />
-            }
-            </SelectNone>
-        </MenuIconBox>
-    ) 
-}
-
-// const PostIconLinkBox = props => {
-
-//     const router = useRouter()
-
-//     const currnetMode = useSelector((state) => state.post.currentMode)
-//     const currentPostCode = useSelector((state) => state.post.currentPostCode)
-
-//     const postLinkHandler = () => {
-//         if (currnetPostMode === 'home') {
-//             router.push('/post')
-//         } else if (currnetPostMode === 'detail') {
-//             router.push(`/post/${currentPostCode}`)
-//         } 
-//     }
-
-
-//     return (        
-//         <stMenuIconBox onClick={postLinkHandler}>
-//             <img src={props.img} />
-//         </stMenuIconBox>
-//     ) 
-// }
-
-const NoticeIconLink = props => {
-
-    const currnetMode = useSelector((state) => state.notice.currentMode)
-    const currentNoticeNo = useSelector((state) => state.notice.currentNoticeNo)
-
-    const noticeLink = () => {
-        let link = '/'
-        
-        if (currnetMode === 'home') {
-            link = '/notice'
-        } else if (currnetMode === 'detail') {
-            link = '/notice/' + currentNoticeNo
-        } 
-
-        return link
-    }
-    
-
-    return (
-        <MenuIconLink menu='notice' link={noticeLink()} img={props.img} active_img={props.active_img} title='notice' />
+        <Box>
+            <Image src={props.img} layout='fixed' width={35} height={35} />
+        </Box>
     )
 }
 
-const MenuTab = () => {
-
-    const currentNoticeMode = useSelector((state) => state.notice.currentMode)
+const MenuIconLinkBox = props => {
+    const Box = styled.div`
+    
+    
+    `
 
     return (
-        <VerticalTabs>
-            <MenuIconLink menu='home' link='/' img='/image/menu_home.png' active_img='/image/menu_home_active.png' title='home' />
-            <MenuIconLink menu='profile' link='/profile' img='/image/menu_profile.png' active_img='/image/menu_profile_active.png' title='profile' />
-            <MenuIconLink menu='search' link='/search' img='/image/menu_search.png' active_img='/image/menu_search_active.png' title='search' />
-            <NoticeIconLink img='/image/menu_notice.png' active_img='/image/menu_notice_active.png' />       
-            {/* <PostIconLinkBox title='post' img='/image/' /> */}
-            
-        </VerticalTabs>
+        <Box>
+
+        </Box>
+    )
+}
+
+const PostIconLinkBox = props => {
+    const Box = styled.div`
+    
+    
+    `
+
+    return (
+        <Box>
+
+        </Box>
+    )
+}
+
+const NoticeIconLinkBox = props => {
+    const Box = styled.div`
+    
+    
+    `
+
+    return (
+        <Box>
+
+        </Box>
+    )
+}
+
+
+const Container = styled.div`
+    position: fixed;
+    width: 65px;
+    height: 100vh;
+    
+    padding: 45px 0 0 0;
+
+    background-color: ${ props => props.theme.color1 };
+    text-align: center;
+
+`
+
+const MenuContainer = styled.ul`
+    
+
+`
+
+const MenuTab = () => {
+
+    const currentMenu = useSelector((state) => state.menu.currentMenu)
+
+    
+    return (
+        <Container>
+            <MenuIconBox img='/image/menu_home.png' active_img='' />
+
+
+        </Container>
     )
 }
 

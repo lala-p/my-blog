@@ -1,38 +1,52 @@
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/router'
-import { useSelector, useDispatch } from 'react-redux'
-import { testActions } from '../reducers/testSlice'
-import Link from 'next/link'
+import React from 'react'
+import styled from 'styled-components'
+
+const Container = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+`
+const Box = styled.div`
+    display: flex;
+
+
+`
 
 const Test = () => {
-    
-    const router = useRouter()
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        const handleRouteChange = (url, { shallow }) => {
-            dispatch(testActions.setTestMode('Test!Test!Test!Test!Test!Test!Test!Test!Test!Test!Test!Test!'))
-            console.log(
-            `App is changing to ${url} ${
-              shallow ? 'with' : 'without'
-            } shallow routing`
-          )
-        }
-    
-        router.events.on('routeChangeStart', handleRouteChange)
-
-        return () => {
-          router.events.off('routeChangeStart', handleRouteChange)
-        }
-
-    }, [])
 
     return (
-        <div>
-            <h1>Test</h1>
-            <Link href='/'>go home</Link>
-        </div>
+        <Container>
+            <Box>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+                <h1>asdasdasd</h1>
+            </Box>
+        </Container>
+
     )
+
 }
 
 export default Test

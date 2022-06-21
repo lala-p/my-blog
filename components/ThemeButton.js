@@ -1,14 +1,13 @@
-import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-
-
 
 const Container = styled.div`
 
 
 `
 
-const PostTab = props => {
+
+const ThemeButton = () => {
+
 
 
     return (
@@ -18,4 +17,4 @@ const PostTab = props => {
     )
 }
 
-export default PostTab
+export default ThemeButton
