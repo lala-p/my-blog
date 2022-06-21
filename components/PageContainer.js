@@ -7,8 +7,11 @@ import { menuActions } from '../reducers/menuSlice'
 import MenuTab from './MenuTab'
 
 
-const Container = styled.div`
-    
+
+const PageContent = styled.div`
+
+    padding-left: 65px;
+
 
 `
 
@@ -30,9 +33,18 @@ const PageContainer = props => {
     
 
     return (
-        <Container>
+        <div>
             <MenuTab />
-        </Container>
+
+            <PageContent>
+                
+                
+                <div style={{paddingTop: '100px'}}>
+                    {props.children}
+                </div>
+            </PageContent>
+                        
+        </div>
     )
 
 }

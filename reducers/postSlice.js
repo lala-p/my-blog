@@ -14,7 +14,9 @@ const postSlice = createSlice({
         setPostTabOpen: (state, action) => {
             state.postTabOpen = action.payload
         },
-
+        switchPostTabOpen: (state, action) => {
+            state.postTabOpen = !state.postTabOpen
+        }
         
     },
 })

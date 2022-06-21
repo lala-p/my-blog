@@ -1,10 +1,10 @@
-import PageContainer from '../components/PageContainer'
+import PageContainer from '../../components/PageContainer'
 
 
 const NoticeHome = () => {
 
     return (
-        <PageContainer>
+        <PageContainer menu='notice'>
 
         </PageContainer>
     )

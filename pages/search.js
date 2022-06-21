@@ -4,7 +4,7 @@ import PageContainer from '../components/PageContainer'
 const Search = () => {
 
     return (
-        <PageContainer>
+        <PageContainer menu='search'>
 
             
         </PageContainer>
