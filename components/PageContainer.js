@@ -5,14 +5,23 @@ import { useSelector, useDispatch } from 'react-redux'
 import { menuActions } from '../reducers/menuSlice' 
 
 import MenuTab from './MenuTab'
+import PostTab from './PostTab'
+import HeadTab from './HeadTab'
 
 
+const Container = styled.div`
+    display: flex;
+    flex-direction: row;
+
+`
 
 const PageContent = styled.div`
 
-    padding-left: 65px;
+    width: 100%;
+    padding-left: ${props => props.postTabOpen ? '295px' : '65px' };
+    // background-color: red;
 
-
+    
 `
 
 const PageContainer = props => {
@@ -20,6 +29,7 @@ const PageContainer = props => {
     const dispatch = useDispatch() 
     
     const currentMenu = useSelector((state) => state.menu.currentMenu)
+    const postTabOpen = useSelector((state) => state.post.postTabOpen)
 
     useEffect(() => {
         
@@ -33,18 +43,19 @@ const PageContainer = props => {
     
 
     return (
-        <div>
-            <MenuTab />
-
-            <PageContent>
-                
-                
-                <div style={{paddingTop: '100px'}}>
+        <Container>
+            <div>
+                <MenuTab />
+                { currentMenu == 'post' && postTabOpen ? <PostTab /> : null }
+            </div>
+            <PageContent postTabOpen={currentMenu == 'post' && postTabOpen}>
+                <HeadTab />
+                <div style={{paddingTop: '45px'}}>
                     {props.children}
                 </div>
             </PageContent>
                         
-        </div>
+        </Container>
     )
 
 }

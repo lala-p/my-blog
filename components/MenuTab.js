@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import PostTab from './PostTab'
-
 import { postActions } from '../reducers/postSlice'
+
+import PostTab from './PostTab'
+import SelectNone from './SelectNone'
 
 
 const MenuIconBox = props => {
@@ -26,9 +27,9 @@ const MenuIconBox = props => {
 const MenuIconLinkBox = props => {
     return (
         <Link href={props.link}>
-            <div>
+            <SelectNone>
                 <MenuIconBox img={props.active ? props.activeImg : props.img} />
-            </div>
+            </SelectNone>
         </Link>
     )
 }
@@ -46,30 +47,20 @@ const PostIconLinkBox = props => {
         }
     }
 
-
     return (
-        <div onClick={EventHandler}>
+        <SelectNone onClick={EventHandler}>
             <MenuIconBox img={props.active ? props.activeImg : props.img} />
-        </div>
-    )
-}
-
-const NoticeIconLinkBox = props => {
-    
-
-    return (
-        <div onClick={() => { console.log('asdasdasdasd') }} onDoubleClick={() => { console.log('dbdbdbdbdbdbdbdbdbdbdbdbdbdbdb') }}>
-            <MenuIconBox img={props.active ? props.activeImg : props.img} />
-        </div>
+        </SelectNone>
     )
 }
 
 
 const Container = styled.div`
     position: fixed;
+    
     width: 65px;
     height: 100vh;
-     
+
     padding-top: 45px;
     background-color: ${ props => props.theme.color1 };
 `
@@ -78,16 +69,15 @@ const MenuContainer = styled.ul`
     display: flex;
     flex-direction: column;    
     align-items: center;
-    height: 245px;
     justify-content: space-between;
-
+    height: 245px;
 `
 
 const MenuTab = () => {
 
     const currentMenu = useSelector((state) => state.menu.currentMenu)
 
-    
+
     return (
         <Container>
             <MenuContainer>
@@ -97,7 +87,6 @@ const MenuTab = () => {
                 <li><MenuIconLinkBox link='/notice' img='/image/menu_notice.png' activeImg='/image/menu_notice_active.png' active={currentMenu == 'notice'} /></li>
                 <li><MenuIconLinkBox link='/profile' img='/image/menu_profile.png' activeImg='/image/menu_profile_active.png' active={currentMenu == 'profile'} /></li>
             </MenuContainer>
-
 
         </Container>
     )
