@@ -15,12 +15,24 @@ const Container = styled.div`
 
 `
 
-const PageContent = styled.div`
+const LeftContent = styled.div`
+
+    @media( max-width: 960px ) {
+        display: none;
+    }
+
+
+`
+
+const CenterContent = styled.div`
 
     width: 100%;
     padding-left: ${props => props.postTabOpen ? '295px' : '65px' };
     // background-color: red;
 
+    @media( max-width: 960px ) {
+        padding-left: 0;
+    }
     
 `
 
@@ -44,16 +56,16 @@ const PageContainer = props => {
 
     return (
         <Container>
-            <div>
+            <LeftContent>
                 <MenuTab />
-                { currentMenu == 'post' && postTabOpen ? <PostTab /> : null }
-            </div>
-            <PageContent postTabOpen={currentMenu == 'post' && postTabOpen}>
+                <PostTab />
+            </LeftContent>            
+            <CenterContent postTabOpen={currentMenu == 'post' && postTabOpen}>
                 <HeadTab />
                 <div style={{paddingTop: '45px'}}>
                     {props.children}
                 </div>
-            </PageContent>
+            </CenterContent>
                         
         </Container>
     )

@@ -63,6 +63,8 @@ const Container = styled.div`
 
     padding-top: 45px;
     background-color: ${ props => props.theme.color1 };
+
+
 `
 
 const MenuContainer = styled.ul`
@@ -70,6 +72,7 @@ const MenuContainer = styled.ul`
     flex-direction: column;    
     align-items: center;
     justify-content: space-between;
+    
     height: 245px;
 `
 

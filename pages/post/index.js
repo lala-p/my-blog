@@ -10,11 +10,7 @@ const PostHome = () => {
     return (
         <PageContainer menu='post'>
             asdasdzxccccccccccccccccccccccccccccccccccccccccccccccccccccccccs
-        { postTabOpen ? 
-            <div style={{width: '100px', height: '100px', backgroundColor: 'green' }}>on</div>
-        : 
-            <div style={{width: '100px', height: '100px', backgroundColor: 'red' }}>off</div>
-        }
+        
         </PageContainer>
     )
 }
