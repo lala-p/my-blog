@@ -14,19 +14,19 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
 
-    max-width: 1120px;
+    max-width: 1130px;
     margin: auto;
-    justify-content: space-between;
-    // background-color: green;
 
     
 `
 const MainContent = styled.div`
     display: block;
-    padding: 10px;
-    max-width: 800px;
+    padding: 15px;
+    max-width: 830px;
 
-    @media( max-width: ${ props => props.postTabOpen ? '1550px': '1400px' } ) {
+    margin-right: 30px;
+
+    @media( max-width: ${ props => props.postTabOpen ? '1450px': '1250px' } ) {
         margin: auto;
 
     }    
