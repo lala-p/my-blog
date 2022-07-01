@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const LeftContent = styled.div`
 
-    @media( max-width: 960px ) {
+    @media( max-width: 1160px ) {
         display: none;
     }
 
@@ -30,7 +30,7 @@ const CenterContent = styled.div`
     padding-left: ${props => props.postTabOpen ? '295px' : '65px' };
     // background-color: red;
 
-    @media( max-width: 960px ) {
+    @media( max-width: 1160px ) {
         padding-left: 0;
     }
     

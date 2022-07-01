@@ -14,38 +14,32 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
 
-    width: 880px;
-
+    max-width: 1120px;
     margin: auto;
-
+    justify-content: space-between;
     // background-color: green;
 
-    ${ props => props.postTabOpen ? 
-        `
-        @media( max-width: 1350px ) {
-            width: 70vw;
-            padding-right: 0;
-        }
-        
-        @media( max-width: 1150px ) {
-            width: 65vw;
-        }
-        `
-
-    :   
-        `
-        @media( max-width: 1250px ) {
-            width: 85vw;
-            padding-right: 0;
-        }
-        
-        `    
-    }
     
+`
+const MainContent = styled.div`
+    display: block;
+    padding: 10px;
+    max-width: 800px;
 
-    @media( max-width: 960px ) {
-        width: 95vw;
-    }
+    @media( max-width: ${ props => props.postTabOpen ? '1550px': '1400px' } ) {
+        margin: auto;
+
+    }    
+`
+const SideContent = styled.div`
+    min-width: 270px;
+
+    background-color: yellow;
+
+    @media( max-width: ${ props => props.postTabOpen ? '1450px': '1250px' } ) {
+        display: none;
+
+    }    
 `
 
 const PostContent = styled.div`
@@ -55,13 +49,11 @@ const PostContent = styled.div`
     
     
     margin: auto;
-    
-    // background-color: red;
+
 
     
 `
 const PostHeader = styled.div`
-
     margin-top: 30px;
 
 `
@@ -73,23 +65,6 @@ const PostBody = styled.div`
 
 const PostFooter = styled.div`
     margin-top: 50px;    
-
-`
-
-const Aside = styled.div`
-    position: fixed;
-    top: 100px;
-    margin-left: 880px;
-
-    width: 270px;
-    height: 100%;
-    
-
-    background-color: yellow;
-
-    @media( max-width: ${ props => props.postTabOpen ? '1350px': '1250px' } ) {
-        display: none;
-    }    
 
 `
 
@@ -106,7 +81,7 @@ const PostDetail = () => {
     return (
         <PageContainer menu='post'>
             <Container postTabOpen={postTabOpen}>
-                <PostContent postTabOpen={postTabOpen}>                
+                <MainContent postTabOpen={postTabOpen}>
                     <PostHeader>
                         <BoldText size='35px'>React useCallbak 이해하기</BoldText>
                         <br />
@@ -121,16 +96,18 @@ const PostDetail = () => {
                     <PostBody>
                         <TextLink link='/search'>하하하ㅏ</TextLink>
                         <Text>다들 2주라는 짧은 시간 내에 최대한 많은 결과물을 보여주고 싶어했던 심리가 컸던 것 같다.</Text>
+                        <Text>다들 2주라는 짧은 시간 내에 최대한 많은 결과물을 보여주고 싶어했던 심리가 컸던 것 같다.</Text>
+
 
                     </PostBody>
                     <PostFooter>
         
 
                     </PostFooter>
-                </PostContent>
-                <Aside postTabOpen={postTabOpen}>
-                    zxczc
-                </Aside>
+                </MainContent>
+                <SideContent postTabOpen={postTabOpen}>
+                    asdasd
+                </SideContent>
             </Container>
         </PageContainer>
     )

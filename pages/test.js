@@ -39,10 +39,6 @@ const Box2 = styled.div`
     }
 
 `
-const Box3 = styled.div`
-    
-
-`
 
 const Test = () => {
 
