@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-scroll'
 
 
 const Container = styled.div`
@@ -24,3 +25,6 @@ const TableOfContents = props => {
         </Container>
     )
 } 
+
+
+export default TableOfContents

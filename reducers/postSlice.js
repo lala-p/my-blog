@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     postTabOpen: true,
+    openList: new Array(),
 
 }
 
@@ -16,7 +17,13 @@ const postSlice = createSlice({
         },
         switchPostTabOpen: (state, action) => {
             state.postTabOpen = !state.postTabOpen
-        }
+        },
+        addOpenList: (state, action) => {
+            state.openList.push(action.payload)
+        },
+        deleteOpenList: (state, action) => {
+            state.openList = state.openList.filter((open) => open != action.payload)
+        },
         
     },
 })

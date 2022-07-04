@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import Image from 'next/image'
 
@@ -8,6 +9,10 @@ import { Text, BoldText, Paragraph } from '../../components/Text'
 import { TextLink } from '../../components/SpecialLink'
 import { DateBox, WriterBox } from '../../components/IconBox'
 import Tag, { TagList } from '../../components/Tag'
+
+import { dateFormat } from '../../commonFun/date'
+
+import postData from '../../postData'
 
 
 const Container = styled.div`
@@ -21,18 +26,24 @@ const Container = styled.div`
 `
 const MainContent = styled.div`
     display: block;
-    padding: 15px;
-    max-width: 830px;
+    width: 830px;
 
     margin-right: 30px;
-
+    // background-color: green;
     @media( max-width: ${ props => props.postTabOpen ? '1450px': '1250px' } ) {
         margin: auto;
 
     }    
+
+    @media( max-width: 860px ) {
+        padding: 0 15px 0 15px;
+        width: 100vw;
+
+    }
+
 `
 const SideContent = styled.div`
-    min-width: 270px;
+    min-width: 250px;
 
     background-color: yellow;
 
@@ -46,12 +57,7 @@ const PostContent = styled.div`
     display: block;
     width: 100%;
     height: 100%;
-    
-    
-    margin: auto;
 
-
-    
 `
 const PostHeader = styled.div`
     margin-top: 30px;
@@ -68,37 +74,49 @@ const PostFooter = styled.div`
 
 `
 
-const tags = ['bbbbb', 'sdsdsda', '2323', 'qweqweqwe', 'asdfasdfdfdf','23ㅌ3213', 'ccccccccc', '그리고']
+export async function getServerSideProps({ query: { postCode } }) {
+    return {
+        props: {
+            postCode,
+        },
+    }
+}
 
-const PostDetail = () => {
+const PostDetail = props => {
 
-    const router = useRouter()
-
-    const postCode = router.query.postCode
+    const postCode = props.postCode
     const postTabOpen = useSelector((state) => state.post.postTabOpen)
 
+    useEffect(() => {
+        
+        console.log(postData)
+        console.log(postCode)
+        console.log(postData[postCode])
+        console.log(postData[postCode].title)
+      
+    }, [])
 
+        
     return (
         <PageContainer menu='post'>
             <Container postTabOpen={postTabOpen}>
                 <MainContent postTabOpen={postTabOpen}>
                     <PostHeader>
-                        <BoldText size='35px'>React useCallbak 이해하기</BoldText>
+                        <BoldText size='35px'>{ postData[postCode].title }</BoldText>
                         <br />
                         <br />
-                        <WriterBox>하ㅏㄴ아s</WriterBox>
+                        <WriterBox>{ postData[postCode].writer }</WriterBox>
                         <br />
-                        <DateBox createdDate='2022년 10월 10일' updatedDate='2022년 10월 10일' />
+                        <DateBox 
+                            createdDate={ dateFormat(postData[postCode].createdDate, 6) } 
+                            updatedDate={ postData[postCode].updatedDate !== false ? dateFormat(postData[postCode].updatedDate, 6) : false } 
+                        />
                         <br />
                         <br />
-                        <TagList list={tags} />
+                        <TagList list={ postData[postCode].tagList } />
                     </PostHeader>
                     <PostBody>
-                        <TextLink link='/search'>하하하ㅏ</TextLink>
-                        <Text>다들 2주라는 짧은 시간 내에 최대한 많은 결과물을 보여주고 싶어했던 심리가 컸던 것 같다.</Text>
-                        <Text>다들 2주라는 짧은 시간 내에 최대한 많은 결과물을 보여주고 싶어했던 심리가 컸던 것 같다.</Text>
-
-
+                        { postData[postCode].PostContent() }
                     </PostBody>
                     <PostFooter>
         
@@ -106,7 +124,7 @@ const PostDetail = () => {
                     </PostFooter>
                 </MainContent>
                 <SideContent postTabOpen={postTabOpen}>
-                    asdasd
+                    sdfsdfsf
                 </SideContent>
             </Container>
         </PageContainer>

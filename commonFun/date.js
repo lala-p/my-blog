@@ -59,9 +59,18 @@ export const dateFormat = (dateToFormat, ver = 0) => {
         const minutes = ('0' + dateToFormat.getMinutes()).slice(-2)
         const seconds = ('0' + dateToFormat.getSeconds()).slice(-2)
 
-        const formatedDate2 = `${year}.${month}.${date} ${hours}:${minutes}:${seconds}`
+        const formatedDate = `${year}.${month}.${date} ${hours}:${minutes}:${seconds}`
         
-        return formatedDate2  
+        return formatedDate
+
+    } else if (ver == 6) { // 0000년 00월 00일
+        const year = ('000' + dateToFormat.getFullYear()).slice(-4)
+        const month = ('0' + (dateToFormat.getMonth() + 1)).slice(-2)
+        const date = ('0' + dateToFormat.getDate()).slice(-2)
+
+        const formatedDate = `${year}년 ${month}월 ${date}일`    
+        
+        return formatedDate
 
     } else {
         return false

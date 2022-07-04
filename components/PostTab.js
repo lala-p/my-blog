@@ -18,12 +18,6 @@ const Container = styled.div`
 
 `
 
-const CategoryContainer = styled.div`
-
-
-`
-
-
 const PostTab = props => {
     
     const currentMenu = useSelector((state) => state.menu.currentMenu)
