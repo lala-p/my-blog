@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { menuActions } from '../reducers/menuSlice' 
 
 import MenuTab from './MenuTab'
-import PostTab from './PostTab'
+import SubTab from './SubTab'
 import HeadTab from './HeadTab'
 
 
@@ -27,7 +27,7 @@ const LeftContent = styled.div`
 const CenterContent = styled.div`
 
     width: 100%;
-    padding-left: ${props => props.postTabOpen ? '295px' : '65px' };
+    padding-left: ${props => props.subTabOpen ? '295px' : '65px' };
     // background-color: red;
 
     @media( max-width: 1160px ) {
@@ -41,7 +41,7 @@ const PageContainer = props => {
     const dispatch = useDispatch() 
     
     const currentMenu = useSelector((state) => state.menu.currentMenu)
-    const postTabOpen = useSelector((state) => state.post.postTabOpen)
+    const subTabOpen = useSelector((state) => state.menu.subTabOpen)
 
     useEffect(() => {
         
@@ -58,9 +58,9 @@ const PageContainer = props => {
         <Container>
             <LeftContent>
                 <MenuTab />
-                <PostTab />
+                <SubTab />
             </LeftContent>            
-            <CenterContent postTabOpen={currentMenu == 'post' && postTabOpen}>
+            <CenterContent subTabOpen={currentMenu == 'post' && subTabOpen}>
                 <HeadTab />
                 <div style={{paddingTop: '45px'}}>
                     {props.children}

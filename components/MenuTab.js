@@ -5,8 +5,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { postActions } from '../reducers/postSlice'
+import { menuActions } from '../reducers/menuSlice'
 
-import PostTab from './PostTab'
+import SubTab from './SubTab'
 import SelectNone from './SelectNone'
 
 
@@ -41,8 +42,9 @@ const PostIconLinkBox = props => {
 
     const EventHandler = () => {
         if (props.active) {
-            dispatch(postActions.switchPostTabOpen())
+            dispatch(menuActions.switchSubTabOpen())
         } else {
+            dispatch(menuActions.setSubTabOpen(true))
             router.push(props.link)
         }
     }

@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    currentMenu: 'home'
-    
+    currentMenu: 'home',
+    subTabOpen: false,
+    currentSubTabMode: 'folder',
 }
 
 const menuSlice = createSlice({
@@ -12,7 +13,15 @@ const menuSlice = createSlice({
         setCurrentMenu: (state, action) => {
             state.currentMenu = action.payload
         },
-
+        setSubTabOpen: (state, action) => {
+            state.subTabOpen = action.payload
+        },
+        switchSubTabOpen: (state, action) => {
+            state.subTabOpen = !state.subTabOpen
+        },
+        setCurrentSubTabMode: (state, action) => {
+            state.currentSubTabMode = action.payload 
+        },
         
     },
 })

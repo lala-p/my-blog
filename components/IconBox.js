@@ -111,3 +111,118 @@ export const WriterBox = props => {
         </Box>
     )
 }
+
+
+export const FolderBox = props => {
+    const Box = styled.div`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    `
+    
+    const ImageBox = styled.div`
+        position: relative;  
+        width: 14px;
+        height: 14px;
+        top: 1px;
+        margin-right: 12px;
+    `
+
+    return (
+        <Box>
+            <ImageBox>
+                <SelectNone>
+                    <Image src='/image/write24.png' layout='fill' objectFit='cover' />
+                </SelectNone>
+            </ImageBox>
+            <Text>{props.children}</Text>
+        </Box>
+    )
+}
+
+export const OpenFolderBox = props => {
+    const Box = styled.div`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+    `
+
+    const ImageBox = styled.div`
+        position: relative;  
+        width: 14px;
+        height: 14px;
+        top: 1px;
+        margin-right: 12px;
+    `
+
+    return (
+        <Box>
+            <ImageBox>
+                <SelectNone>
+                    <Image src='/image/write24.png' layout='fill' objectFit='cover' />
+                </SelectNone>
+            </ImageBox>
+            <Text>{props.children}</Text>
+        </Box>
+    )
+}
+
+
+export const FileBox = props => {
+    const Box = styled.div`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+    `
+
+    const ImageBox = styled.div`
+        position: relative;  
+        width: 14px;
+        height: 14px;
+        top: 1px;
+        margin-right: 12px;
+    `
+
+    return (
+        <Box>
+            <ImageBox>
+                <SelectNone>
+                    <Image src='/image/write24.png' layout='fill' objectFit='cover' />
+                </SelectNone>
+            </ImageBox>
+            <Text>{props.children}</Text>
+        </Box>
+    )
+}
+
+export const OpenFileBox = props => {
+    const Box = styled.div`
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        cursor: pointer;
+    `
+    
+    const ImageBox = styled.div`
+        position: relative;  
+        width: 14px;
+        height: 14px;
+        top: 1px;
+        margin-right: 12px;
+    `
+
+    return (
+        <Box>
+            <ImageBox>
+                <SelectNone>
+                    <Image src='/image/write24.png' layout='fill' objectFit='cover' />
+                </SelectNone>
+            </ImageBox>
+            <Text>{props.children}</Text>
+        </Box>
+    )
+}
+
+
+

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-// import { useRouter } from 'next/router'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import Image from 'next/image'
+
+import { menuActions } from '../../reducers/menuSlice'
+import { postActions } from '../../reducers/postSlice'
 
 import PageContainer from '../../components/PageContainer'
 import { Text, BoldText, Paragraph } from '../../components/Text'
@@ -29,8 +30,8 @@ const MainContent = styled.div`
     width: 830px;
 
     margin-right: 30px;
-    // background-color: green;
-    @media( max-width: ${ props => props.postTabOpen ? '1450px': '1250px' } ) {
+  
+    @media( max-width: ${ props => props.subTabOpen ? '1450px': '1250px' } ) {
         margin: auto;
 
     }    
@@ -47,7 +48,7 @@ const SideContent = styled.div`
 
     background-color: yellow;
 
-    @media( max-width: ${ props => props.postTabOpen ? '1450px': '1250px' } ) {
+    @media( max-width: ${ props => props.subTabOpen ? '1450px': '1250px' } ) {
         display: none;
 
     }    
@@ -84,23 +85,29 @@ export async function getServerSideProps({ query: { postCode } }) {
 
 const PostDetail = props => {
 
+    const dispatch = useDispatch()
+
     const postCode = props.postCode
-    const postTabOpen = useSelector((state) => state.post.postTabOpen)
+    const subTabOpen = useSelector((state) => state.menu.subTabOpen)
 
     useEffect(() => {
         
+        dispatch(postActions.setCurrentPostCode(postCode))
+        dispatch(menuActions.setCurrentSubTabMode('file'))
+        dispatch(menuActions.setSubTabOpen(true))
+
         console.log(postData)
         console.log(postCode)
         console.log(postData[postCode])
         console.log(postData[postCode].title)
       
-    }, [])
+    }, [postCode])
 
         
     return (
         <PageContainer menu='post'>
-            <Container postTabOpen={postTabOpen}>
-                <MainContent postTabOpen={postTabOpen}>
+            <Container subTabOpen={subTabOpen}>
+                <MainContent subTabOpen={subTabOpen}>
                     <PostHeader>
                         <BoldText size='35px'>{ postData[postCode].title }</BoldText>
                         <br />
@@ -123,7 +130,7 @@ const PostDetail = props => {
 
                     </PostFooter>
                 </MainContent>
-                <SideContent postTabOpen={postTabOpen}>
+                <SideContent subTabOpen={subTabOpen}>
                     sdfsdfsf
                 </SideContent>
             </Container>

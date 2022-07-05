@@ -6,6 +6,11 @@ import { Text, Paragraph } from '../components/Text'
 
 let postData1 = new Object()
 
+postData1['not'] = {
+    parent: 'FolderExample',
+
+}
+
 postData1['FileExample1'] = {
     type: 'file',
     title: 'hello...?',
@@ -64,13 +69,6 @@ postData1['FileExample2'] = {
         { contents: '', id: '', sub: true },
     ],
     parent: 'FolderExample',
-}
-
-postData1['FolderExample'] = {
-    'type': 'folder',
-    'name': 'Folderrrrr',
-    'parent': null,
-    'childList': ['FileExample1', 'FileExample2']
 }
 
 
