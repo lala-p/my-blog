@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const LeftContent = styled.div`
 
-    @media( max-width: 1160px ) {
+    @media( max-width: 1180px ) {
         display: none;
     }
 
@@ -28,9 +28,8 @@ const CenterContent = styled.div`
 
     width: 100%;
     padding-left: ${props => props.subTabOpen ? '295px' : '65px' };
-    // background-color: red;
 
-    @media( max-width: 1160px ) {
+    @media( max-width: 1180px ) {
         padding-left: 0;
     }
     
@@ -49,8 +48,6 @@ const PageContainer = props => {
             dispatch(menuActions.setCurrentMenu(props.menu))    
         }
         
-
-
     }, [])
     
 
@@ -65,8 +62,7 @@ const PageContainer = props => {
                 <div style={{paddingTop: '45px'}}>
                     {props.children}
                 </div>
-            </CenterContent>
-                        
+            </CenterContent>          
         </Container>
     )
 

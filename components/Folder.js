@@ -1,21 +1,26 @@
-import styled from 'styled'
+import styled from 'styled-components'
+
+import { FolderBox, OpenFolderBox } from './IconBox'
 
 const Container = styled.div`
 
-
 `
 
-const FolderContent = styled.div`
+const FolderContent = styled.ul`
     margin-left: 10px; 
-
+    
 `
 
-const Folder = propst => {
+const Folder = props => {
 
 
     return (
         <Container>
-            { props. }
+            { props.open ? 
+                <OpenFolderBox>{ props.folderName }^^OPEN</OpenFolderBox>
+            :
+                <FolderBox>{ props.folderName }</FolderBox>
+            }
             <FolderContent>
                 { props.children }
             </FolderContent>

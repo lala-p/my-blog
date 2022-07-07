@@ -42,9 +42,9 @@ const PostIconLinkBox = props => {
 
     const EventHandler = () => {
         if (props.active) {
-            dispatch(menuActions.switchSubTabOpen())
+            dispatch(menuActions.subTabSwitch())
         } else {
-            dispatch(menuActions.setSubTabOpen(true))
+            dispatch(menuActions.subTabOpen())
             router.push(props.link)
         }
     }
@@ -78,19 +78,16 @@ const MenuContainer = styled.ul`
     height: 245px;
 `
 
-const MenuTab = () => {
-
-    const currentMenu = useSelector((state) => state.menu.currentMenu)
-
+const MenuTab = props => {
 
     return (
         <Container>
             <MenuContainer>
-                <li><MenuIconLinkBox link='/' img='/image/menu_home.png' activeImg='/image/menu_home_active.png' active={currentMenu == 'home'} /></li>
-                <li><PostIconLinkBox link='/post' img='/image/menu_post.png' activeImg='/image/menu_post_active.png' active={currentMenu == 'post'} /></li>
-                <li><MenuIconLinkBox link='/search' img='/image/menu_search.png' activeImg='/image/menu_search_active.png' active={currentMenu == 'search'} /></li>
-                <li><MenuIconLinkBox link='/notice' img='/image/menu_notice.png' activeImg='/image/menu_notice_active.png' active={currentMenu == 'notice'} /></li>
-                <li><MenuIconLinkBox link='/profile' img='/image/menu_profile.png' activeImg='/image/menu_profile_active.png' active={currentMenu == 'profile'} /></li>
+                <li><MenuIconLinkBox link='/' img='/image/menu_home.png' activeImg='/image/menu_home_active.png' active={ props.activeMenu == 'home' } /></li>
+                <li><PostIconLinkBox link='/post' img='/image/menu_post.png' activeImg='/image/menu_post_active.png' active={ props.activeMenu == 'post' } /></li>
+                <li><MenuIconLinkBox link='/search' img='/image/menu_search.png' activeImg='/image/menu_search_active.png' active={ props.activeMenu == 'search' } /></li>
+                <li><MenuIconLinkBox link='/notice' img='/image/menu_notice.png' activeImg='/image/menu_notice_active.png' active={ props.activeMenu == 'notice' } /></li>
+                <li><MenuIconLinkBox link='/profile' img='/image/menu_profile.png' activeImg='/image/menu_profile_active.png' active={ props.activeMenu == 'profile' } /></li>
             </MenuContainer>
 
         </Container>

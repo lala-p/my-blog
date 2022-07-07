@@ -1,14 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import FolderModeContent from './FolderModeContent'
-import FileModeContent from './FileModeContent'
+// import FolderModeContent from './FolderModeContent'
+// import FileModeContent from './FileModeContent'
 
 
 
-const Container = styled.div`
+const SubTab = styled.div`
 
-    ${ props => props.subTabOpen ? null : 'display: none;' }
+    ${ props => props.open ? null : 'display: none;' }
     
     position: fixed;
 
@@ -21,22 +21,24 @@ const Container = styled.div`
 
 `
 
-const SubTab = props => {
+// const SubTab = props => {
     
-    const currentMenu = useSelector((state) => state.menu.currentMenu)
-    const subTabOpen = useSelector((state) => state.menu.subTabOpen)
-    const currentSubTabMode = useSelector((state) => state.menu.currentSubTabMode)
+//     const currentMenu = useSelector((state) => state.menu.currentMenu)
+//     const subTabOpen = useSelector((state) => state.menu.subTabOpen)
+//     const currentSubTabMode = useSelector((state) => state.menu.currentSubTabMode)
 
-    return (
-        <Container subTabOpen={currentMenu == 'post' && subTabOpen}>
-        { currentSubTabMode == 'file' ?
-            <FileModeContent />   
-        :
-            null
-        }
+//     return (
+//         <Container subTabOpen={currentMenu == 'post' && subTabOpen}>
+//         { currentSubTabMode == 'folder' ?
+//             <FolderModeContent /> : null 
+//         }
+        
+//         { currentSubTabMode == 'file' ?
+//             <FileModeContent />  : null
+//         }
 
-        </Container>
-    )
-}
+//         </Container>
+//     )
+// }
 
 export default SubTab

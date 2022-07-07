@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     currentPostCode: 'not',
-    openFolderList: new Array(),
+    openFolderList: ['root'],
 
 }
 
