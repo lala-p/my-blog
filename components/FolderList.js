@@ -64,7 +64,7 @@ const FolderList = () => {
 
     return (
         <Container>
-            <ul id='folderListBox'>
+            <ul className='folderListBox'>
                 <Folder name='root'>
                     <Folder name='FolderExample'>
                         <LinkFolder name='FolderExample2' />

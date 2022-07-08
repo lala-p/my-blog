@@ -6,10 +6,6 @@ import { Text, Paragraph } from '../components/Text'
 
 let postData1 = new Object()
 
-postData1['not'] = {
-    parent: 'FolderExample',
-
-}
 
 postData1['FileExample1'] = {
     type: 'file',

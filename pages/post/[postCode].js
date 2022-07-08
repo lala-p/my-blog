@@ -39,7 +39,7 @@ const PostDetail = props => {
     useEffect(() => {
         dispatch(menuActions.subTabOpen())
       
-    }, [postCode])
+    }, [])
 
         
     return (
@@ -55,7 +55,7 @@ const PostDetail = props => {
                 <MainContainer>
                     <PostContainer>
                         <PostHead>
-                            <BoldText size='35px' id='postTitle'>{ postData[postCode].title }</BoldText>
+                            <BoldText className='postTitle' size='35px'>{ postData[postCode].title }</BoldText>
                             <WriterBox>{ postData[postCode].writer }</WriterBox>
                             <DateBox 
                                 createdDate={ dateFormat(postData[postCode].createdDate, 6) } 

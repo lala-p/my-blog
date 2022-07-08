@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import postData from '../postData'
 import folderData from '../folderData'
 
@@ -55,3 +57,54 @@ export const getFileListDataByPostCode = (postCode) => {
 
     return fileListData
 }
+
+export const getAllPostTagCount = () => {
+    let postTagCountData = new Object() 
+    const postCodeList = Object.keys(postData)
+
+    for (let i = 0; i < postCodeList.length; i++) {
+        for (let j = 0; j < postData[postCodeList[i]].tagList.length; j++) {
+            let tag = postData[postCodeList[i]].tagList[j]
+
+            if (postTagCountData[tag]) {
+
+        
+            }
+            
+        }
+            
+    }
+
+    postCodeList.forEach(postCode => {
+        postData[postCode].array.forEach(element => {
+            
+        });
+        
+        for (let index = 0; index < postData[postCode].length; index++) {
+            if () {
+                postTagCountData[]
+            } else {
+                postTagCountData[]
+            }
+            
+        }
+
+    })
+
+    
+    return postTagCountData
+}
+
+export const getParticularPostTagCount = (...tags) => {
+    let postTagCountData = new Object() 
+    
+    
+
+
+    return postTagCountData
+}
+
+// export const getExceptPostTagCount = (...tags) => {
+
+
+// }

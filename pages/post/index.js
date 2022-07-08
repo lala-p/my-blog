@@ -33,7 +33,7 @@ const PostHome = () => {
             <Center subTabOpen={ subTabOpenState }>
                 <HeadTab />
                 <MainContainer>
-                    <div>index</div>
+                    <div>postHome</div>
 
                 </MainContainer>
             </Center>
