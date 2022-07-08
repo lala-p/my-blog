@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 import postData from '../postData'
 import folderData from '../folderData'
 
@@ -58,53 +56,72 @@ export const getFileListDataByPostCode = (postCode) => {
     return fileListData
 }
 
-export const getAllPostTagCount = () => {
-    let postTagCountData = new Object() 
-    const postCodeList = Object.keys(postData)
+export const getAllTagList = () => {
+    let allTagSet = new Set()
+    const postDataList = Object.values(postData)
 
-    for (let i = 0; i < postCodeList.length; i++) {
-        for (let j = 0; j < postData[postCodeList[i]].tagList.length; j++) {
-            let tag = postData[postCodeList[i]].tagList[j]
-
-            if (postTagCountData[tag]) {
-
-        
-            }
-            
-        }
-            
+    for (const postData of postDataList) {
+        for (const tag of postData.tagList) {
+            allTagSet.add(tag)
+        }   
     }
 
-    postCodeList.forEach(postCode => {
-        postData[postCode].array.forEach(element => {
-            
-        });
-        
-        for (let index = 0; index < postData[postCode].length; index++) {
-            if () {
-                postTagCountData[]
+    return Array.from(allTagSet)
+}
+
+export const getAllPostTagCount = () => {
+    let postTagCountData = new Object() 
+    const postDataList = Object.values(postData)
+
+    for (const postData of postDataList) {
+        for (const tag of postData.tagList) {
+            if (postTagCountData[tag] !== undefined) {
+                postTagCountData[tag] = postTagCountData[tag] + 1
             } else {
-                postTagCountData[]
+                postTagCountData[tag] = 1
             }
-            
-        }
-
-    })
-
+        }   
+    }
     
     return postTagCountData
 }
 
-export const getParticularPostTagCount = (...tags) => {
+export const getParticularPostTagCount = (...tagList) => {
     let postTagCountData = new Object() 
     
+    for (let i = 0; i < tagList.length; i++) {
+        
+        
+    }
     
 
 
     return postTagCountData
 }
 
-// export const getExceptPostTagCount = (...tags) => {
+export const getTagCountRank = () => {
+    let tagRank = new Object()
+
+    let postTagCountData = getAllPostTagCount() 
+    let sortedCountDataList = new Array() 
+    
+    for (const postTag in postTagCountData) {
+        sortedCountDataList.push({ tag: postTag, count: postTagCountData[postTag] })
+    }
+
+    sortedCountDataList = sortedCountDataList.sort((a, b) => {
+        return b.count - a.count
+    })
+
+    for (let index = 0; index < sortedCountDataList.length; index++) {
+        tagRank[index + 1] = sortedCountDataList[index].tag
+    }
+
+    return tagRank
+}
+
+
+// export const getExceptPostTagCount = (...tagList) => {
 
 
 // }
