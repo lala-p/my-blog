@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { BoldText } from '../Text'
-
 
 export const PostContainer = styled.div`
     display: block;
@@ -35,10 +33,17 @@ export const PostFoot = styled.div`
 
 `
 
-export const PostTitle = styled(BoldText)`
-    font-size: 35px;
+export const PostTitleBox = styled.div`
+
 `
 
+export const PostDataBox = styled.div`
+
+`
+
+export const TagBox = styled.div`
+
+`
 
 export const SideContainer = styled.div`
     width: 250px;

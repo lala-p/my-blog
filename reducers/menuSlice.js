@@ -10,9 +10,6 @@ const menuSlice = createSlice({
     name: 'menu',
     initialState,
     reducers: {
-        // setCurrentMenu: (state, action) => {
-        //     state.currentMenu = action.payload
-        // },
         subTabOpen: (state, action) => {
             state.subTabState = true
         },
@@ -20,14 +17,9 @@ const menuSlice = createSlice({
             state.subTabState = false
         },
         subTabSwitch: (state, action) => {
-            state.subTabState = !state.subTabState
+            state.subTabOpenState = !state.subTabOpenState
         }
-        // switchSubTabOpen: (state, action) => {
-        //     state.subTabOpen = !state.subTabOpen
-        // },
-        // setCurrentSubTabMode: (state, action) => {
-        //     state.currentSubTabMode = action.payload 
-        // },
+
         
     },
 })

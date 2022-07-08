@@ -1,50 +1,50 @@
-import { useState } from 'react' 
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-// import { postActions } from '../reducers/postSlice'
+import { folderActions } from '../reducers/folderSlice'
 
-import { FolderBox, OpenFolderBox } from './IconBox'
-
-// import folderData from '../folderData'
+import { CloseFolderBox, OpenFolderBox } from './IconBox'
 
 
 const Container = styled.div`
     padding: 50px 0 0 10px;
-
 `
 
 const FolderContent = styled.ul`
-    margin-left: 10px; 
+    ${ props => props.parentOpen ? null : 'display: none;' }
     
+    margin-left: 10px; 
 `
 
-const FolderModeContent = props => {
+const FolderList = () => {
 
     const dispatch = useDispatch()
 
-    const openFolderList = useSelector((state) => state.post.openFolderList)
+    const openFolderList = useSelector((state) => state.folder.openFolderList)
+
 
     const Folder = props => {
         return (
             <li>                
             { openFolderList.includes(props.name) ? 
-                <OpenFolderBox onClick={() => {  }}>{ props.name }^^OPEN</OpenFolderBox>
+                <div className='folderNameBox' onClick={() => { dispatch(folderActions.folderClose(props.name)) }}>
+                    <OpenFolderBox>{ props.name }^^OPEN</OpenFolderBox>
+                </div>
             :
-                <FolderBox onClick={() => { }}>{ props.name }</FolderBox>
+                <div className='folderNameBox' onClick={() => { dispatch(folderActions.folderOpen(props.name)) }}>
+                    <CloseFolderBox>{ props.name }</CloseFolderBox>
+                </div>
             }
-                                    
-            { props.in ?
-                <FolderContent>
+
+                <FolderContent parentOpen={openFolderList.includes(props.name)}>
                     { props.children }
                 </FolderContent>
-            : null
-            }
+           
             </li>
         )
     }
-
+    
     const LinkFolder = props => {
         return (
             <li>
@@ -53,7 +53,7 @@ const FolderModeContent = props => {
                     { openFolderList.includes(props.name) ? 
                         <OpenFolderBox>{ props.name }^^OPEN</OpenFolderBox>
                     :
-                        <FolderBox>{ props.name }</FolderBox>
+                        <CloseFolderBox>{ props.name }</CloseFolderBox>
                     }
                     </a>
                 </Link>
@@ -64,17 +64,21 @@ const FolderModeContent = props => {
 
     return (
         <Container>
-            <ul>
-                <Folder name='root' inclue={true}>
-                    <Folder name='FolderExample'  in={true}>
+            <ul id='folderListBox'>
+                <Folder name='root'>
+                    <Folder name='FolderExample'>
                         <LinkFolder name='FolderExample2' />
                     </Folder>
-                    <Folder name='FolderExample3' in={false} />
+                    {/* <Folder name='FolderExample3' /> */}
                 
+
+
+
                 </Folder>
             </ul>
+
         </Container>
     )
 }
 
-export default FolderModeContent
+export default FolderList

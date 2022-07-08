@@ -2,28 +2,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-// import folderData from '../folderData'
-// import postData from '../postData'
-
 import { Text } from './Text'
 import { FileBox, OpenFileBox } from './IconBox'
 
-import { getParentData, getFileListDataByPostCode } from '../commonFun/file'
+import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
 
-
-// const FileLinkBox = props => {
-//     return (
-//         <Link href={ '/post/' + props.postCode }>
-//             <a>
-//             { props.open ? 
-//                 <OpenFileBox>{ props.children }OPEN</OpenFileBox>
-//             :
-//                 <FileBox>{ props.children }</FileBox>
-//             }                
-//             </a>
-//         </Link>
-//     )
-// }
 
 const List = props => {
     
@@ -38,15 +21,10 @@ const List = props => {
                 }                
                 </a>
             </Link>
-
-            {/* <FileLinkBox open={ props.currentPostCode == data.postCode } postCode={ data.postCode }>
-                { data.title }
-            </FileLinkBox> */}
         </li>
     )) 
 
     return list
-
 }
 
 const Container = styled.div`
@@ -60,14 +38,11 @@ const ListContainer = styled.ul`
 `
 
 const FileList = props => {
-    // const currentPostCode = useSelector((state) => state.post.currentPostCode)
 
     return (
         <Container>
-            {/* <Text>{ folderData[postData[currentPostCode].parent].name }</Text> */}
             <Text>{ getParentData(props.currentPostCode).name }</Text>
             <ListContainer>
-                {/* <FileList postCodeList={folderData[postData[currentPostCode].parent].childList} current={currentPostCode} /> */}
                 <List dataList={ getFileListDataByPostCode(props.currentPostCode) } currentPostCode={ props.currentPostCode } />
             </ListContainer>
         </Container>

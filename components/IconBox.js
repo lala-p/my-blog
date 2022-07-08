@@ -113,11 +113,12 @@ export const WriterBox = props => {
 }
 
 
-export const FolderBox = props => {
+export const CloseFolderBox = props => {
     const Box = styled.div`
         display: inline-flex;
         flex-direction: row;
         align-items: center;
+        cursor: pointer;
     `
     
     const ImageBox = styled.div`
@@ -145,6 +146,7 @@ export const OpenFolderBox = props => {
         display: inline-flex;
         flex-direction: row;
         align-items: center;
+        cursor: pointer;
     `
 
     const ImageBox = styled.div`

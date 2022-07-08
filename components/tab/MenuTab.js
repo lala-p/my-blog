@@ -4,11 +4,10 @@ import Link from 'next/link'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { postActions } from '../reducers/postSlice'
-import { menuActions } from '../reducers/menuSlice'
+import { menuActions } from '../../reducers/menuSlice'
 
-import SubTab from './SubTab'
-import SelectNone from './SelectNone'
+// import SubTab from './SubTab'
+import SelectNone from '../SelectNone'
 
 
 const MenuIconBox = props => {
