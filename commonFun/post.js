@@ -26,21 +26,15 @@ export const getNextPostData = (postCode) => {
     const parentChildList = getParentChildList(postCode)
     const currentIndex = getPostIndexInParentFolder(postCode)
 
-    if (currentIndex === parentChildList.length - 1) {
-        return null
-    } else {
-        return postData[parentChildList[currentIndex + 1]]
-    }
+    
+    return postData[parentChildList[currentIndex + 1]]    
 }
 
 export const getPrevPostData = (postCode) => {
     const currentIndex = getPostIndexInParentFolder(postCode)
     
-    if (currentIndex === 0) {
-        return null
-    } else {
-        return postData[getParentChildList(postCode)[currentIndex - 1]]
-    }
+    
+    return postData[getParentChildList(postCode)[currentIndex - 1]]
 }
 
 export const getFileListDataByPostCode = (postCode) => {
