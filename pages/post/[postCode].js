@@ -11,7 +11,9 @@ import HeadTab from '../../components/tab/HeadTab'
 import FileList from '../../components/FileList'
 import { BoldText } from '../../components/Text'
 import { TextLink } from '../../components/SpecialLink'
-import { DateBox, WriterBox } from '../../components/IconBox'
+// import { DateBox, WriterBox } from '../../components/IconBox'
+import { WriterIconText } from '../../components/IconText'
+import DateBox from '../../components/DateBox'
 import { TagList } from '../../components/Tag'
 
 import { dateFormat } from '../../commonFun/date'
@@ -56,7 +58,7 @@ const PostDetail = props => {
                     <PostContainer>
                         <PostHead>
                             <BoldText className='postTitle' size='35px'>{ postData[postCode].title }</BoldText>
-                            <WriterBox>{ postData[postCode].writer }</WriterBox>
+                            <WriterIconText>{ postData[postCode].writer }</WriterIconText>
                             <DateBox 
                                 createdDate={ dateFormat(postData[postCode].createdDate, 6) } 
                                 updatedDate={ postData[postCode].updatedDate !== false ? dateFormat(postData[postCode].updatedDate, 6) : false } 

@@ -1,24 +1,27 @@
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
+import { noticeActions } from '../reducers/noticeSlice'
+
 import { getLastPageNum, getPages, getNextPageNum, PrevPageNum, isFirstPages, isLastPages } from '../commonFun/notice'
 
 
-const NextPagesButton = styled.div`
 
-`
+// const NextPagesButton = styled.div`
 
-const PrevPagesButton = styled.div`
+// `
+
+// const PrevPagesButton = styled.div`
 
 
-`
-const FirstPageButton = styled.div`
+// `
+// const FirstPageButton = styled.div`
 
-`
+// `
 
-const LastPageButton = styled.div`
+// const LastPageButton = styled.div`
 
-`
+// `
 
 const PageNumberButton = styled.div`
 
@@ -28,7 +31,7 @@ const NumberButtonList = styled.ul`
 
 `
 
-const CenterBox = styld.div`
+const CenterBox = styled.div`
 
 `
 

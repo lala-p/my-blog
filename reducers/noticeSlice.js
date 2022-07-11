@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     // currentMode: 'home',
-    currentPage: 1,
     limit: 15,
+    currentPage: 1,
     pageLimit: 10,
     // currentNoticeNo: null,
 
