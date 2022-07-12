@@ -10,7 +10,7 @@ export const nightTheme = {
     color3: '#FFFFFF',
     color4: '#E8E1B3',
     color5: '#94FFF1',
-
+    color6: '#505050',
 
 }
 

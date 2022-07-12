@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 import { Text } from './Text'
-import { FileBox, OpenFileBox } from './IconBox'
+import IconText from './IconText'
+// import { FileBox, OpenFileBox } from './IconBox'
 
 import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
 
@@ -15,9 +16,9 @@ const List = props => {
             <Link href={ '/post/' + data.postCode }>
                 <a>
                 { props.currentPostCode == data.postCode ? 
-                    <OpenFileBox>{ data.title }OPEN</OpenFileBox>
+                    <Text color='white'>{ data.title }OPEN</Text>
                 :
-                    <FileBox>{ data.title }</FileBox>
+                    <Text color='gray'>{ data.title }</Text>
                 }                
                 </a>
             </Link>

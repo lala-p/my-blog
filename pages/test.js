@@ -1,49 +1,9 @@
 import { useEffect } from 'react'
-import styled from 'styled-components'
-import Image from 'next/image'
 
-import SelectNone from '../components/SelectNone'
+import MenuTab from '../components/tab/MenuTab'
+import IconText from '../components/IconText'
+import DateBox from '../components/DateBox'
 
-
-import NoticePagenationNav from '../components/NoticePagenationNav'
-
-
-const ContainerBox = styled.div`
-    display: inline-flex;
-    flex-direction: row;
-    align-items: center;
-
-`
-
-const ImageBox = styled.div`
-    position: relative; 
-    top: ${ props => props.top || '0px' };
-
-    width: ${ props => props.width || '16px' };
-    height: ${ props => props.height || '16px' };
-
-    margin-right: ${ props => props.right || '0px' };
-
-`
-
-const Text = styled.span`
-    font-size: ${ props => props.size || '16px' };
-    color: ${ props => props.color || props.theme.color3 };
-
-`
-
-const IconText = props => {
-    return (
-        <ContainerBox>
-            <ImageBox width={ props.width } height={ props.height } top={ props.top } right={ props.right }>
-                <SelectNone>
-                    <Image src={ props.image } layout='fill' objectFit='cover' />
-                </SelectNone>
-            </ImageBox>
-            <Text>{ props.children }</Text>
-        </ContainerBox>
-    )
-}
 
 
 const Test = () => {
@@ -54,12 +14,30 @@ const Test = () => {
 
     return (
         <div>
-            {/* <NoticePagenationNav /> */}
-            <IconText image='/image/icon/iconTest.svg' width='16px' height='16px' top='0px' right='10px'></IconText>
+            <br />
+            <br />
+            <br />
+            <IconText 
+                img='/image/icon/pencil_color3.svg' 
+                width='15px' 
+                height='15px' 
+                top='4px' 
+                between='10px' 
+                fontSize='16px' 
+                cursorPoint={ false }
+            >
+                lala-p
+            </IconText>
+            <br />
+            <DateBox createdDate='2022년 10월 11일' updatedDate='2022년 10월 12일' />
+            <br />
+            <br />
+            <br />
+            <br />
+            <DateBox createdDate='2022년 10월 11일' updatedDate={ false } />
 
         </div>
     )
-
 }
 
 export default Test

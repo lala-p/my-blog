@@ -3,64 +3,34 @@ import Image from 'next/image'
 
 import SelectNone from './SelectNone'
 
-// base components
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-const ContainerBox = styled.div`
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: ${ props => props.width || '100%' };
-    height: ${ props => props.height || '100%' };
-`
 
 const ImageBox = styled.div`
-    position: relative; 
-
-    width: ${ props => props.width || '16px' };
-    height: ${ props => props.height || '16px' };
+    position: relative;    
+    
+    width: ${ props => props.width || '100px' };
+    height: ${ props => props.height || '100px' };
+    
+    ${ props => props.cursorPoint === true ? 'cursor: pointer;' : null }
 
 `
 
 const IconBox = props => {
     return (
-        <ContainerBox width={ props.width } height={ props.height }>
-            <ImageBox width={ props.imageWidth } height={ props.imageHeight }>
-                <SelectNone>
-                    <Image src={ props.image } layout='fill' objectFit='cover' />
-                </SelectNone>
+        <SelectNone>
+            <ImageBox width={ props.width } height={ props.height } cursorPoint={ props.cursorPoint }>
+                <Image src={ props.img } layout='fill' objectFit='cover' />
             </ImageBox>
-        </ContainerBox>
+        </SelectNone>
     )
 }
 
-// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-
-export const LeftIconBox = props => {
+export const SelectIconBox = props => {
     return (
-        <IconBox image='' width='' height='' imageWidth='' imageHeight='' />
+        <ImageBox width={ props.width } height={ props.height } cursorPoint={ props.cursorPoint }>
+            <Image src={ props.img } layout='fill' objectFit='cover' />
+        </ImageBox>
     )
 }
 
-export const RightIconBox = props => {
-    return (
-
-    )
-}
-
-export const DoubleLeftIconBox = props => {
-    return (
-
-    )
-}
-
-export const DoubleRightIconBox = props => {
-    return (
-        
-    )
-}
-
-
-
+export default IconBox

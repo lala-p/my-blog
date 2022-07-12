@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import IconText from '../IconBox'
+
 
 export const PostContainer = styled.div`
     display: block;
@@ -56,3 +58,19 @@ export const SideContainer = styled.div`
     }    
 
 `
+
+export const WriterBox = props => {
+    return (
+        <IconText 
+            img='/image/icon/pencil_color3.svg' 
+            width='15px' 
+            height='15px' 
+            top='4px' 
+            between='10px' 
+            fontSize='16px' 
+            cursorPoint={ false }
+        >
+            { props.children }
+        </IconText>
+    )
+}

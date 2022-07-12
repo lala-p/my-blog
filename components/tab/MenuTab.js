@@ -6,30 +6,32 @@ import styled from 'styled-components'
 
 import { menuActions } from '../../reducers/menuSlice'
 
-// import SubTab from './SubTab'
 import SelectNone from '../SelectNone'
+import IconBox, { SelectIconBox } from '../IconBox'
 
 
-const MenuIconBox = props => {
-    const Box = styled.div`
-        position: relative;    
-        width: 24px;
-        height: 24px;
-        cursor: pointer;
-    `
-    return (
-        <Box>
-            <Image src={props.img} layout='fill' objectFit='cover' />
-        </Box>
-    )
-}
+// const Box = styled.div`
+//     position: relative;    
+//     width: 24px;
+//     height: 24px;
+//     cursor: pointer;
+// `
+
+// const MenuIconBox = props => {
+//     return (
+//         <Box>
+//             <Image src={props.img} layout='fill' objectFit='cover' />
+//         </Box>
+//     )
+// }
 
 const MenuIconLinkBox = props => {
     return (
         <Link href={props.link}>
-            <SelectNone>
+            <IconBox img={ props.active ? props.activeImg : props.img } width='24px' height='24px' cursorPoint={ true } />
+            {/* <SelectNone>
                 <MenuIconBox img={props.active ? props.activeImg : props.img} />
-            </SelectNone>
+            </SelectNone> */}
         </Link>
     )
 }
@@ -50,7 +52,7 @@ const PostIconLinkBox = props => {
 
     return (
         <SelectNone onClick={EventHandler}>
-            <MenuIconBox img={props.active ? props.activeImg : props.img} />
+            <SelectIconBox img={ props.active ? props.activeImg : props.img } width='24px' height='24px' cursorPoint={ true } />
         </SelectNone>
     )
 }
@@ -82,11 +84,11 @@ const MenuTab = props => {
     return (
         <Container>
             <MenuContainer>
-                <li><MenuIconLinkBox link='/' img='/image/menu_home.png' activeImg='/image/menu_home_active.png' active={ props.activeMenu == 'home' } /></li>
-                <li><PostIconLinkBox link='/post' img='/image/menu_post.png' activeImg='/image/menu_post_active.png' active={ props.activeMenu == 'post' } /></li>
-                <li><MenuIconLinkBox link='/search' img='/image/menu_search.png' activeImg='/image/menu_search_active.png' active={ props.activeMenu == 'search' } /></li>
-                <li><MenuIconLinkBox link='/notice' img='/image/menu_notice.png' activeImg='/image/menu_notice_active.png' active={ props.activeMenu == 'notice' } /></li>
-                <li><MenuIconLinkBox link='/profile' img='/image/menu_profile.png' activeImg='/image/menu_profile_active.png' active={ props.activeMenu == 'profile' } /></li>
+                <li><MenuIconLinkBox link='/' img='/image/icon/home_color6.svg' activeImg='/image/icon/home_color4.svg' active={ props.activeMenu == 'home' } /></li>
+                <li><PostIconLinkBox link='/post' img='/image/icon/document_color6.svg' activeImg='/image/icon/document_color4.svg' active={ props.activeMenu == 'post' } /></li>
+                <li><MenuIconLinkBox link='/search' img='/image/icon/search_color6.svg' activeImg='/image/icon/search_color4.svg' active={ props.activeMenu == 'search' } /></li>
+                <li><MenuIconLinkBox link='/notice' img='/image/icon/megaphone_color6.svg' activeImg='/image/icon/megaphone_color4.svg' active={ props.activeMenu == 'notice' } /></li>
+                <li><MenuIconLinkBox link='/profile' img='/image/icon/user_color6.svg' activeImg='/image/icon/user_color4.svg' active={ props.activeMenu == 'profile' } /></li>
             </MenuContainer>
 
         </Container>
