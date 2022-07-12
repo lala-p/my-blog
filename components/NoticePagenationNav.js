@@ -1,16 +1,17 @@
+import { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { noticeActions } from '../reducers/noticeSlice'
 
-import { LeftIconBox, RightIconBox, DoubleLeftIconBox, DoubleRightIconBox } from '../components/IconBox'
+// import { LeftIconBox, RightIconBox, DoubleLeftIconBox, DoubleRightIconBox } from '../components/IconBox'
 
-import { getLastPageNum, getPages, getNextPageNum, PrevPageNum, isFirstPages, isLastPages } from '../commonFun/notice'
+import { getLastPageNum, getPages, getNextPageNum, getPrevPageNum, isFirstPages, isLastPages } from '../commonFun/notice'
 
 
 
 const PageNumberButton = styled.li`
-    width: 20px;
+    width: 15px;
     
 `
 
@@ -28,6 +29,7 @@ const ArrowBox = styled.div`
     align-items: center;
     justify-content: space-between;
 
+    ${ props => props.hide === true ? 'visibility: hidden;' : null }
     
 `
 
@@ -49,32 +51,58 @@ const NoticePagenationNav = props => {
     const limit = useSelector((state) => state.notice.limit)
     const pageLimit = useSelector((state) => state.notice.pageLimit)
 
+    const [pageData, setPagetData] = useState(new Object())
+
+
+    const setCurrentPage = useCallback((pageNum) => {
+        dispatch(noticeActions.setCurrentPage(pageNum))
+    }, [currentPage]) 
+
+
+    useEffect(() => {
+        let data = {
+            next: getNextPageNum(currentPage, pageLimit),
+            prev: getPrevPageNum(currentPage, pageLimit),
+            first: 1,
+            last: getLastPageNum(limit),
+            isFirst: isFirstPages(currentPage, pageLimit),
+            isLast: isLastPages(currentPage, limit, pageLimit),
+        }
+
+        setPagetData(data)
+
+    }, [currentPage])
+
 
     return (
         <Container>
-            <ArrowBox>
-                <LeftIconBox />
-                <DoubleLeftIconBox />
+            <ArrowBox hide={ isFirstPages(currentPage, pageLimit) }>
+                <div onClick={() => { setCurrentPage(pageData.first) }}>first</div>
+                <div onClick={() => { setCurrentPage(pageData.prev) }}>prev</div>
             </ArrowBox>
             <NumberButtonList>
-                <PageNumberButton>1</PageNumberButton>
-                <PageNumberButton>2</PageNumberButton>
-                <PageNumberButton>3</PageNumberButton>
-                <PageNumberButton>4</PageNumberButton>
-                <PageNumberButton>5</PageNumberButton>
-                <PageNumberButton>6</PageNumberButton>
-                <PageNumberButton>7</PageNumberButton>
-                <PageNumberButton>8</PageNumberButton>
-                <PageNumberButton>9</PageNumberButton>
-                <PageNumberButton>10</PageNumberButton>
+            { 
+                getPages(currentPage, limit, pageLimit).map((page, index) => (
+                    <PageNumberButton key={ index }>
+                    { currentPage == page ? 
+                        <div style={{color: 'yellow'}}>{page}</div>
+                    :
+                        <div onClick={() => { dispatch(noticeActions.setCurrentPage(page)) }}>{page}</div>
+                    }
+                        
+                    </PageNumberButton>
+
+                ))
+
+            }
             </NumberButtonList>          
-            <ArrowBox>
-                <RightIconBox />
-                <DoubleRightIconBox />
+            <ArrowBox hide={ isLastPages(currentPage, limit, pageLimit) }>
+                <div onClick={() => { setCurrentPage(pageData.next) }}>next</div>
+                <div onClick={() => { setCurrentPage(pageData.last) }}>last</div>
             </ArrowBox>
         </Container>
     )
 }
 
 
-export default NoticePagenationNavP
+export default NoticePagenationNav

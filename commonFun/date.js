@@ -1,3 +1,24 @@
+export const dateFormat_ver1 = (date) => {
+    const formatedDate = null    
+    
+}
+
+export const dateFormat_ver2 = (date) => {
+    const formatedDate = null    
+    
+}
+
+export const dateFormat_ver3 = (date) => {
+    const formatedDate = null    
+    
+}
+
+export const dateFormat_ver4 = (date) => {
+    const formatedDate = null    
+    
+}
+
+
 export const dateFormat = (dateToFormat, ver = 0) => {
     if (ver == 0) { // 0000-00-00
         const year = ('000' + dateToFormat.getFullYear()).slice(-4)

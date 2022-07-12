@@ -1,5 +1,6 @@
-import noticeData from '../noticeData'
+// import noticeData from '../noticeData'
 
+const noticeData = new Array(53)
 
 
 export const getNextNoticeData = (noticeNo) => {
@@ -12,17 +13,13 @@ export const getPrevNoticeData = (noticeNo) => {
 
 
 
-
-
 export const getNoticePagenationList = (currentPageNum, limit) => {
     let pagenationList = new Array()
+
+    const startNum = (noticeData.length - 1) - ((currentPageNum - 1) * limit)  
     
-    const startNum = currentPageNum - (currentPageNum % limit) 
-
-
-    for (let index = startNum; index < startNum + limit; index++) {
-        
-        if (noticeData[index] === undefined) {
+    for (let index = startNum; index > startNum - limit; index--) {
+        if (index < 0) {
             break
         } else {
             pagenationList.push(noticeData[index])
@@ -33,10 +30,10 @@ export const getNoticePagenationList = (currentPageNum, limit) => {
 }
 
 
+
 // export const getFirstPageNum = () => {
 //     return 1
 // }
-
 
 export const getLastPageNum = (limit) => {
     const allNoticeCount = noticeData.length
@@ -51,7 +48,7 @@ export const getPages = (currentPageNum, limit, pageLimit) => {
     const startNum = currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit - 1 : (currentPageNum % pageLimit) - 1) 
     const lastNum = getLastPageNum(limit, pageLimit)
 
-    for (let index = 0; index < startNum + pageLimit; index++) {
+    for (let index = startNum; index < startNum + pageLimit; index++) {
         if (index > lastNum) {
             break
         } else {
@@ -62,12 +59,11 @@ export const getPages = (currentPageNum, limit, pageLimit) => {
     return pages
 }
 
-
 export const getNextPageNum = (currentPageNum, pageLimit) => { 
     return currentPageNum % pageLimit == 0 ? currentPageNum + 1 : currentPageNum + pageLimit - (currentPageNum % pageLimit) + 1
 }
 
-export const PrevPageNum = (currentPageNum, pageLimit) => {
+export const getPrevPageNum = (currentPageNum, pageLimit) => {
     return currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit) 
 }
 

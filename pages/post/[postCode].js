@@ -11,8 +11,6 @@ import HeadTab from '../../components/tab/HeadTab'
 import FileList from '../../components/FileList'
 import { BoldText } from '../../components/Text'
 import { TextLink } from '../../components/SpecialLink'
-// import { DateBox, WriterBox } from '../../components/IconBox'
-// import { WriterIconText } from '../../components/IconText'
 import DateBox from '../../components/DateBox'
 import { TagList } from '../../components/Tag'
 

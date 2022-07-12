@@ -63,7 +63,7 @@ export const getAllTagList = () => {
     return Array.from(allTagSet)
 }
 
-export const getAllPostTagCount = () => {
+export const getAllTagCount = () => {
     let postTagCountData = new Object() 
     const postDataList = Object.values(postData)
 
@@ -80,14 +80,23 @@ export const getAllPostTagCount = () => {
     return postTagCountData
 }
 
-export const getParticularPostTagCount = (...tagList) => {
+export const getParticularTagCount = (...tagList) => {
     let postTagCountData = new Object() 
-    
-    for (let i = 0; i < tagList.length; i++) {
-        
-        
+    const postDataList = Object.values(postData)
+
+    for (const postData of postDataList) {
+        for (const tag of postData.tagList) {
+            
+            if (tagList.includes(tag)) {
+                if (postTagCountData[tag] !== undefined) {
+                    postTagCountData[tag] = postTagCountData[tag] + 1
+                } else {
+                    postTagCountData[tag] = 1
+                }
+            }
+
+        }   
     }
-    
 
 
     return postTagCountData
@@ -114,8 +123,3 @@ export const getTagCountRank = () => {
     return tagRank
 }
 
-
-// export const getExceptPostTagCount = (...tagList) => {
-
-
-// }

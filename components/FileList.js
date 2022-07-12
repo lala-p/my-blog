@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 import { Text } from './Text'
 import IconText from './IconText'
-// import { FileBox, OpenFileBox } from './IconBox'
 
 import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
 
