@@ -14,7 +14,7 @@ postData1['FileExample1'] = {
     writer: 'lala-p', 
     createdDate: new Date('2022-07-01 17:00:00'),
     updatedDate: false,
-    tagList: ['react', 'FileExample1', 'useCallback', '후기'],
+    tagList: ['react', 'FileExample1', 'useCallback', '후기', 'react', 'react', 'react', 'react'],
     PostContent: () => { 
         return (
             <div>
@@ -50,7 +50,7 @@ postData1['FileExample2'] = {
     writer: 'lala-p',
     createdDate: new Date('2022-07-01 18:00:00'),
     updatedDate: new Date('2022-07-03 17:00:00'),
-    tagList: ['그리고', '아무도', '없었다'],
+    tagList: ['nextJs', 'useState', '후기', 'useCallback'],
     PostContent: () => {
         return (
             <div>

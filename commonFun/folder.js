@@ -1,10 +1,10 @@
 import folderData from '../folderData'
 
 
-// export const getFolderPath = (folderName) => {
+export const getFolderPath = (folderName) => {
 
-//     let path = 
+    let path = 'asdf'
 
-//     return path 
-// }
+    return path 
+}
 

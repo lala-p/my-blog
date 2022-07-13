@@ -10,17 +10,33 @@ import { getLastPageNum, getPages, getNextPageNum, getPrevPageNum, isFirstPages,
 
 
 
-const PageNumberButton = styled.li`
-    width: 15px;
-    
+const PageNumber = styled.p`
+    color: ${ props => props.current ? props.theme.color2 : props.theme.color3 };
+    font-size: 14px;
 `
 
-const NumberButtonList = styled.ul`
+const PageNumberList = styled.ul`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`
+
+const CircleBox = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    
+    width: 35px;
+    height: 35px;
 
+    background-color: ${ props => props.current ? props.theme.color3 : props.theme.color2 };
+
+    border: 1px solid ${props => props.theme.color3 };
+    border-radius: 50%;
+
+    margin: 0 7px 0 7px;
 `
 
 const ArrowBox = styled.div`
@@ -76,27 +92,22 @@ const NoticePagenationNav = props => {
 
     return (
         <Container>
-            <ArrowBox hide={ isFirstPages(currentPage, pageLimit) }>
+            <ArrowBox hide={ pageData.isFirst }>
                 <div onClick={() => { setCurrentPage(pageData.first) }}>first</div>
                 <div onClick={() => { setCurrentPage(pageData.prev) }}>prev</div>
             </ArrowBox>
-            <NumberButtonList>
+            <PageNumberList>
             { 
                 getPages(currentPage, limit, pageLimit).map((page, index) => (
-                    <PageNumberButton key={ index }>
-                    { currentPage == page ? 
-                        <div style={{color: 'yellow'}}>{page}</div>
-                    :
-                        <div onClick={() => { dispatch(noticeActions.setCurrentPage(page)) }}>{page}</div>
-                    }
-                        
-                    </PageNumberButton>
-
+                    <CircleBox  key={ index } onClick={() => { setCurrentPage(page) }} current={ currentPage == page }>        
+                        <PageNumber current={ currentPage == page }>
+                            { page }
+                        </PageNumber>
+                    </CircleBox>
                 ))
-
             }
-            </NumberButtonList>          
-            <ArrowBox hide={ isLastPages(currentPage, limit, pageLimit) }>
+            </PageNumberList>          
+            <ArrowBox hide={ pageData.isLast }>
                 <div onClick={() => { setCurrentPage(pageData.next) }}>next</div>
                 <div onClick={() => { setCurrentPage(pageData.last) }}>last</div>
             </ArrowBox>
