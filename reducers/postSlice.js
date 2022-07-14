@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 
+// 사실 상 없애도 됨.
+
 const initialState = {
     currentPostCode: 'not',
     openFolderList: ['root'],
