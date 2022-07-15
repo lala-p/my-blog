@@ -3,17 +3,15 @@ import { ThemeProvider } from 'styled-components'
 
 import wrapper from '../wrapper'
 import { lightTheme, nightTheme } from '../styles/theme'
-import '../styles/globals.css'
-
+import GlobalStyle from '../styles/GlobalStyle'
 
 function MyApp({ Component, pageProps }) {
-
-  
-  return (
-    <ThemeProvider theme={nightTheme}>
-      <Component {...pageProps} />  
-    </ThemeProvider>
-  ) 
+	return (
+		<ThemeProvider theme={nightTheme}>
+			<GlobalStyle />
+			<Component {...pageProps} />
+		</ThemeProvider>
+	)
 }
 
 export default wrapper.withRedux(MyApp)
