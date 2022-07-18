@@ -8,11 +8,11 @@ const CreatedDateBox = (props) => {
 	return (
 		<IconText
 			img="/image/icon/clock_color3.svg"
-			width="18px"
-			height="18px"
-			top="2px"
-			between="10px"
-			fontSize="16px"
+			width="1.125rem"
+			height="1.125rem"
+			top="0.125rem"
+			between="0.625em"
+			fontSize="1rem"
 			cursorPoint={false}
 		>
 			{props.children}
@@ -24,11 +24,11 @@ const UpdatedDateBox = (props) => {
 	return (
 		<IconText
 			img="/image/icon/refresh_color3.svg"
-			width="15px"
-			height="15px"
-			top="4px"
-			between="10px"
-			fontSize="16px"
+			width="1rem"
+			height="1rem"
+			top="0.25rem"
+			between="0.625em"
+			fontSize="1rem"
 			cursorPoint={false}
 		>
 			{props.children}

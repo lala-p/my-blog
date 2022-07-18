@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import IconText from '../IconBox'
+import IconText from '../IconText'
 
 export const PostContainer = styled.div`
 	display: block;
@@ -14,12 +14,17 @@ export const PostContainer = styled.div`
 
 	@media (max-width: 860px) {
 		padding: 0 15px 0 15px;
-		width: 100vw;
+		width: 100%;
 	}
 `
 
 export const PostHead = styled.div`
 	margin-top: 30px;
+
+	h1 {
+		font-size: 3rem;
+		line-height: 1.8;
+	}
 `
 
 export const PostBody = styled.div`
@@ -30,11 +35,12 @@ export const PostFoot = styled.div`
 	margin-top: 50px;
 `
 
-export const PostTitleBox = styled.div``
-
 export const PostDataBox = styled.div``
 
-export const TagBox = styled.div``
+export const TagBox = styled.div`
+	margin-top: 1rem;
+	margin-bottom: 2rem;
+`
 
 export const SideContainer = styled.div`
 	width: 250px;
@@ -50,11 +56,11 @@ export const WriterBox = (props) => {
 	return (
 		<IconText
 			img="/image/icon/pencil_color3.svg"
-			width="15px"
-			height="15px"
-			top="4px"
-			between="10px"
-			fontSize="16px"
+			width="1rem"
+			height="1rem"
+			top="0.313rem"
+			between="0.625rem"
+			fontSize="1.12rem"
 			cursorPoint={false}
 		>
 			{props.children}

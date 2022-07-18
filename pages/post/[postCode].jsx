@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { menuActions } from '../../reducers/menuSlice'
 
-import { PageContainer, Left, Center, MainContainer } from '../../components/page/commonPage'
-import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, WriterBox } from '../../components/page/postPage'
+import { PageContainer, Left, Center, MainContainer, Box } from '../../components/page/commonPage'
+import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, WriterBox, TagBox } from '../../components/page/postPage'
 import MenuTab from '../../components/tab/MenuTab'
 import SubTab from '../../components/tab/SubTab'
 import HeadTab from '../../components/tab/HeadTab'
@@ -33,7 +33,9 @@ const PostDetail = (props) => {
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
-	}, [])
+		console.log(postData[postCode])
+		console.log(postData[postCode].tagList)
+	}, [postCode])
 
 	return (
 		<PageContainer>
@@ -48,17 +50,21 @@ const PostDetail = (props) => {
 				<MainContainer>
 					<PostContainer>
 						<PostHead>
-							<BoldText className="postTitle" size="35px">
-								{postData[postCode].title}
-							</BoldText>
-							<WriterBox>lala-p</WriterBox>
-							<DateBox
-								createdDate={dateFormat(postData[postCode].createdDate, 6)}
-								updatedDate={
-									postData[postCode].updatedDate !== false ? dateFormat(postData[postCode].updatedDate, 6) : false
-								}
-							/>
-							<TagList list={postData[postCode].tagList} />
+							<Box bottom="1rem">
+								<h1>{postData[postCode].title}</h1>
+							</Box>
+							<WriterBox>{postData[postCode].writer}</WriterBox>
+							<Box top="0.25rem" bottom="0.25rem">
+								<DateBox
+									createdDate={dateFormat(postData[postCode].createdDate, 6)}
+									updatedDate={
+										postData[postCode].updatedDate != false ? dateFormat(postData[postCode].updatedDate, 6) : false
+									}
+								/>
+							</Box>
+							<Box top="1rem" bottom="2rem">
+								<TagList list={postData[postCode].tagList} />
+							</Box>
 						</PostHead>
 						<PostBody>{postData[postCode].PostContent()}</PostBody>
 						<PostFoot></PostFoot>

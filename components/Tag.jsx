@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const Tag = (props) => {
 	const Box = styled.div`
-		margin: 5px;
+		margin: 0 10px 10px 0;
 		padding: 5px 15px 5px 15px;
 
 		background-color: ${(props) => props.theme.color1};

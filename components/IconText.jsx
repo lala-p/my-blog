@@ -11,17 +11,17 @@ const ContainerBox = styled.div`
 `
 const ImageBox = styled.div`
 	position: relative;
-	top: ${(props) => props.top || '0px'};
+	top: ${(props) => props.top || '0'};
 
-	width: ${(props) => props.width || '10px'};
-	height: ${(props) => props.height || '10px'};
+	width: ${(props) => props.width || '0.625rem'};
+	height: ${(props) => props.height || '0.625rem'};
 
-	margin-right: ${(props) => props.between || '10px'};
+	margin-right: ${(props) => props.between || '0.625rem'};
 `
 
 const Text = styled.div`
-	font-size: ${(props) => props.size || '16px'};
-	color: ${(props) => props.color || props.theme.color3};
+	font-size: ${(props) => props.size || '1rem'};
+	/* color: ${(props) => props.color || props.theme.color3}; */
 `
 
 const IconText = (props) => {

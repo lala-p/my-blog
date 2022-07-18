@@ -28,3 +28,8 @@ export const MainContainer = styled.div`
 
 	padding-top: 45px;
 `
+
+export const Box = styled.div`
+	margin-top: ${(props) => props.top || '0'};
+	margin-bottom: ${(props) => props.bottom || '0'};
+`
