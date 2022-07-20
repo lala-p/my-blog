@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import IconText from './IconText'
-import { BoldText } from './Text'
+import { Text } from './Text'
 import SelectNone from './SelectNone'
 
 const CreatedDateBox = (props) => {
@@ -12,10 +12,9 @@ const CreatedDateBox = (props) => {
 			height="1.125rem"
 			top="0.125rem"
 			between="0.625em"
-			fontSize="1rem"
 			cursorPoint={false}
 		>
-			{props.children}
+			<Text>{props.children}</Text>
 		</IconText>
 	)
 }
@@ -28,10 +27,9 @@ const UpdatedDateBox = (props) => {
 			height="1rem"
 			top="0.25rem"
 			between="0.625em"
-			fontSize="1rem"
 			cursorPoint={false}
 		>
-			{props.children}
+			<Text>{props.children}</Text>
 		</IconText>
 	)
 }
@@ -45,10 +43,9 @@ const DateBox = (props) => {
 	return (
 		<ContainerBox>
 			<CreatedDateBox>{props.createdDate}</CreatedDateBox>
-
 			{props.updatedDate != false ? (
 				<SelectNone>
-					<BoldText size="16px">&nbsp;&nbsp;·&nbsp;&nbsp;</BoldText>
+					<Text bold>&nbsp;&nbsp;·&nbsp;&nbsp;</Text>
 				</SelectNone>
 			) : null}
 			{props.updatedDate != false ? <UpdatedDateBox>{props.updatedDate}</UpdatedDateBox> : null}

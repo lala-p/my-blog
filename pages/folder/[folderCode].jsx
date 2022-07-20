@@ -2,12 +2,15 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { menuActions } from '../../reducers/menuSlice'
+import { folderActions } from '../../reducers/folderSlice'
 
-import { PageContainer, Left, Center, MainContainer } from '../../components/page/commonPage'
-import MenuTab from '../../components/tab/MenuTab'
-import SubTab from '../../components/tab/SubTab'
-import HeadTab from '../../components/tab/HeadTab'
+import { PageContainer, Left, Center, MainContainer, Box, Content } from '../../pageComponents/common'
+import MenuTab from '../../pageComponents/common/MenuTab'
+import SubTab from '../../pageComponents/common/SubTab'
+import HeadTab from '../../pageComponents/common/HeadTab'
 import FolderList from '../../components/FolderList'
+
+import { getFolderParents } from '../../commonFun/folder'
 
 export async function getServerSideProps({ query: { folderCode } }) {
 	return {
@@ -25,6 +28,7 @@ const FolderDetail = (props) => {
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
+		dispatch(folderActions.folderOpen(getFolderParents(folderCode, true)))
 	}, [])
 
 	return (
@@ -32,7 +36,7 @@ const FolderDetail = (props) => {
 			<Left>
 				<MenuTab activeMenu="post" />
 				<SubTab open={subTabOpenState}>
-					<FolderList />
+					<FolderList currentFolderCode={folderCode} />
 				</SubTab>
 			</Left>
 			<Center subTabOpen={subTabOpenState}>

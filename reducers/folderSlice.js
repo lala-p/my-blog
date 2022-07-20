@@ -11,7 +11,10 @@ const folderSlice = createSlice({
     initialState,
     reducers: {
         folderOpen: (state, action) => {
-            state.openFolderList.push(action.payload)
+            
+            if (!state.openFolderList.includes(action.payload)) {
+                state.openFolderList.push(action.payload)
+            }
         },
         folderClose: (state, action) => {
             state.openFolderList = state.openFolderList.filter((folder) => folder != action.payload)

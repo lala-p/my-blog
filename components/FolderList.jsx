@@ -5,19 +5,21 @@ import Link from 'next/link'
 import { folderActions } from '../reducers/folderSlice'
 
 import IconText from './IconText'
+import { Text } from './Text'
+
+import { getFolderNameByCode } from '../commonFun/folder'
 
 const OpenFolderBox = (props) => {
 	return (
 		<IconText
 			img="/image/icon/clock_color3.svg"
-			width="18px"
-			height="18px"
-			top="2px"
-			between="10px"
-			fontSize="16px"
+			width="1.125rem"
+			height="1.125rem"
+			top="0.125rem"
+			between="0.625rem"
 			cursorPoint={false}
 		>
-			{props.children}
+			<Text>{props.children}</Text>
 		</IconText>
 	)
 }
@@ -26,14 +28,13 @@ const CloseFolderBox = (props) => {
 	return (
 		<IconText
 			img="/image/icon/clock_color3.svg"
-			width="18px"
-			height="18px"
-			top="2px"
-			between="10px"
-			fontSize="16px"
+			width="1.125rem"
+			height="1.125rem"
+			top="0.125rem"
+			between="0.625rem"
 			cursorPoint={false}
 		>
-			{props.children}
+			<Text color={2}>{props.children}</Text>
 		</IconText>
 	)
 }
@@ -48,48 +49,55 @@ const FolderContent = styled.ul`
 	margin-left: 10px;
 `
 
-const FolderList = () => {
+const FolderList = (props) => {
 	const dispatch = useDispatch()
 
 	const openFolderList = useSelector((state) => state.folder.openFolderList)
+	const currentFolderCode = props.currentFolderCode
 
 	const Folder = (props) => {
+		const code = props.code
+		const name = getFolderNameByCode(code)
+
 		return (
 			<li>
-				{openFolderList.includes(props.name) ? (
+				{openFolderList.includes(code) ? (
 					<div
 						className="folderNameBox"
 						onClick={() => {
-							dispatch(folderActions.folderClose(props.name))
+							dispatch(folderActions.folderClose(code))
 						}}
 					>
-						<OpenFolderBox>{props.name}^^OPEN</OpenFolderBox>
+						<OpenFolderBox>{name}^^OPEN</OpenFolderBox>
 					</div>
 				) : (
 					<div
 						className="folderNameBox"
 						onClick={() => {
-							dispatch(folderActions.folderOpen(props.name))
+							dispatch(folderActions.folderOpen(code))
 						}}
 					>
-						<CloseFolderBox>{props.name}</CloseFolderBox>
+						<CloseFolderBox>{name}</CloseFolderBox>
 					</div>
 				)}
 
-				<FolderContent parentOpen={openFolderList.includes(props.name)}>{props.children}</FolderContent>
+				<FolderContent parentOpen={openFolderList.includes(code)}>{props.children}</FolderContent>
 			</li>
 		)
 	}
 
 	const LinkFolder = (props) => {
+		const code = props.code
+		const name = getFolderNameByCode(code)
+
 		return (
 			<li>
-				<Link href={'/folder/' + props.name}>
+				<Link href={'/folder/' + code}>
 					<a>
-						{openFolderList.includes(props.name) ? (
-							<OpenFolderBox>{props.name}^^OPEN</OpenFolderBox>
+						{openFolderList.includes(code) /*currentFolderCode == code*/ ? (
+							<OpenFolderBox>{name}^^OPEN</OpenFolderBox>
 						) : (
-							<CloseFolderBox>{props.name}</CloseFolderBox>
+							<CloseFolderBox>{name}</CloseFolderBox>
 						)}
 					</a>
 				</Link>
@@ -100,11 +108,10 @@ const FolderList = () => {
 	return (
 		<Container>
 			<ul className="folderListBox">
-				<Folder name="root">
-					<Folder name="FolderExample">
-						<LinkFolder name="FolderExample2" />
+				<Folder code="root">
+					<Folder code="FolderExample">
+						<LinkFolder code="FolderExample2" />
 					</Folder>
-					{/* <Folder name='FolderExample3' /> */}
 				</Folder>
 			</ul>
 		</Container>

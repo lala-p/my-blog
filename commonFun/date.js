@@ -1,21 +1,22 @@
 export const dateFormat_ver1 = (date) => {
     const formatedDate = null    
     
+    return formatedDate
 }
 
 export const dateFormat_ver2 = (date) => {
     const formatedDate = null    
-    
+    return formatedDate
 }
 
 export const dateFormat_ver3 = (date) => {
     const formatedDate = null    
-    
+    return formatedDate
 }
 
 export const dateFormat_ver4 = (date) => {
     const formatedDate = null    
-    
+    return formatedDate
 }
 
 

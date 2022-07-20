@@ -4,7 +4,6 @@ let folderData1 = new Object()
 folderData1['root'] = {
     type     : 'folder',
     name     : 'root',
-    parent   : null,
     childList: ['FolderExample', 'FolderExample3'],
 }
 

@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Text from '../components/Text'
-
 
 const noticeData1 = new Array()
 
@@ -13,7 +11,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>isFirstNotice</Text>
+                <p>isFirstNotice</p>
             </div>
         )
     },
@@ -27,7 +25,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>2222222222</Text>
+                <p>2222222222</p>
             </div>
         )
     },
@@ -41,7 +39,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -55,7 +53,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -69,7 +67,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -83,7 +81,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -97,7 +95,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -111,7 +109,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -125,7 +123,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -139,7 +137,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -153,7 +151,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },
@@ -167,7 +165,7 @@ noticeData1.push({
     notice_content: () => {
         return (
             <div>
-                <Text>3333333333333333333333333</Text>
+                <p>3333333333333333333333333</p>
             </div>
         )
     },

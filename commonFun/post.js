@@ -1,5 +1,5 @@
-import postData from '../postData'
-import folderData from '../folderData'
+import postData from '../data/postData'
+import folderData from '../data/folderData'
 
 
 export const getParentCode = (postCode) => {
@@ -24,14 +24,16 @@ export const getPostData = (postCode) => {
 
 export const getNextPostData = (postCode) => {
     const currentIndex = getPostIndexInParentFolder(postCode)
+    const parentChildList = getParentChildList(postCode) 
 
-    return postData[getParentChildList(postCode)[currentIndex + 1]]    
+    return postData[parentChildList[currentIndex + 1]]    
 }
 
 export const getPrevPostData = (postCode) => {
     const currentIndex = getPostIndexInParentFolder(postCode)
-    
-    return postData[getParentChildList(postCode)[currentIndex - 1]]
+    const parentChildList = getParentChildList(postCode)
+
+    return postData[parentChildList[currentIndex - 1]]
 }
 
 export const getFileListDataByPostCode = (postCode) => {

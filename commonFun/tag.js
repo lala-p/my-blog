@@ -1,4 +1,4 @@
-import postData from '../postData'
+import postData from '../data/postData'
 
 
 const postDataList = Object.values(postData)

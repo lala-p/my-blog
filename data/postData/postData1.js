@@ -2,8 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import Content from '../components/Content'
-
 
 let postData1 = new Object()
 
@@ -11,13 +9,11 @@ postData1['FileExample1'] = {
 	type: 'file',
 	title: 'What is JavaScript?',
 	subTitle: "it's me.",
-	writer: 'lala-p',
 	createdDate: new Date('2022-07-01 17:00:00'),
-	updatedDate: false,
 	tagList: ['react', 'FileExample1', 'useCallback', '후기'],
 	PostContent: () => {
 		return (
-			<Content>
+			<>
 				<h1>asasdassdfsdfsfsdfsdfsdfdasd</h1>
 				<p>
 					대표적으로 보자면 복잡한 무언가(주기적으로 내용이 갱신되는 기능이나 능동적인 지도,)
@@ -80,14 +76,14 @@ postData1['FileExample1'] = {
 					대표적으로 보자면 복잡한 무언가(주기적으로 내용이 갱신되는 기능이나 능동적인 지도,)
 					대표적으로 보자면 복잡한 무언가(주기적으로 내용이 갱신되는 기능이나 능동적인 지도,)
 				</p>
-			</Content>
+			</>
 		)
 	},
 	tableOfContents: [
+		{ contents: '', id: '' },
 		{ contents: '', id: '', sub: false },
-		{ contents: '', id: '', sub: false },
-		{ contents: '', id: '', sub: true },
-		{ contents: '', id: '', sub: false },
+		{ contents: '', id: '' },
+		{ contents: '', id: '' },
 	],
 	parent: 'FolderExample',
 }
@@ -96,22 +92,21 @@ postData1['FileExample2'] = {
 	type: 'file',
 	title: 'asdfsadf',
 	subTitle: '2222222222222222222222222',
-	writer: 'lala-p',
 	createdDate: new Date('2022-07-01 18:00:00'),
 	updatedDate: new Date('2022-07-03 17:00:00'),
 	tagList: ['nextJs', 'useState', '후기', 'useCallback'],
 	PostContent: () => {
 		return (
-			<Content>
+			<>
 				<h2>asasdasdasd</h2>
 				<p>
 					asdasdasds <strong>asdasd</strong> asdasdsd
 				</p>
-			</Content>
+			</>
 		)
 	},
 	tableOfContents: [
-		{ contents: '', id: '', sub: false },
+		{ contents: '', id: '' },
 		{ contents: '', id: '', sub: true },
 		{ contents: '', id: '', sub: true },
 		{ contents: '', id: '', sub: true },

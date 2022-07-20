@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 import { Text } from './Text'
-import IconText from './IconText'
 
 import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
 
@@ -11,13 +10,7 @@ const List = (props) => {
 	const list = props.dataList.map((data, index) => (
 		<li key={index}>
 			<Link href={'/post/' + data.postCode}>
-				<a>
-					{props.currentPostCode == data.postCode ? (
-						<Text color="white">{data.title}OPEN</Text>
-					) : (
-						<Text color="gray">{data.title}</Text>
-					)}
-				</a>
+				<a>{props.currentPostCode == data.postCode ? <Text>{data.title}OPEN</Text> : <Text color={2}>{data.title}</Text>}</a>
 			</Link>
 		</li>
 	))

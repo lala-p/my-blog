@@ -1,42 +1,4 @@
-// import noticeData from '../noticeData'
-
-const noticeData = [
-    { no: 0, title: 'asdfsadf' },
-    { no: 1, title: 'asdfsadf' },
-    { no: 2, title: 'asdfsadf' },
-    { no: 3, title: 'asdfsadf' },
-    { no: 4, title: 'asdfsadf' },
-    { no: 5, title: 'asdfsadf' },
-    { no: 6, title: 'asdfsadf' },
-    { no: 7, title: 'asdfsadf' },
-    { no: 8, title: 'asdfsadf' },
-    { no: 9, title: 'asdfsadf' },
-    { no: 10, title: 'asdfsadf' },
-    { no: 11, title: 'asdfsadf' },
-    { no: 12, title: 'asdfsadf' },
-    { no: 13, title: 'asdfsadf' },
-    { no: 14, title: 'asdfsadf' },
-    { no: 15, title: 'asdfsadf' },
-    { no: 16, title: 'asdfsadf' },
-    { no: 17, title: 'asdfsadf' },
-    { no: 18, title: 'asdfsadf' },
-    { no: 19, title: 'asdfsadf' },
-    { no: 20, title: 'asdfsadf' },
-    { no: 21, title: 'asdfsadf' },
-    { no: 22, title: 'asdfsadf' },
-    { no: 23, title: 'asdfsadf' },
-    { no: 24, title: 'asdfsadf' },
-    { no: 25, title: 'asdfsadf' },
-    { no: 26, title: 'asdfsadf' },
-    { no: 27, title: 'asdfsadf' },
-    { no: 28, title: 'asdfsadf' },
-    { no: 29, title: 'asdfsadf' },
-    { no: 30, title: 'asdfsadf' },
-    { no: 31, title: 'asdfsadf' },
-    { no: 32, title: 'asdfsadf' },
-    { no: 33, title: 'asdfsadf' },
-    { no: 34, title: 'asdfsadf' },
-]
+import noticeData from '../data/noticeData'
 
 
 export const getNextNoticeData = (noticeNo) => {

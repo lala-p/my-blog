@@ -1,17 +1,18 @@
 import styled from 'styled-components'
 
+const Box = styled.div`
+	margin-right: 10px;
+	margin-bottom: 10px;
+	padding: 5px 15px 5px 15px;
+
+	background-color: ${(props) => props.theme.color.background1};
+	color: ${(props) => props.theme.color.text1};
+
+	border-radius: 15px;
+	cursor: pointer;
+`
+
 const Tag = (props) => {
-	const Box = styled.div`
-		margin: 0 10px 10px 0;
-		padding: 5px 15px 5px 15px;
-
-		background-color: ${(props) => props.theme.color1};
-		color: ${(props) => props.theme.color5};
-
-		border-radius: 15px;
-		cursor: pointer;
-	`
-
 	return (
 		<Box
 			onClick={() => {

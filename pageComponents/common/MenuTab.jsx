@@ -6,8 +6,8 @@ import styled from 'styled-components'
 
 import { menuActions } from '../../reducers/menuSlice'
 
-import SelectNone from '../SelectNone'
-import IconBox, { SelectIconBox } from '../IconBox'
+import SelectNone from '../../components/SelectNone'
+import IconBox, { SelectIconBox } from '../../components/IconBox'
 
 const MenuIconLinkBox = (props) => {
 	return (
@@ -67,7 +67,7 @@ const MenuTab = (props) => {
 						link="/"
 						img="/image/icon/home_color6.svg"
 						activeImg="/image/icon/home_color4.svg"
-						active={props.activeMenu == 'home'}
+						active={props.activeMenu === 'home'}
 					/>
 				</li>
 				<li>
@@ -75,7 +75,7 @@ const MenuTab = (props) => {
 						link="/post"
 						img="/image/icon/document_color6.svg"
 						activeImg="/image/icon/document_color4.svg"
-						active={props.activeMenu == 'post'}
+						active={props.activeMenu === 'post'}
 					/>
 				</li>
 				<li>
@@ -83,7 +83,7 @@ const MenuTab = (props) => {
 						link="/search"
 						img="/image/icon/search_color6.svg"
 						activeImg="/image/icon/search_color4.svg"
-						active={props.activeMenu == 'search'}
+						active={props.activeMenu === 'search'}
 					/>
 				</li>
 				<li>
@@ -91,7 +91,7 @@ const MenuTab = (props) => {
 						link="/notice"
 						img="/image/icon/megaphone_color6.svg"
 						activeImg="/image/icon/megaphone_color4.svg"
-						active={props.activeMenu == 'notice'}
+						active={props.activeMenu === 'notice'}
 					/>
 				</li>
 				<li>
@@ -99,7 +99,7 @@ const MenuTab = (props) => {
 						link="/profile"
 						img="/image/icon/user_color6.svg"
 						activeImg="/image/icon/user_color4.svg"
-						active={props.activeMenu == 'profile'}
+						active={props.activeMenu === 'profile'}
 					/>
 				</li>
 			</MenuContainer>

@@ -3,19 +3,18 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { menuActions } from '../../reducers/menuSlice'
 
-import { PageContainer, Left, Center, MainContainer, Box } from '../../components/page/commonPage'
-import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, WriterBox, TagBox } from '../../components/page/postPage'
-import MenuTab from '../../components/tab/MenuTab'
-import SubTab from '../../components/tab/SubTab'
-import HeadTab from '../../components/tab/HeadTab'
+import { PageContainer, Left, Center, MainContainer, Box, Content } from '../../pageComponents/common'
+import MenuTab from '../../pageComponents/common/MenuTab'
+import SubTab from '../../pageComponents/common/SubTab'
+import HeadTab from '../../pageComponents/common/HeadTab'
+import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, WriterBox, TagBox } from '../../pageComponents/post'
 import FileList from '../../components/FileList'
-import { BoldText } from '../../components/Text'
 import DateBox from '../../components/DateBox'
 import { TagList } from '../../components/Tag'
 
 import { dateFormat } from '../../commonFun/date'
 
-import postData from '../../postData'
+import postData from '../../data/postData'
 
 export async function getServerSideProps({ query: { postCode } }) {
 	return {
@@ -33,8 +32,6 @@ const PostDetail = (props) => {
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
-		console.log(postData[postCode])
-		console.log(postData[postCode].tagList)
 	}, [postCode])
 
 	return (
@@ -50,23 +47,25 @@ const PostDetail = (props) => {
 				<MainContainer>
 					<PostContainer>
 						<PostHead>
-							<Box bottom="1rem">
-								<h1>{postData[postCode].title}</h1>
-							</Box>
-							<WriterBox>{postData[postCode].writer}</WriterBox>
-							<Box top="0.25rem" bottom="0.25rem">
+							<PostTitle>{postData[postCode].title}</PostTitle>
+							<WriterBox>{postData[postCode].writer || 'lala-p'}</WriterBox>
+							<div className="date-content">
 								<DateBox
 									createdDate={dateFormat(postData[postCode].createdDate, 6)}
 									updatedDate={
-										postData[postCode].updatedDate != false ? dateFormat(postData[postCode].updatedDate, 6) : false
+										postData[postCode]?.updatedDate !== undefined
+											? dateFormat(postData[postCode].updatedDate, 6)
+											: false
 									}
 								/>
-							</Box>
-							<Box top="1rem" bottom="2rem">
-								<TagList list={postData[postCode].tagList} />
-							</Box>
+							</div>
+							<div className="tag-content">
+								<TagList list={postData[postCode].tagList || new Array()} />
+							</div>
 						</PostHead>
-						<PostBody>{postData[postCode].PostContent()}</PostBody>
+						<PostBody>
+							<Content>{postData[postCode].PostContent()}</Content>
+						</PostBody>
 						<PostFoot></PostFoot>
 					</PostContainer>
 					<SideContainer subTabOpen={subTabOpenState}>asasdasdasdasdasd</SideContainer>

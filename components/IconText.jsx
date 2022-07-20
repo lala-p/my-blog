@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Image from 'next/image'
 
 import SelectNone from './SelectNone'
+import { Text } from './Text'
 
 const ContainerBox = styled.div`
 	display: inline-flex;
@@ -19,11 +20,6 @@ const ImageBox = styled.div`
 	margin-right: ${(props) => props.between || '0.625rem'};
 `
 
-const Text = styled.div`
-	font-size: ${(props) => props.size || '1rem'};
-	/* color: ${(props) => props.color || props.theme.color3}; */
-`
-
 const IconText = (props) => {
 	return (
 		<ContainerBox cursorPoint={props.cursorPoint}>
@@ -32,7 +28,10 @@ const IconText = (props) => {
 					<Image src={props.img} layout="fill" objectFit="cover" />
 				</ImageBox>
 			</SelectNone>
-			<Text size={props.fontSize}>{props.children}</Text>
+			{/* <Text size={props.fontSize} color={props.color}>
+				{props.children}
+			</Text> */}
+			{props.children} {/* text components Text, h tag... */}
 		</ContainerBox>
 	)
 }

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import IconText from '../IconText'
+import IconText from '../../components/IconText'
 
 export const PostContainer = styled.div`
 	display: block;
@@ -21,9 +21,17 @@ export const PostContainer = styled.div`
 export const PostHead = styled.div`
 	margin-top: 30px;
 
-	h1 {
-		font-size: 3rem;
-		line-height: 1.8;
+	.writer-content {
+	}
+
+	.date-content {
+		margin-top: 0.25rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.tag-content {
+		margin-top: 1rem;
+		margin-bottom: 2rem;
 	}
 `
 
@@ -35,13 +43,6 @@ export const PostFoot = styled.div`
 	margin-top: 50px;
 `
 
-export const PostDataBox = styled.div``
-
-export const TagBox = styled.div`
-	margin-top: 1rem;
-	margin-bottom: 2rem;
-`
-
 export const SideContainer = styled.div`
 	width: 250px;
 
@@ -50,6 +51,12 @@ export const SideContainer = styled.div`
 	@media (max-width: ${(props) => (props.subTabOpen ? '1450px' : '1250px')}) {
 		display: none;
 	}
+`
+
+export const PostTitle = styled.h1`
+	font-size: 3rem;
+	line-height: 1.8;
+	margin-bottom: 1rem;
 `
 
 export const WriterBox = (props) => {
