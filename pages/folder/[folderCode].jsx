@@ -28,7 +28,7 @@ const FolderDetail = (props) => {
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
-		dispatch(folderActions.folderOpen(getFolderParents(folderCode, true)))
+		dispatch(folderActions.folderOpen(getFolderParents(folderCode)))
 	}, [])
 
 	return (

@@ -13,21 +13,25 @@ folderData1['FolderExample'] = {
     type: 'folder',
     name: 'Folderrrrr',
     parent: 'root',
-    childList: ['FileExample1', 'FileExample2']
+    childList: ['example1', 'example2', 'example3']
 }
 
-folderData1['FolderExample2'] = {
+folderData1['example1'] = {
     type: 'folder',
     name: 'Folderrrrr',
     parent: 'FolderExample',
-    childList: []
 }
 
-folderData1['FolderExample3'] = {
+folderData1['example2'] = {
     type: 'folder',
-    name: 'Folderrrrr',
-    parent: 'root',
-    childList: ['FileExample1', 'FileExample2']
+    name: 'Fold322222222r',
+    parent: 'FolderExample',
+}
+
+folderData1['example3'] = {
+    type: 'folder',
+    name: '33333333333',
+    parent: 'FolderExample',
 }
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -36,14 +40,12 @@ folderData1['react'] = {
     type: 'folder',
     name: 'react',
     parent: 'root',
-    childList: []
 }
 
 folderData1['roqkfdltb'] = {
     type: 'folder',
     name: '개발 이슈',
     parent: 'root',
-    childList: []
 }
 
 folderData1['toyProject'] = {

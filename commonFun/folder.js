@@ -15,13 +15,12 @@ export const getFolderParents = (folderCode, includeCurrent = false) => {
         parents.unshift(currentCode)
     }
 
-    while (true) {
-        if (folderData[currentCode]?.parent !== undefined) {
-            parentCode = folderData[currentCode]?.parent
-            parents.unshift(parentCode)
-        } else {
-            break
-        }
+    while (folderData[currentCode]?.parent !== undefined) { 
+        parentCode = folderData[currentCode].parent
+        parents.unshift(parentCode)
+
+        currentCode = parentCode
+        
     }    
 
     return parents 

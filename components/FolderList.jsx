@@ -34,7 +34,7 @@ const CloseFolderBox = (props) => {
 			between="0.625rem"
 			cursorPoint={false}
 		>
-			<Text color={2}>{props.children}</Text>
+			<Text color="text2">{props.children}</Text>
 		</IconText>
 	)
 }
@@ -74,7 +74,7 @@ const FolderList = (props) => {
 					<div
 						className="folderNameBox"
 						onClick={() => {
-							dispatch(folderActions.folderOpen(code))
+							dispatch(folderActions.folderOpen(new Array(code)))
 						}}
 					>
 						<CloseFolderBox>{name}</CloseFolderBox>
@@ -94,7 +94,7 @@ const FolderList = (props) => {
 			<li>
 				<Link href={'/folder/' + code}>
 					<a>
-						{openFolderList.includes(code) /*currentFolderCode == code*/ ? (
+						{currentFolderCode == code ? (
 							<OpenFolderBox>{name}^^OPEN</OpenFolderBox>
 						) : (
 							<CloseFolderBox>{name}</CloseFolderBox>
@@ -110,7 +110,9 @@ const FolderList = (props) => {
 			<ul className="folderListBox">
 				<Folder code="root">
 					<Folder code="FolderExample">
-						<LinkFolder code="FolderExample2" />
+						<LinkFolder code="example1" />
+						<LinkFolder code="example2" />
+						<LinkFolder code="example3" />
 					</Folder>
 				</Folder>
 			</ul>

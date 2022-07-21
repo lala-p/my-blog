@@ -2,22 +2,7 @@ import Image from 'next/image'
 import styled from 'styled-components'
 
 export const Text = styled.div`
-	color: ${({ color, theme }) => {
-		if (color === undefined) {
-			return theme.color.text
-		} else if (typeof color === 'number') {
-			switch (color) {
-				case 1:
-					return theme.color.text1
-				case 2:
-					return theme.color.text2
-				default:
-					return theme.color.text
-			}
-		} else {
-			return color
-		}
-	}};
+	color: ${({ color, theme }) => (theme.color?.[color] !== undefined ? theme.color[color] : theme.color.text)};
 	font-size: ${({ size }) => size || '1rem'};
 	${({ bold }) => (bold ? 'font-weight: bold;' : null)}
 `
