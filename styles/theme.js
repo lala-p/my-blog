@@ -13,20 +13,20 @@ export const nightTheme = {
         text2: '#505050',
 
     },
-    size: {
-        header: {
-            width : '', 
-            height: '',
-        },
-        menu_tab: {
-            width : '', 
-            height: '',
-        },
-        sub_tab: {
-            width : '', 
-            height: '',
-        },
-    },
+    // size: {
+    //     header: {
+    //         width : '', 
+    //         height: '',
+    //     },
+    //     menu_tab: {
+    //         width : '', 
+    //         height: '',
+    //     },
+    //     sub_tab: {
+    //         width : '', 
+    //         height: '',
+    //     },
+    // },
 
     color1: '#181824',
     color2: '#333340',

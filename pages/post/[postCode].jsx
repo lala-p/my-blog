@@ -7,7 +7,15 @@ import { PageContainer, Left, Center, MainContainer, Box, Content } from '../../
 import MenuTab from '../../pageComponents/common/MenuTab'
 import SubTab from '../../pageComponents/common/SubTab'
 import HeadTab from '../../pageComponents/common/HeadTab'
-import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, WriterBox, TagBox } from '../../pageComponents/post'
+import {
+	PostContainer,
+	PostHead,
+	PostBody,
+	PostFoot,
+	SideContainer,
+	PostTitle,
+	WriterBox,
+} from '../../pageComponents/post'
 import FileList from '../../components/FileList'
 import DateBox from '../../components/DateBox'
 import { TagList } from '../../components/Tag'
@@ -48,20 +56,16 @@ const PostDetail = (props) => {
 					<PostContainer>
 						<PostHead>
 							<PostTitle>{postData[postCode].title}</PostTitle>
-							<WriterBox>{postData[postCode].writer || 'lala-p'}</WriterBox>
-							<div className="date-content">
-								<DateBox
-									createdDate={dateFormat(postData[postCode].createdDate, 6)}
-									updatedDate={
-										postData[postCode]?.updatedDate !== undefined
-											? dateFormat(postData[postCode].updatedDate, 6)
-											: false
-									}
-								/>
-							</div>
-							<div className="tag-content">
-								<TagList list={postData[postCode].tagList || new Array()} />
-							</div>
+							<WriterBox>{postData[postCode]?.writer ?? 'lala-p'}</WriterBox>
+							<DateBox
+								createdDate={dateFormat(postData[postCode].createdDate, 6)}
+								updatedDate={
+									postData[postCode]?.updatedDate !== undefined
+										? dateFormat(postData[postCode].updatedDate, 6)
+										: false
+								}
+							/>
+							<TagList list={postData[postCode]?.tagList ?? new Array()} />
 						</PostHead>
 						<PostBody>
 							<Content>{postData[postCode].PostContent()}</Content>

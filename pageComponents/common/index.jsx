@@ -13,7 +13,7 @@ export const Left = styled.div`
 
 export const Center = styled.div`
 	width: 100%;
-	padding-left: ${(props) => (props.subTabOpen ? '295px' : '65px')};
+	padding-left: ${({ subTabOpen }) => (subTabOpen ? '295px' : '65px')};
 
 	@media (max-width: 1180px) {
 		padding-left: 0;
@@ -30,8 +30,8 @@ export const MainContainer = styled.div`
 `
 
 export const Box = styled.div`
-	margin-top: ${(props) => props.top || '0'};
-	margin-bottom: ${(props) => props.bottom || '0'};
+	margin-top: ${({ top }) => top ?? '0'};
+	margin-bottom: ${({ bottom }) => bottom ?? '0'};
 `
 
 export const Content = styled.div`
@@ -61,7 +61,7 @@ export const Content = styled.div`
 	}
 
 	a {
-		color: ${(props) => props.theme.color.text1};
+		color: ${({ theme }) => theme.color.text1};
 	}
 	ol {
 	}

@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-const Box = styled.div`
+const TagBox = styled.div`
 	margin-right: 10px;
 	margin-bottom: 10px;
 	padding: 5px 15px 5px 15px;
 
-	background-color: ${(props) => props.theme.color.background1};
-	color: ${(props) => props.theme.color.text1};
+	background-color: ${({ theme }) => theme.color.background1};
+	color: ${({ theme }) => theme.color.text1};
 
 	border-radius: 15px;
 	cursor: pointer;
@@ -14,13 +14,13 @@ const Box = styled.div`
 
 const Tag = (props) => {
 	return (
-		<Box
+		<TagBox
 			onClick={() => {
 				alert('afafasdf')
 			}}
 		>
 			{props.children}
-		</Box>
+		</TagBox>
 	)
 }
 

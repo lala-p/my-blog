@@ -8,7 +8,7 @@ export const PostContainer = styled.div`
 
 	margin-right: 30px;
 
-	@media (max-width: ${(props) => (props.subTabOpen ? '1450px' : '1250px')}) {
+	@media (max-width: ${({ subTabOpen }) => (subTabOpen ? '1450px' : '1250px')}) {
 		margin: auto;
 	}
 
@@ -21,17 +21,19 @@ export const PostContainer = styled.div`
 export const PostHead = styled.div`
 	margin-top: 30px;
 
-	.writer-content {
-	}
-
-	.date-content {
-		margin-top: 0.25rem;
-		margin-bottom: 0.25rem;
-	}
-
-	.tag-content {
-		margin-top: 1rem;
-		margin-bottom: 2rem;
+	> * {
+		&:first-child {
+			margin-bottom: 1rem;
+		}
+		&:nth-child(2) {
+			margin-bottom: 0.5rem;
+		}
+		&:nth-child(3) {
+			margin-bottom: 1rem;
+		}
+		&:last-child {
+			margin-bottom: 1rem;
+		}
 	}
 `
 
@@ -48,15 +50,16 @@ export const SideContainer = styled.div`
 
 	background-color: yellow;
 
-	@media (max-width: ${(props) => (props.subTabOpen ? '1450px' : '1250px')}) {
+	@media (max-width: ${({ subTabOpen }) => (subTabOpen ? '1450px' : '1250px')}) {
 		display: none;
 	}
 `
 
 export const PostTitle = styled.h1`
 	font-size: 3rem;
-	line-height: 1.8;
-	margin-bottom: 1rem;
+	line-height: 1.5;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 `
 
 export const WriterBox = (props) => {
@@ -65,7 +68,7 @@ export const WriterBox = (props) => {
 			img="/image/icon/pencil_color3.svg"
 			width="1rem"
 			height="1rem"
-			top="0.313rem"
+			top="0.063rem"
 			between="0.625rem"
 			fontSize="1.12rem"
 			cursorPoint={false}

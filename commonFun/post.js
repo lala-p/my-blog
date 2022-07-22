@@ -39,12 +39,12 @@ export const getPrevPostData = (postCode) => {
 export const getFileListDataByPostCode = (postCode) => {
     let fileListData = new Array()
 
-    getParentChildList(postCode).forEach(childPostCode => {
+    for (const childPostCode of getParentChildList(postCode)) {
         fileListData.push({
             postCode: childPostCode,
             title   : postData[childPostCode].title,
-        })  
-    })
+        })          
+    }
 
     return fileListData
 }

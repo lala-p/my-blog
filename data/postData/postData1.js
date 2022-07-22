@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 let postData1 = new Object()
 
-postData1['FileExample1'] = {
+postData1['example1'] = {
 	type: 'file',
 	title: 'What is JavaScript?',
 	subTitle: "it's me.",
@@ -88,10 +88,36 @@ postData1['FileExample1'] = {
 	parent: 'FolderExample',
 }
 
-postData1['FileExample2'] = {
+postData1['example2'] = {
 	type: 'file',
 	title: 'asdfsadf',
 	subTitle: '2222222222222222222222222',
+	createdDate: new Date('2022-07-01 18:00:00'),
+	updatedDate: new Date('2022-07-03 17:00:00'),
+	tagList: ['nextJs', 'useState', '후기', 'useCallback'],
+	PostContent: () => {
+		return (
+			<>
+				<h2>asasdasdasd</h2>
+				<p>
+					asdasdasds <strong>asdasd</strong> asdasdsd
+				</p>
+			</>
+		)
+	},
+	tableOfContents: [
+		{ contents: '', id: '' },
+		{ contents: '', id: '', sub: true },
+		{ contents: '', id: '', sub: true },
+		{ contents: '', id: '', sub: true },
+	],
+	parent: 'FolderExample',
+}
+
+postData1['example3'] = {
+	type: 'file',
+	title: 'file33333hahahahahahahahahahahah',
+	subTitle: 'hahahahahahahahahahahah',
 	createdDate: new Date('2022-07-01 18:00:00'),
 	updatedDate: new Date('2022-07-03 17:00:00'),
 	tagList: ['nextJs', 'useState', '후기', 'useCallback'],

@@ -2,47 +2,47 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { Text } from './Text'
+import Text, { EllipsisText } from './Text'
 
 import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
 
-const List = (props) => {
-	const list = props.dataList.map((data, index) => (
+const Files = (props) => {
+	const fileList = props.dataList.map((data, index) => (
 		<li key={index}>
 			<Link href={'/post/' + data.postCode}>
-				<a>
+				<div title={data.title}>
 					{props.currentPostCode == data.postCode ? (
-						<Text>{data.title}OPEN</Text>
+						<EllipsisText>{data.title}</EllipsisText>
 					) : (
-						<Text color="text2">{data.title}</Text>
+						<EllipsisText color="text2">{data.title}</EllipsisText>
 					)}
-				</a>
+				</div>
 			</Link>
 		</li>
 	))
 
-	return list
+	return fileList
 }
 
 const Container = styled.div`
 	padding: 50px 0 0 10px;
 `
 
-const ListContainer = styled.ul`
-	display: block;
+const List = styled.ul`
 	margin-left: 10px;
+	width: 150px;
 `
 
 const FileList = (props) => {
 	return (
 		<Container>
 			<Text>{getParentData(props.currentPostCode).name}</Text>
-			<ListContainer>
-				<List
+			<List>
+				<Files
 					dataList={getFileListDataByPostCode(props.currentPostCode)}
 					currentPostCode={props.currentPostCode}
 				/>
-			</ListContainer>
+			</List>
 		</Container>
 	)
 }

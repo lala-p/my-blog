@@ -6,10 +6,9 @@ const Container = styled.div`
 	width: 100vw;
 	height: 45px;
 
-	// background-color: ${(props) => props.theme.color1};
-
 	z-index: 1;
 	background-color: blue;
+	// background-color: ${(props) => props.theme.color1};
 `
 
 const HeadTab = () => {
