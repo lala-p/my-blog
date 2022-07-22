@@ -9,8 +9,6 @@ const ImageBox = styled(Box)`
 
 	width: ${({ width }) => width ?? '100px'};
 	height: ${({ height }) => height ?? '100px'};
-
-	/* ${(props) => (props.cursorPoint === true ? 'cursor: pointer;' : null)} */
 `
 
 const IconBox = (props) => {
@@ -20,13 +18,5 @@ const IconBox = (props) => {
 		</ImageBox>
 	)
 }
-
-// export const SelectIconBox = (props) => {
-// 	return (
-// 		<ImageBox width={props.width} height={props.height} cursorPoint={props.cursorPoint}>
-// 			<Image src={props.img} layout="fill" objectFit="cover" />
-// 		</ImageBox>
-// 	)
-// }
 
 export default IconBox

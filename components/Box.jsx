@@ -56,19 +56,23 @@ export const PaddingBox = styled.div`
     ${({ left }) => (left ? `padding-left: ${left};` : null)}
 `
 
-export const BetweenBox = styled.div`
+export const RowBetweenBox = styled.div`
+	display: flex;
+	flex-direction: row;
+
 	> * {
-		&:first-child {
-			margin-bottom: ${({ between }) => between ?? '0'};
+		&:not(:first-child) {
+			margin-left: ${({ between }) => between ?? '0'};
 		}
+	}
+`
 
-		&:not(first-child),
-		&:not(last-child) {
-			margin-top: ${({ between }) => between ?? '0'};
-			margin-botton: ${({ between }) => between ?? '0'};
-		}
+export const ColumnBetweenBox = styled.div`
+	display: flex;
+	flex-direction: column;
 
-		&:last-child {
+	> * {
+		&:not(:first-child) {
 			margin-top: ${({ between }) => between ?? '0'};
 		}
 	}

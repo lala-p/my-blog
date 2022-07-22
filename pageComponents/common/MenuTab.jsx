@@ -9,6 +9,7 @@ import { menuActions } from '../../reducers/menuSlice'
 import SelectNone from '../../components/SelectNone'
 import IconBox from '../../components/IconBox'
 import Box from '../../components/Box'
+import { ColumnList } from '../../components/List'
 
 const Container = styled.div`
 	position: fixed;
@@ -20,16 +21,15 @@ const Container = styled.div`
 	background-color: ${({ theme }) => theme.color1};
 `
 
-const MenuContainer = styled.ul`
-	display: flex;
-	flex-direction: column;
+const MenuList = styled(ColumnList)`
 	align-items: center;
 	justify-content: space-between;
-
-	height: 245px;
 `
 
 const MenuTab = (props) => {
+	const router = useRouter()
+	const dispatch = useDispatch()
+
 	const activeMenu = props.activeMenu
 
 	const MenuIconLinkBox = (props) => {
@@ -43,9 +43,6 @@ const MenuTab = (props) => {
 	}
 
 	const PostIconLinkBox = (props) => {
-		const router = useRouter()
-		const dispatch = useDispatch()
-
 		const EventHandler = () => {
 			if (activeMenu === props.menu) {
 				dispatch(menuActions.subTabSwitch())
@@ -64,7 +61,7 @@ const MenuTab = (props) => {
 
 	return (
 		<Container>
-			<MenuContainer>
+			<MenuList between="30px">
 				<li>
 					<MenuIconLinkBox
 						menu="home"
@@ -105,7 +102,7 @@ const MenuTab = (props) => {
 						activeImg="/image/icon/user_color4.svg"
 					/>
 				</li>
-			</MenuContainer>
+			</MenuList>
 		</Container>
 	)
 }

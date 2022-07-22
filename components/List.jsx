@@ -5,17 +5,7 @@ export const RowList = styled.ul`
 	flex-direction: row;
 
 	> li {
-		&:first-child {
-			margin-right: ${({ between }) => between ?? '0'};
-		}
-
-		&:not(first-child),
-		&:not(last-child) {
-			margin-left: ${({ between }) => between ?? '0'};
-			margin-right: ${({ between }) => between ?? '0'};
-		}
-
-		&:last-child {
+		&:not(:first-child) {
 			margin-left: ${({ between }) => between ?? '0'};
 		}
 	}
@@ -26,17 +16,7 @@ export const ColumnList = styled.ul`
 	flex-direction: column;
 
 	> li {
-		&:first-child {
-			margin-bottom: ${({ between }) => between ?? '0'};
-		}
-
-		&:not(first-child),
-		&:not(last-child) {
-			margin-top: ${({ between }) => between ?? '0'};
-			margin-botton: ${({ between }) => between ?? '0'};
-		}
-
-		&:last-child {
+		&:not(:first-child) {
 			margin-top: ${({ between }) => between ?? '0'};
 		}
 	}
