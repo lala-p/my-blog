@@ -1,56 +1,126 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import Link from 'next/link'
+import Image from 'next/image'
 
-import { PageContainer, Left, Center, MainContainer, Box, Content } from '../pageComponents/common'
+import IconText from '../components/IconText'
+import Text, { EllipsisText } from '../components/Text'
+import { ColumnList } from '../components/List'
+import Box, { PaddingBox } from '../components/Box'
+import { IconClock } from '../components/Icon'
 
-const TestBox1 = styled.div`
-	color: blue;
-	padding: 10px;
+import { getFolderNameByCode } from '../commonFun/folder'
 
-	${({ cursorPointer }) => (cursorPointer ? 'cursor: pointer;' : null)}
-	${({ selectNone }) =>
-		selectNone
-			? '-ms-user-select: none;' +
-			  '-moz-user-select: -moz-none;' +
-			  '-khml-user-select: none;' +
-			  '-webkit-user-select: none;' +
-			  'user-select: none;'
-			: null}
+const CloseFolderBox = (props) => {
+	return (
+		<IconText
+			title={props.title}
+			img="/image/icon/clock_color3.svg"
+			width="1.125rem"
+			height="1.125rem"
+			top="0.125rem"
+			between="0.625rem"
+			onClick={props.onClick}
+			cursorPoint={false}
+		>
+			<EllipsisText color="text2">{props.children}</EllipsisText>
+		</IconText>
+	)
+}
 
-	${({ test }) => {
-		return null
-	}}
+const TextBox = styled(Box)`
+	width: 100%;
+	display: -webkit-box;
 `
 
-const TestBox2 = styled(TestBox1)`
-	color: yellow;
+const ImageBox = styled.div`
+	position: relative;
+	top: 0;
+
+	width: 1rem;
+	height: 1rem;
+
+	/* margin-right: 0.625rem; */
 `
 
-const TestBox3 = () => (
-	<div>
-		<TestBox2>asdasdsadasd</TestBox2>
-		<div>asdasdasd</div>
-		<div>assd</div>
-	</div>
-)
+const FolderText = (props) => {
+	return (
+		<>
+			<ImageBox>
+				<Image src="/image/icon/clock_color3.svg" layout="fill" objectFit="cover" />
+			</ImageBox>
+			<PaddingBox left=" 0.625rem">
+				<EllipsisText>{props.children}</EllipsisText>
+			</PaddingBox>
+		</>
+	)
+}
+
+const RootList = styled(ColumnList)`
+	width: 160px;
+`
+
+const ContentList = styled(ColumnList)`
+	width: 100%;
+`
+
+const Folder = (props) => {
+	const code = props.code
+	const name = getFolderNameByCode(code)
+
+	return (
+		<li>
+			<TextBox title={name} cursorPointer>
+				<FolderText>{name}</FolderText>
+			</TextBox>
+			<FolderContent>
+				<ContentList>{props.children}</ContentList>
+			</FolderContent>
+		</li>
+	)
+}
+
+const LinkFolder = (props) => {
+	const code = props.code
+	const name = getFolderNameByCode(code)
+
+	return (
+		<li>
+			<Link href={'/folder/' + code}>
+				<TextBox title={name} cursorPointer>
+					<FolderText>{name}</FolderText>
+				</TextBox>
+			</Link>
+		</li>
+	)
+}
+
+const FolderContent = styled.div`
+	padding-left: 16px;
+`
 
 const Test = () => {
-	const currentPage = useSelector((state) => state.notice.currentPage)
-	const limit = useSelector((state) => state.notice.limit)
-
-	const [keyword, setKeyword] = useState('')
-
 	useEffect(() => {}, [])
 
 	return (
 		<div>
-			<TestBox1 title={''} onClick={() => console.log('sadsds')}>
-				asdasdasd
-				<TestBox2 cursorPointer selectNone>
-					asdsadasdadsadsad
-				</TestBox2>
-			</TestBox1>
+			<IconClock color="background1" />
+			{/* <RootList>
+				<Folder code="root">
+					<Folder code="FolderExample">
+						<Folder code="FolderExample">
+							<Folder code="FolderExample">
+								<Folder code="FolderExample">
+									<LinkFolder code="example1" />
+									<LinkFolder code="example2" />
+									<LinkFolder code="example3" />
+								</Folder>
+							</Folder>
+						</Folder>
+					</Folder>
+				</Folder>
+			</RootList> */}
 		</div>
 	)
 }

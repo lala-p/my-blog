@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
         line-height: 1;
     }
 
+    a {
+        text-decoration: none;
+    }
 
     /* .select-none {
         -ms-user-select: none;

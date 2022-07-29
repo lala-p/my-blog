@@ -47,7 +47,6 @@ const MenuTab = (props) => {
 			if (activeMenu === props.menu) {
 				dispatch(menuActions.subTabSwitch())
 			} else {
-				dispatch(menuActions.subTabOpen())
 				router.push(props.link)
 			}
 		}

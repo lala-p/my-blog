@@ -48,14 +48,16 @@ const Container = styled.div`
 `
 
 const List = styled.ul`
-	${EllipsisText} {
+	width: 100px;
+	/* ${EllipsisText} {
 		width: 100px;
-	}
+	} */
 `
 
 const FolderContent = styled.ul`
 	${({ parentOpen }) => (parentOpen ? null : 'display: none;')}
 
+	width: 100%;
 	margin-left: 10px;
 `
 
@@ -123,6 +125,16 @@ const FolderList = (props) => {
 						<LinkFolder code="example1" />
 						<LinkFolder code="example2" />
 						<LinkFolder code="example3" />
+						<Folder code="FolderExample">
+							<LinkFolder code="example1" />
+							<LinkFolder code="example2" />
+							<LinkFolder code="example3" />
+							<Folder code="FolderExample">
+								<LinkFolder code="example1" />
+								<LinkFolder code="example2" />
+								<LinkFolder code="example3" />
+							</Folder>
+						</Folder>
 					</Folder>
 				</Folder>
 			</List>

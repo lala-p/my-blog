@@ -11,9 +11,9 @@ export const Text = styled.div`
 export const EllipsisText = styled(Text)`
 	width: ${({ width }) => width ?? '100%'};
 
+	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
 
 	${({ line }) =>
 		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}

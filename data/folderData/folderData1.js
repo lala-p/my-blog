@@ -3,7 +3,7 @@ let folderData1 = new Object()
 
 folderData1['root'] = {
     type     : 'folder',
-    name     : 'root',
+    name     : 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     childList: ['FolderExample', 'FolderExample3'],
 }
 
@@ -11,26 +11,26 @@ folderData1['root'] = {
 
 folderData1['FolderExample'] = {
     type: 'folder',
-    name: 'Folderrrrr',
+    name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     parent: 'root',
     childList: ['example1', 'example2', 'example3']
 }
 
 folderData1['example1'] = {
     type: 'folder',
-    name: 'Folderrrrr',
+    name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     parent: 'FolderExample',
 }
 
 folderData1['example2'] = {
     type: 'folder',
-    name: 'Fold322222222rasddddddddddddddd',
+    name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     parent: 'FolderExample',
 }
 
 folderData1['example3'] = {
     type: 'folder',
-    name: '33333333333',
+    name: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
     parent: 'FolderExample',
 }
 

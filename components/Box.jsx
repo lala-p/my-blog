@@ -15,7 +15,7 @@ const Box = styled.div`
 export const MarginBox = styled.div`
 	${({ margin }) => {
 		if (typeof margin === 'string') {
-			return `${margin};`
+			return `margin: ${margin};`
 		} else if (typeof margin === 'object') {
 			return `
                 ${margin?.top ? 'margin-top: ' + margin.top + ';' : null}

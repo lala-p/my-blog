@@ -34,5 +34,11 @@ export const nightTheme = {
     
 }
 
+const theme = {
+    light: lightTheme,
+    night: nightTheme,
+}
 
+
+export default theme
 
