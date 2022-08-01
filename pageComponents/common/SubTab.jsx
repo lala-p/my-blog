@@ -11,7 +11,7 @@ const SubTab = styled.div`
 	width: 230px;
 	height: 100vh;
 
-	background-color: ${({ theme }) => theme.color1};
+	background-color: ${({ theme }) => theme.color.background1};
 `
 
 export default SubTab

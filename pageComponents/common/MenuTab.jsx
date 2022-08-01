@@ -10,6 +10,7 @@ import SelectNone from '../../components/SelectNone'
 import IconBox from '../../components/IconBox'
 import Box from '../../components/Box'
 import { ColumnList } from '../../components/List'
+import Icon from '../../components/Icon'
 
 const Container = styled.div`
 	position: fixed;
@@ -18,7 +19,7 @@ const Container = styled.div`
 	height: 100vh;
 
 	padding-top: 45px;
-	background-color: ${({ theme }) => theme.color1};
+	background-color: ${({ theme }) => theme.color.background1};
 `
 
 const MenuList = styled(ColumnList)`
@@ -60,7 +61,7 @@ const MenuTab = (props) => {
 
 	return (
 		<Container>
-			<MenuList between="30px">
+			<MenuList between="2rem">
 				<li>
 					<MenuIconLinkBox
 						menu="home"

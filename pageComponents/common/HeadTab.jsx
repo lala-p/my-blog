@@ -8,7 +8,7 @@ const Container = styled.div`
 
 	z-index: 1;
 	background-color: blue;
-	// background-color: ${(props) => props.theme.color1};
+	/* background-color: ${({ theme }) => theme.color.background1}; */
 `
 
 const HeadTab = () => {

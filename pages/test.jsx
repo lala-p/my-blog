@@ -4,109 +4,83 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import IconText from '../components/IconText'
+// import IconText from '../components/IconText'
 import Text, { EllipsisText } from '../components/Text'
 import { ColumnList } from '../components/List'
 import Box, { PaddingBox } from '../components/Box'
-import { IconClock } from '../components/Icon'
+import { Icon_Clock } from '../components/Icon'
 
 import { getFolderNameByCode } from '../commonFun/folder'
 
-const CloseFolderBox = (props) => {
-	return (
-		<IconText
-			title={props.title}
-			img="/image/icon/clock_color3.svg"
-			width="1.125rem"
-			height="1.125rem"
-			top="0.125rem"
-			between="0.625rem"
-			onClick={props.onClick}
-			cursorPoint={false}
-		>
-			<EllipsisText color="text2">{props.children}</EllipsisText>
-		</IconText>
-	)
-}
-
-const TextBox = styled(Box)`
-	width: 100%;
-	display: -webkit-box;
-`
-
-const ImageBox = styled.div`
-	position: relative;
-	top: 0;
-
-	width: 1rem;
-	height: 1rem;
-
-	/* margin-right: 0.625rem; */
-`
-
-const FolderText = (props) => {
-	return (
-		<>
-			<ImageBox>
-				<Image src="/image/icon/clock_color3.svg" layout="fill" objectFit="cover" />
-			</ImageBox>
-			<PaddingBox left=" 0.625rem">
-				<EllipsisText>{props.children}</EllipsisText>
-			</PaddingBox>
-		</>
-	)
-}
-
 const RootList = styled(ColumnList)`
-	width: 160px;
+	width: 13rem;
 `
 
-const ContentList = styled(ColumnList)`
-	width: 100%;
+const FolderContentList = styled(ColumnList)`
+	padding-left: 1.125rem;
+	margin-top: 0.25rem;
 `
 
-const Folder = (props) => {
-	const code = props.code
-	const name = getFolderNameByCode(code)
+const FolderName = styled(EllipsisText)`
+	padding-left: 2rem;
+	font-size: 1.125rem;
+`
 
-	return (
-		<li>
-			<TextBox title={name} cursorPointer>
-				<FolderText>{name}</FolderText>
-			</TextBox>
-			<FolderContent>
-				<ContentList>{props.children}</ContentList>
-			</FolderContent>
-		</li>
-	)
-}
+const IconText = styled(Box)`
+	display: flex;
+	flex-direction: row;
 
-const LinkFolder = (props) => {
-	const code = props.code
-	const name = getFolderNameByCode(code)
+	align-items: center;
+	line-height: 1.5rem;
+`
 
-	return (
-		<li>
-			<Link href={'/folder/' + code}>
-				<TextBox title={name} cursorPointer>
-					<FolderText>{name}</FolderText>
-				</TextBox>
-			</Link>
-		</li>
-	)
-}
-
-const FolderContent = styled.div`
-	padding-left: 16px;
+const IconBox = styled.div`
+	position: absolute;
+	width: 1.5rem;
+	height: 1.5rem;
 `
 
 const Test = () => {
 	useEffect(() => {}, [])
 
+	const Folder = (props) => {
+		const code = props.code
+		const name = getFolderNameByCode(code)
+
+		return (
+			<li>
+				<IconText title={name} cursorPointer>
+					<IconBox>
+						<Icon_Clock width="100%" height="100%" />
+					</IconBox>
+					<FolderName>그리고아무도없었따그리고아무도없었따</FolderName>
+				</IconText>
+				<FolderContentList between="0.5rem">{props.children}</FolderContentList>
+			</li>
+		)
+	}
+
+	const LinkFolder = (props) => {
+		const code = props.code
+		const name = getFolderNameByCode(code)
+
+		return (
+			<li>
+				<Link href={'/folder/' + code}>
+					<IconText title={name} cursorPointer>
+						<IconBox>
+							<Icon_Clock width="100%" height="100%" />
+						</IconBox>
+						<FolderName>그리고아무도없었따그리고아무도없었따</FolderName>
+					</IconText>
+				</Link>
+			</li>
+		)
+	}
+
 	return (
 		<div>
-			<IconClock color="background1" />
-			{/* <RootList>
+			<RootList>
 				<Folder code="root">
 					<Folder code="FolderExample">
 						<Folder code="FolderExample">
@@ -120,7 +94,7 @@ const Test = () => {
 						</Folder>
 					</Folder>
 				</Folder>
-			</RootList> */}
+			</RootList>
 		</div>
 	)
 }

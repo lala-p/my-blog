@@ -6,7 +6,7 @@ const TagBox = styled.div`
 	padding: 5px 15px 5px 15px;
 
 	background-color: ${({ theme }) => theme.color.background1};
-	color: ${({ theme }) => theme.color.text1};
+	color: ${({ theme }) => theme.color.accent1};
 
 	border-radius: 15px;
 	cursor: pointer;

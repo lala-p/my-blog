@@ -61,7 +61,7 @@ export const Content = styled.div`
 	}
 
 	a {
-		color: ${({ theme }) => theme.color.text1};
+		color: ${({ theme }) => theme.color.accent1};
 	}
 	ol {
 	}

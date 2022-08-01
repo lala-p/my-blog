@@ -6,11 +6,11 @@ export const nightTheme = {
     color: {
         background1: '#181824',
         background2: '#333340',
-        background3: '',
-        background4: '',
         text: '#FFFFFF',
-        text1: '#94FFF1',
-        text2: '#505050',
+        text1: '#505050',
+        accent1: '#94FFF1',
+        accent2: '#e8e1b3',
+        
 
     },
     // size: {
