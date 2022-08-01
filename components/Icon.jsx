@@ -4,9 +4,14 @@ import Box from './Box'
 
 import useTheme from '../hooks/useTheme'
 
-export const IconBox = styled(Box)`
+export const IconContainer = styled(Box)`
 	position: absolute;
 
+	width: ${({ width }) => width ?? '3rem'};
+	height: ${({ height }) => height ?? '3rem'};
+`
+
+export const IconBox = styled(Box)`
 	width: ${({ width }) => width ?? '3rem'};
 	height: ${({ height }) => height ?? '3rem'};
 `
@@ -28,8 +33,8 @@ export const Icon_Home = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -49,8 +54,8 @@ export const Icon_File = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -70,8 +75,8 @@ export const Icon_Search = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -84,15 +89,15 @@ export const Icon_Search = (props) => {
 	)
 }
 
-export const Icon_MegaPhone = (props) => {
+export const Icon_Megaphone = (props) => {
 	const [getColor] = useTheme()
 
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -113,8 +118,8 @@ export const Icon_User = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -138,8 +143,8 @@ export const Icon_Clock = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -160,8 +165,8 @@ export const Icon_Refresh = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -185,8 +190,8 @@ export const Icon_Pencil = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -206,8 +211,8 @@ export const Icon_Left = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -227,8 +232,8 @@ export const Icon_Right = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -249,8 +254,8 @@ export const Icon_DoubleLeft = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>
@@ -275,8 +280,8 @@ export const Icon_DoubleRight = (props) => {
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			version="1.1"
-			width={props.width ?? '3rem'}
-			height={props.height ?? '3rem'}
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
 		>
 			<g>

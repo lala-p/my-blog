@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
 
-// import IconText from '../components/IconText'
 import Text, { EllipsisText } from '../components/Text'
 import { ColumnList } from '../components/List'
 import Box, { PaddingBox } from '../components/Box'
@@ -51,7 +50,7 @@ const Test = () => {
 			<li>
 				<IconText title={name} cursorPointer>
 					<IconBox>
-						<Icon_Clock width="100%" height="100%" />
+						<Icon_Clock color="green" width="100%" height="100%" />
 					</IconBox>
 					<FolderName>그리고아무도없었따그리고아무도없었따</FolderName>
 				</IconText>
