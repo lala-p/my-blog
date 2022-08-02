@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 
-import SelectNone from './SelectNone'
 import Box from './Box'
 
 const ImageBox = styled(Box)`

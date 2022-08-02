@@ -4,14 +4,9 @@ import Box from './Box'
 
 import useTheme from '../hooks/useTheme'
 
-export const IconContainer = styled(Box)`
-	position: absolute;
-
-	width: ${({ width }) => width ?? '3rem'};
-	height: ${({ height }) => height ?? '3rem'};
-`
-
 export const IconBox = styled(Box)`
+	${({ absolute }) => (absolute ? 'position: absolute; display: inline-block;' : null)}
+
 	width: ${({ width }) => width ?? '3rem'};
 	height: ${({ height }) => height ?? '3rem'};
 `
@@ -36,6 +31,7 @@ export const Icon_Home = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -57,6 +53,7 @@ export const Icon_File = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -78,6 +75,7 @@ export const Icon_Search = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -99,6 +97,7 @@ export const Icon_Megaphone = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -121,6 +120,7 @@ export const Icon_User = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -146,6 +146,7 @@ export const Icon_Clock = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -168,6 +169,7 @@ export const Icon_Refresh = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -193,6 +195,7 @@ export const Icon_Pencil = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -214,6 +217,7 @@ export const Icon_Left = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -235,6 +239,7 @@ export const Icon_Right = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -257,6 +262,7 @@ export const Icon_DoubleLeft = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path
@@ -283,6 +289,7 @@ export const Icon_DoubleRight = (props) => {
 			width={props.width ?? '100%'}
 			height={props.height ?? '100%'}
 			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
 		>
 			<g>
 				<path

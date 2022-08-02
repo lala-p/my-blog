@@ -1,28 +1,41 @@
 import styled from 'styled-components'
 
-import IconText from './IconText'
-import Text from './Text'
-import SelectNone from './SelectNone'
+import Box, { PaddingBox, MarginBox } from './Box'
+import { IconBox, IconText, Icon_Clock, Icon_Refresh } from './Icon'
 
-const CreatedDateBox = (props) => {
+const DateContent = styled.div`
+	white-space: nowrap;
+	margin-left: 0.625rem;
+`
+
+const CreatedDate = (props) => {
 	return (
-		<IconText
-			img="/image/icon/clock_color3.svg"
-			width="1.125rem"
-			height="1.125rem"
-			textTop="0.063rem"
-			between="0.625em"
-		>
-			<Text>{props.children}</Text>
+		<IconText title="created_date" lineHeight="1.125rem">
+			<IconBox width="1.125rem" height="1.125rem" selectNone>
+				<Icon_Clock />
+			</IconBox>
+			<DateContent>{props.children}</DateContent>
 		</IconText>
 	)
 }
 
-const UpdatedDateBox = (props) => {
+const UpdatedIconText = styled(IconText)`
+	::before {
+		content: '·';
+		font-weight: bold;
+		margin-left: 0.75rem;
+		margin-right: 0.75rem;
+	}
+`
+
+const UpdatedDate = (props) => {
 	return (
-		<IconText img="/image/icon/refresh_color3.svg" width="1rem" height="1rem" textTop="0.063rem" between="0.625em">
-			<Text>{props.children}</Text>
-		</IconText>
+		<UpdatedIconText title="updated_date" lineHeight="1.125rem">
+			<IconBox width="1rem" height="1rem" selectNone>
+				<Icon_Refresh />
+			</IconBox>
+			<DateContent>{props.children}</DateContent>
+		</UpdatedIconText>
 	)
 }
 
@@ -34,13 +47,8 @@ const ContainerBox = styled.div`
 const DateBox = (props) => {
 	return (
 		<ContainerBox>
-			<CreatedDateBox>{props.createdDate}</CreatedDateBox>
-			{props.updatedDate != false ? (
-				<Text className="" bold>
-					&nbsp;&nbsp;·&nbsp;&nbsp;
-				</Text>
-			) : null}
-			{props.updatedDate != false ? <UpdatedDateBox>{props.updatedDate}</UpdatedDateBox> : null}
+			<CreatedDate>{props.createdDate}</CreatedDate>
+			{props.updatedDate != false ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
 		</ContainerBox>
 	)
 }

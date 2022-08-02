@@ -8,6 +8,7 @@ import Text, { EllipsisText } from '../components/Text'
 import { ColumnList } from '../components/List'
 import Box, { PaddingBox } from '../components/Box'
 import { Icon_Clock } from '../components/Icon'
+import DateBox from '../components/DateBox'
 
 import { getFolderNameByCode } from '../commonFun/folder'
 
@@ -21,7 +22,7 @@ const FolderContentList = styled(ColumnList)`
 `
 
 const FolderName = styled(EllipsisText)`
-	padding-left: 2rem;
+	margin-left: 2rem;
 	font-size: 1.125rem;
 `
 
@@ -35,6 +36,7 @@ const IconText = styled(Box)`
 
 const IconBox = styled.div`
 	position: absolute;
+	display: inline-block;
 	width: 1.5rem;
 	height: 1.5rem;
 `
@@ -94,6 +96,29 @@ const Test = () => {
 					</Folder>
 				</Folder>
 			</RootList>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<DateBox createdDate="2022년 8월 2일" updatedDate="2022년 8월 3일" />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 		</div>
 	)
 }
