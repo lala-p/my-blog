@@ -11,11 +11,12 @@ import { IconText, IconBox, Icon_Home, Icon_Clock } from './Icon'
 import { getFolderNameByCode } from '../commonFun/folder'
 
 const Container = styled.div`
-	padding: 50px 0 0 10px;
+	width: 11rem;
+	padding: 2.75rem 0 0 1rem;
 `
 
 const RootList = styled.ul`
-	width: 10rem;
+	line-height: 1.25rem;
 `
 
 const FolderName = styled(EllipsisText)`
@@ -54,11 +55,17 @@ const FolderList = (props) => {
 
 		return (
 			<li>
-				<IconText title={name} onClick={() => folderClick(code)} lineHeight="1.25rem" cursorPointer>
-					<IconBox width="1rem" height="1rem" absolute>
+				<IconText
+					title={name}
+					onClick={() => folderClick(code)}
+					lineHeight="1.25rem"
+					between="2rem"
+					cursorPointer
+				>
+					<IconBox width="1rem" height="1rem" absolute selectNone>
 						{open ? <Icon_Home /> : <Icon_Clock color="sub" />}
 					</IconBox>
-					<FolderName color={open ? null : 'sub'}>{name}</FolderName>
+					<EllipsisText color={open ? null : 'sub'}>{name}</EllipsisText>
 				</IconText>
 				<FolderContentList parentOpen={open}>{props.children}</FolderContentList>
 			</li>
@@ -73,11 +80,11 @@ const FolderList = (props) => {
 		return (
 			<li>
 				<Link href={'/folder/' + code}>
-					<IconText title={name} lineHeight="1.25rem" cursorPointer>
-						<IconBox width="1rem" height="1rem" absolute>
+					<IconText title={name} lineHeight="1.25rem" between="2rem" cursorPointer>
+						<IconBox width="1rem" height="1rem" absolute selectNone>
 							{open ? <Icon_Home /> : <Icon_Clock color="sub" />}
 						</IconBox>
-						<FolderName color={open ? null : 'sub'}>{name}</FolderName>
+						<EllipsisText color={open ? null : 'sub'}>{name}</EllipsisText>
 					</IconText>
 				</Link>
 			</li>

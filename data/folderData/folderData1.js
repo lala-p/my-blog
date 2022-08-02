@@ -20,6 +20,7 @@ folderData1['example1'] = {
     type: 'folder',
     name: 'example1example1example1example1example1example1',
     parent: 'FolderExample',
+    childList: ['file1', 'file2', 'file3', 'file4', 'file5']
 }
 
 folderData1['example2'] = {

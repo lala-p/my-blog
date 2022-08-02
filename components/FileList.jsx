@@ -1,53 +1,57 @@
-import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import Link from 'next/link'
 
 import Text, { EllipsisText } from './Text'
 import Box from './Box'
 import { ColumnList } from './List'
+import { IconText, IconBox, Icon_Left } from './Icon'
 
 import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
 
-const Files = (props) => {
-	const fileList = props.dataList.map((data, index) => (
-		<li key={index}>
-			<Link href={'/post/' + data.postCode}>
-				<Box title={data.title} cursorPointer>
-					{props.currentPostCode == data.postCode ? (
-						<EllipsisText>{data.title}</EllipsisText>
-					) : (
-						<EllipsisText color="text2">{data.title}</EllipsisText>
-					)}
-				</Box>
-			</Link>
-		</li>
-	))
-
-	return fileList
-}
-
 const Container = styled.div`
-	padding: 50px 0 0 10px;
+	width: 11rem;
+	padding: 2.75rem 0 0 1rem;
 `
 
-const List = styled(ColumnList)`
-	margin-left: 10px;
-	width: 150px;
+const List = styled.ul`
+	display: flex;
+	flex-direction: column;
+
+	margin-left: 0.75rem;
+
+	line-height: 1.25rem;
 `
 
-const FolderName = styled(Text)`
-	margin-bottom: 0.5rem;
+const FolderName = styled(EllipsisText)`
+	margin-bottom: 0.75rem;
 `
 
 const FileList = (props) => {
+	const currentPostCode = props.currentPostCode
+	const fileListData = getFileListDataByPostCode(props.currentPostCode)
+
+	const parentFolderName = getParentData(currentPostCode).name
+
 	return (
 		<Container>
-			<FolderName>{getParentData(props.currentPostCode).name}</FolderName>
-			<List between="0.375rem">
-				<Files
-					dataList={getFileListDataByPostCode(props.currentPostCode)}
-					currentPostCode={props.currentPostCode}
-				/>
+			<FolderName title={parentFolderName}>{parentFolderName}</FolderName>
+			<List>
+				{fileListData.map((data, index) => {
+					const isCurrent = currentPostCode == data.postCode
+
+					return (
+						<li key={index}>
+							<Link href={'/post/' + data.postCode}>
+								<IconText title={data.title} lineHeight="1.25rem" between="1.5rem" cursorPointer>
+									<IconBox width="1rem" height="1rem" absolute selectNone>
+										<Icon_Left color={!isCurrent ? 'sub' : null} />
+									</IconBox>
+									<EllipsisText color={!isCurrent ? 'sub' : null}>{data.title}</EllipsisText>
+								</IconText>
+							</Link>
+						</li>
+					)
+				})}
 			</List>
 		</Container>
 	)

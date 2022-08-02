@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import IconText from '../../components/IconText'
+import Text from '../../components/Text'
+import { IconText, IconBox, Icon_Pencil } from '../../components/Icon'
 
 export const PostContainer = styled.div`
 	display: block;
@@ -62,18 +63,13 @@ export const PostTitle = styled.h1`
 	overflow-wrap: break-word;
 `
 
-export const WriterBox = (props) => {
+export const Writer = (props) => {
 	return (
-		<IconText
-			img="/image/icon/pencil_color3.svg"
-			width="1rem"
-			height="1rem"
-			top="0.063rem"
-			between="0.625rem"
-			fontSize="1.12rem"
-			cursorPoint={false}
-		>
-			{props.children}
+		<IconText title="writer" between="0.75rem">
+			<IconBox width="1rem" height="1rem" selectNone>
+				<Icon_Pencil />
+			</IconBox>
+			<Text>{props.children}</Text>
 		</IconText>
 	)
 }

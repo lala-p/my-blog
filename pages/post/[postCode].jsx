@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { menuActions } from '../../reducers/menuSlice'
 
-import { PageContainer, Left, Center, MainContainer, Box, Content } from '../../pageComponents/common'
+import { PageContainer, Left, Center, MainContainer, Content } from '../../pageComponents/common'
 import MenuTab from '../../pageComponents/common/MenuTab'
 import SubTab from '../../pageComponents/common/SubTab'
 import HeadTab from '../../pageComponents/common/HeadTab'
@@ -14,13 +14,13 @@ import {
 	PostFoot,
 	SideContainer,
 	PostTitle,
-	WriterBox,
+	Writer,
 } from '../../pageComponents/post'
 import FileList from '../../components/FileList'
 import DateBox from '../../components/DateBox'
 import { TagList } from '../../components/Tag'
 
-import { dateFormat } from '../../commonFun/date'
+import { dateFormat_ver1 } from '../../commonFun/date'
 
 import postData from '../../data/postData'
 
@@ -56,12 +56,12 @@ const PostDetail = (props) => {
 					<PostContainer>
 						<PostHead>
 							<PostTitle>{postData[postCode].title}</PostTitle>
-							<WriterBox>{postData[postCode]?.writer ?? 'lala-p'}</WriterBox>
+							<Writer>{postData[postCode]?.writer ?? 'lala-p'}</Writer>
 							<DateBox
-								createdDate={dateFormat(postData[postCode].createdDate, 6)}
+								createdDate={dateFormat_ver1(postData[postCode].createdDate)}
 								updatedDate={
 									postData[postCode]?.updatedDate !== undefined
-										? dateFormat(postData[postCode].updatedDate, 6)
+										? dateFormat_ver1(postData[postCode].updatedDate)
 										: false
 								}
 							/>

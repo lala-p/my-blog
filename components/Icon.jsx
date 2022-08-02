@@ -10,6 +10,18 @@ export const IconText = styled(Box)`
 
 	align-items: center;
 	line-height: ${({ lineHeight }) => lineHeight ?? '1rem'};
+
+	${({ between }) =>
+		between
+			? `
+		white-space: nowrap; 
+		> * {
+			&:last-child {
+				margin-left: ${between};
+			}
+		}
+	`
+			: null}
 `
 
 export const IconBox = styled(Box)`

@@ -1,20 +1,16 @@
 import styled from 'styled-components'
 
+import Text from './Text'
 import Box, { PaddingBox, MarginBox } from './Box'
 import { IconText, IconBox, Icon_Clock, Icon_Refresh } from './Icon'
 
-const DateContent = styled.div`
-	white-space: nowrap;
-	margin-left: 0.625rem;
-`
-
 const CreatedDate = (props) => {
 	return (
-		<IconText title="created_date" lineHeight="1.125rem">
+		<IconText title="created_date" lineHeight="1.125rem" between="0.625rem">
 			<IconBox width="1.125rem" height="1.125rem" selectNone>
 				<Icon_Clock />
 			</IconBox>
-			<DateContent>{props.children}</DateContent>
+			<Text>{props.children}</Text>
 		</IconText>
 	)
 }
@@ -30,11 +26,11 @@ const UpdatedIconText = styled(IconText)`
 
 const UpdatedDate = (props) => {
 	return (
-		<UpdatedIconText title="updated_date" lineHeight="1.125rem">
+		<UpdatedIconText title="updated_date" lineHeight="1.125rem" between="0.625rem">
 			<IconBox width="1rem" height="1rem" selectNone>
 				<Icon_Refresh />
 			</IconBox>
-			<DateContent>{props.children}</DateContent>
+			<Text>{props.children}</Text>
 		</UpdatedIconText>
 	)
 }

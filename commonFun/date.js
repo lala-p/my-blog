@@ -4,7 +4,7 @@ export const dateFormat_ver1 = (dateToFormat) => {
     const month = ('0' + (dateToFormat.getMonth() + 1)).slice(-2)
     const date = ('0' + dateToFormat.getDate()).slice(-2)
 
-    const formatedDate = `${year}-${month}-${date}`    
+    const formatedDate = `${year}년 ${month}월 ${date}일`    
     
     return formatedDate
 }
