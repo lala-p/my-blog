@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import Box, { PaddingBox, MarginBox } from './Box'
-import { IconBox, IconText, Icon_Clock, Icon_Refresh } from './Icon'
+import { IconText, IconBox, Icon_Clock, Icon_Refresh } from './Icon'
 
 const DateContent = styled.div`
 	white-space: nowrap;

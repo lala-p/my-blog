@@ -4,19 +4,19 @@ import Box from './Box'
 
 import useTheme from '../hooks/useTheme'
 
-export const IconBox = styled(Box)`
-	${({ absolute }) => (absolute ? 'position: absolute; display: inline-block;' : null)}
-
-	width: ${({ width }) => width ?? '3rem'};
-	height: ${({ height }) => height ?? '3rem'};
-`
-
 export const IconText = styled(Box)`
 	display: flex;
 	flex-direction: row;
 
 	align-items: center;
 	line-height: ${({ lineHeight }) => lineHeight ?? '1rem'};
+`
+
+export const IconBox = styled(Box)`
+	${({ absolute }) => (absolute ? 'position: absolute; display: inline-block;' : null)}
+
+	width: ${({ width }) => width ?? '3rem'};
+	height: ${({ height }) => height ?? '3rem'};
 `
 
 //=============================================================

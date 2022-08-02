@@ -13,7 +13,7 @@ import DateBox from '../components/DateBox'
 import { getFolderNameByCode } from '../commonFun/folder'
 
 const RootList = styled(ColumnList)`
-	width: 13rem;
+	width: 10rem;
 `
 
 const FolderContentList = styled(ColumnList)`

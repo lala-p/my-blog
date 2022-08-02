@@ -2,8 +2,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 const SubTab = styled.div`
-	${({ open }) => (open ? null : 'display: none;')}
-
 	position: fixed;
 
 	left: 65px;
@@ -12,6 +10,8 @@ const SubTab = styled.div`
 	height: 100vh;
 
 	background-color: ${({ theme }) => theme.color.background1};
+
+	${({ open }) => (open ? null : 'display: none;')}
 `
 
 export default SubTab
