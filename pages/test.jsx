@@ -4,13 +4,13 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import Text, { EllipsisText } from '../components/Text'
-import { ColumnList } from '../components/List'
-import Box, { PaddingBox } from '../components/Box'
-import { Icon_Clock } from '../components/Icon'
-import DateBox from '../components/DateBox'
+import Text, { EllipsisText } from '@components/Text'
+import { ColumnList } from '@components/List'
+import Box, { PaddingBox } from '@components/Box'
+import { Icon_Clock } from '@components/Icon'
+import DateBox from '@components/DateBox'
 
-import { getFolderNameByCode } from '../commonFun/folder'
+import { getFolderNameByCode } from '@commonFun/folder'
 
 const RootList = styled(ColumnList)`
 	width: 10rem;

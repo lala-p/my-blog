@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Box from './Box'
 
-import useTheme from '../hooks/useTheme'
+import useTheme from '@hooks/useTheme'
 
 export const IconText = styled(Box)`
 	display: flex;

@@ -1,5 +1,5 @@
-import postData from '../data/postData'
-import folderData from '../data/folderData'
+import postData from '@data/postData'
+import folderData from '@data/folderData'
 
 
 export const getParentCode = (postCode) => {

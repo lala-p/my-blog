@@ -2,13 +2,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { folderActions } from '../reducers/folderSlice'
+import { folderActions } from '@reducers/folderSlice'
 
 import { ColumnList } from './List'
 import { EllipsisText } from './Text'
 import { IconText, IconBox, Icon_Home, Icon_Clock } from './Icon'
 
-import { getFolderNameByCode } from '../commonFun/folder'
+import { getFolderNameByCode } from '@commonFun/folder'
 
 const Container = styled.div`
 	width: 11rem;

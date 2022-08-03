@@ -1,28 +1,20 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { menuActions } from '../../reducers/menuSlice'
+import { menuActions } from '@reducers/menuSlice'
 
-import { PageContainer, Left, Center, MainContainer, Content } from '../../pageComponents/common'
-import MenuTab from '../../pageComponents/common/MenuTab'
-import SubTab from '../../pageComponents/common/SubTab'
-import HeadTab from '../../pageComponents/common/HeadTab'
-import {
-	PostContainer,
-	PostHead,
-	PostBody,
-	PostFoot,
-	SideContainer,
-	PostTitle,
-	Writer,
-} from '../../pageComponents/post'
-import FileList from '../../components/FileList'
-import DateBox from '../../components/DateBox'
-import { TagList } from '../../components/Tag'
+import { PageContainer, Left, Center, MainContainer, Content } from '@pageComponents/common'
+import MenuTab from '@pageComponents/common/MenuTab'
+import SubTab from '@pageComponents/common/SubTab'
+import HeadTab from '@pageComponents/common/HeadTab'
+import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, Writer } from '@pageComponents/post'
+import FileList from '@components/FileList'
+import DateBox from '@components/DateBox'
+import { TagList } from '@components/Tag'
 
-import { dateFormat_ver1 } from '../../commonFun/date'
+import { dateFormat_ver1 } from '@commonFun/date'
 
-import postData from '../../data/postData'
+import postData from '@data/postData'
 
 export async function getServerSideProps({ query: { postCode } }) {
 	return {

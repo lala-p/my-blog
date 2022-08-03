@@ -2,8 +2,8 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import wrapper from '../wrapper'
-import { lightTheme, nightTheme } from '../styles/theme'
-import GlobalStyle from '../styles/GlobalStyle'
+import { lightTheme, nightTheme } from '@styles/theme'
+import GlobalStyle from '@styles/GlobalStyle'
 
 function MyApp({ Component, pageProps }) {
 	return (

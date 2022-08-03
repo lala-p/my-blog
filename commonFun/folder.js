@@ -1,4 +1,4 @@
-import folderData from '../data/folderData'
+import folderData from '@data/folderData'
 
 
 export const getFolderNameByCode = (folderCode) => {

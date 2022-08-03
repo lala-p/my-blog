@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import Text from '../../components/Text'
-import { IconText, IconBox, Icon_Pencil } from '../../components/Icon'
+import Text from '@components/Text'
+import { IconText, IconBox, Icon_Pencil } from '@components/Icon'
 
 export const PostContainer = styled.div`
 	display: block;

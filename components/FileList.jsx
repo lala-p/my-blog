@@ -6,7 +6,7 @@ import Box from './Box'
 import { ColumnList } from './List'
 import { IconText, IconBox, Icon_Left } from './Icon'
 
-import { getParentData, getFileListDataByPostCode } from '../commonFun/post'
+import { getParentData, getFileListDataByPostCode } from '@commonFun/post'
 
 const Container = styled.div`
 	width: 11rem;

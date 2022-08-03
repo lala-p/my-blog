@@ -2,18 +2,11 @@ import { useEffect, useState, useCallback } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { noticeActions } from '../reducers/noticeSlice'
+import { noticeActions } from '@reducers/noticeSlice'
 
-// import { LeftIconBox, RightIconBox, DoubleLeftIconBox, DoubleRightIconBox } from '../components/IconBox'
+// import { LeftIconBox, RightIconBox, DoubleLeftIconBox, DoubleRightIconBox } from '@components/IconBox'
 
-import {
-	getLastPageNum,
-	getPages,
-	getNextPageNum,
-	getPrevPageNum,
-	isFirstPages,
-	isLastPages,
-} from '../commonFun/notice'
+import { getLastPageNum, getPages, getNextPageNum, getPrevPageNum, isFirstPages, isLastPages } from '@commonFun/notice'
 
 const PageNumber = styled.p`
 	color: ${({ current, theme }) => (current ? theme.color.background2 : theme.color.text)};

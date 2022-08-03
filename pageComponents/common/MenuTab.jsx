@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
-import { menuActions } from '../../reducers/menuSlice'
+import { menuActions } from '@reducers/menuSlice'
 
-import { ColumnList } from '../../components/List'
-import { IconBox, Icon_Home, Icon_File, Icon_Search, Icon_Megaphone, Icon_User } from '../../components/Icon'
+import { ColumnList } from '@components/List'
+import { IconBox, Icon_Home, Icon_File, Icon_Search, Icon_Megaphone, Icon_User } from '@components/Icon'
 
-import useTheme from '../../hooks/useTheme'
+import useTheme from '@hooks/useTheme'
 
 const Container = styled.div`
 	position: fixed;

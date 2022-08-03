@@ -1,4 +1,4 @@
-import noticeData from '../data/noticeData'
+import noticeData from '@data/noticeData'
 
 
 export const getNextNoticeData = (noticeNo) => {
