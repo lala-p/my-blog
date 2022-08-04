@@ -29,6 +29,10 @@ export const getFolderParents = (folderCode, includeCurrent = false) => {
     return parents 
 }
 
+export const getChildListLength = (folderCode) => {
+    return folderData[folderCode].childList.length
+}
+
 export const getChildLastPostedDate = (folderCode) => {
     let childList = _.cloneDeep(folderData[folderCode].childList) 
     let lastPosted = postData[childList.pop()].createdDate
