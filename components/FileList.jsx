@@ -37,16 +37,16 @@ const FileList = (props) => {
 			<FolderName title={parentFolderName}>{parentFolderName}</FolderName>
 			<List>
 				{fileListData.map((data, index) => {
-					const isCurrent = currentPostCode == data.postCode
+					const stateColor = currentPostCode == data.postCode ? 'sub' : null
 
 					return (
 						<li key={index}>
 							<Link href={'/post/' + data.postCode}>
 								<IconText title={data.title} lineHeight="1.25rem" between="1.5rem" cursorPointer>
 									<IconBox width="1rem" height="1rem" absolute selectNone>
-										<Icon_Left color={!isCurrent ? 'sub' : null} />
+										<Icon_Left color={stateColor} />
 									</IconBox>
-									<EllipsisText color={!isCurrent ? 'sub' : null}>{data.title}</EllipsisText>
+									<EllipsisText color={stateColor}>{data.title}</EllipsisText>
 								</IconText>
 							</Link>
 						</li>

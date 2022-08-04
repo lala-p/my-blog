@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import postData from '@data/postData'
 import folderData from '@data/folderData'
 
@@ -11,7 +13,7 @@ export const getParentData = (postCode) => {
 }
 
 export const getParentChildList = (postCode) => {
-    return folderData[postData[postCode].parent].childList
+    return _.cloneDeep(folderData[postData[postCode].parent].childList)
 }
 
 export const getPostIndexInParentFolder = (postCode) => {

@@ -54,7 +54,7 @@ const PostDetail = (props) => {
 								updatedDate={
 									postData[postCode]?.updatedDate !== undefined
 										? dateFormat_ver1(postData[postCode].updatedDate)
-										: false
+										: undefined
 								}
 							/>
 							<TagList list={postData[postCode]?.tagList ?? new Array()} />

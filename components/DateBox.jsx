@@ -4,9 +4,9 @@ import Text from './Text'
 import Box, { PaddingBox, MarginBox } from './Box'
 import { IconText, IconBox, Icon_Clock, Icon_Refresh } from './Icon'
 
-const CreatedDate = (props) => {
+const PostedDate = (props) => {
 	return (
-		<IconText title="created_date" lineHeight="1.125rem" between="0.625rem">
+		<IconText title="posted_date" lineHeight="1.125rem" between="0.625rem">
 			<IconBox width="1.125rem" height="1.125rem" selectNone>
 				<Icon_Clock />
 			</IconBox>
@@ -43,8 +43,8 @@ const ContainerBox = styled.div`
 const DateBox = (props) => {
 	return (
 		<ContainerBox>
-			<CreatedDate>{props.createdDate}</CreatedDate>
-			{props.updatedDate != false ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
+			<PostedDate>{props.createdDate}</PostedDate>
+			{props.updatedDate !== undefined ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
 		</ContainerBox>
 	)
 }
