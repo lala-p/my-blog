@@ -27,18 +27,29 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
 
-    /* .select-none {
-        -ms-user-select: none;
-        -moz-user-select: -moz-none;
-        -khml-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: bold;
 
     }
 
-    .cursor-pointer {
-        cursor: pointer;
-    } */
+    h1 {
+        font-size: 3.5rem;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+    h3 {
+        font-size: 2.5rem;
+    }
+    h4 {
+        font-size: 2rem;
+    }
+    h5 {
+        font-size: 1.5rem;
+    }
+    h6 {
+        font-size: 1rem;
+    }
 
 `
 

@@ -8,7 +8,7 @@ import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
 import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, Writer } from '@pageComponents/post'
-import FileList from '@components/FileList'
+import PostExplorer from '@components/PostExplorer'
 import DateBox from '@components/DateBox'
 import { TagList } from '@components/Tag'
 
@@ -39,7 +39,7 @@ const PostDetail = (props) => {
 			<Left>
 				<MenuTab activeMenu="post" />
 				<SubTab open={subTabOpenState}>
-					<FileList currentPostCode={postCode} />
+					<PostExplorer currentPostCode={postCode} />
 				</SubTab>
 			</Left>
 			<Center subTabOpen={subTabOpenState}>

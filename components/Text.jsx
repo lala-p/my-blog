@@ -8,13 +8,60 @@ export const Text = styled.div`
 	${({ lineHeight }) => (lineHeight ? `line-height: ${lineHeight};` : null)}
 `
 
-export const EllipsisText = styled(Text)`
-	width: ${({ width }) => width ?? '100%'};
-
+const ellipsis = `
 	text-overflow: ellipsis;
 	overflow: hidden;
-	white-space: nowrap;
+`
 
+export const EllipsisText = styled(Text)`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
+	${({ line }) =>
+		line
+			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
+			  line +
+			  '; -webkit-box-orient: vertical;'
+			: 'white-space: nowrap;'}
+`
+
+export const EllipsisH1 = styled.h1`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
+	${({ line }) =>
+		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}
+`
+
+export const EllipsisH2 = styled.h2`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
+	${({ line }) =>
+		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}
+`
+
+export const EllipsisH3 = styled.h3`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
+	${({ line }) =>
+		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}
+`
+
+export const EllipsisH4 = styled.h4`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
+	${({ line }) =>
+		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}
+`
+
+export const EllipsisH5 = styled.h5`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
+	${({ line }) =>
+		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}
+`
+
+export const EllipsisH6 = styled.h6`
+	width: ${({ width }) => width ?? '100%'};
+	${ellipsis}
 	${({ line }) =>
 		line ? 'display: -webkit-box; -webkit-line-clamp: ' + line + '; -webkit-box-orient: vertical;' : null}
 `

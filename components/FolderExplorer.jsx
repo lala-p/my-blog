@@ -34,7 +34,7 @@ const FolderContentList = styled.ul`
 	${({ parentOpen }) => (parentOpen ? null : 'display: none;')}
 `
 
-const FolderList = (props) => {
+const FolderExplorer = (props) => {
 	const dispatch = useDispatch()
 
 	const openFolderList = useSelector((state) => state.folder.openFolderList)
@@ -106,4 +106,4 @@ const FolderList = (props) => {
 	)
 }
 
-export default FolderList
+export default FolderExplorer

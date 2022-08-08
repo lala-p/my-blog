@@ -8,7 +8,7 @@ import { PageContainer, Left, Center, MainContainer, Box, Content } from '@pageC
 import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
-import FolderList from '@components/FolderList'
+import FolderExplorer from '@components/FolderExplorer'
 
 import { getFolderParents } from '@commonFun/folder'
 
@@ -36,7 +36,7 @@ const FolderDetail = (props) => {
 			<Left>
 				<MenuTab activeMenu="post" />
 				<SubTab open={subTabOpenState}>
-					<FolderList currentFolderCode={folderCode} />
+					<FolderExplorer currentFolderCode={folderCode} />
 				</SubTab>
 			</Left>
 			<Center subTabOpen={subTabOpenState}>

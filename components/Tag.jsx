@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 
 const TagBox = styled.div`
-	margin-right: 10px;
-	margin-bottom: 10px;
-	padding: 5px 15px 5px 15px;
+	margin-right: 0.625rem;
+	margin-bottom: 0.625rem;
+	padding: 0.4rem 1rem 0.4rem 1rem;
+
+	font-size: 1rem;
 
 	background-color: ${({ theme }) => theme.color.background1};
 	color: ${({ theme }) => theme.color.accent1};
 
-	border-radius: 15px;
+	border-radius: 1rem;
 	cursor: pointer;
 `
 

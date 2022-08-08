@@ -26,7 +26,7 @@ const FolderName = styled(EllipsisText)`
 	margin-bottom: 0.75rem;
 `
 
-const FileList = (props) => {
+const PostExplorer = (props) => {
 	const currentPostCode = props.currentPostCode
 	const fileListData = getFileListDataByPostCode(props.currentPostCode)
 
@@ -37,7 +37,7 @@ const FileList = (props) => {
 			<FolderName title={parentFolderName}>{parentFolderName}</FolderName>
 			<List>
 				{fileListData.map((data, index) => {
-					const stateColor = currentPostCode == data.postCode ? 'sub' : null
+					const stateColor = currentPostCode !== data.postCode ? 'sub' : null
 
 					return (
 						<li key={index}>
@@ -57,4 +57,4 @@ const FileList = (props) => {
 	)
 }
 
-export default FileList
+export default PostExplorer

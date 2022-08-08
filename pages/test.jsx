@@ -4,121 +4,70 @@ import styled from 'styled-components'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import Text, { EllipsisText } from '@components/Text'
+import Text, { EllipsisText, EllipsisH3 } from '@components/Text'
 import { ColumnList } from '@components/List'
 import Box, { PaddingBox } from '@components/Box'
 import { Icon_Clock } from '@components/Icon'
 import DateBox from '@components/DateBox'
+import Post from '@components/Post'
 
 import { getFolderNameByCode } from '@commonFun/folder'
 
-const RootList = styled(ColumnList)`
-	width: 10rem;
-`
+const ElBox = styled.div`
+	width: 6rem;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	word-break: break-word;
 
-const FolderContentList = styled(ColumnList)`
-	padding-left: 1.125rem;
-	margin-top: 0.25rem;
-`
-
-const FolderName = styled(EllipsisText)`
-	margin-left: 2rem;
-	font-size: 1.125rem;
-`
-
-const IconText = styled(Box)`
-	display: flex;
-	flex-direction: row;
-
-	align-items: center;
-	line-height: 1.5rem;
-`
-
-const IconBox = styled.div`
-	position: absolute;
-	display: inline-block;
-	width: 1.5rem;
-	height: 1.5rem;
+	display: -webkit-box;
+	-webkit-line-clamp: 2; // 원하는 라인수
+	-webkit-box-orient: vertical;
 `
 
 const Test = () => {
 	useEffect(() => {}, [])
 
-	const Folder = (props) => {
-		const code = props.code
-		const name = getFolderNameByCode(code)
-
-		return (
-			<li>
-				<IconText title={name} cursorPointer>
-					<IconBox>
-						<Icon_Clock color="green" width="100%" height="100%" />
-					</IconBox>
-					<FolderName>그리고아무도없었따그리고아무도없었따</FolderName>
-				</IconText>
-				<FolderContentList between="0.5rem">{props.children}</FolderContentList>
-			</li>
-		)
-	}
-
-	const LinkFolder = (props) => {
-		const code = props.code
-		const name = getFolderNameByCode(code)
-
-		return (
-			<li>
-				<Link href={'/folder/' + code}>
-					<IconText title={name} cursorPointer>
-						<IconBox>
-							<Icon_Clock width="100%" height="100%" />
-						</IconBox>
-						<FolderName>그리고아무도없었따그리고아무도없었따</FolderName>
-					</IconText>
-				</Link>
-			</li>
-		)
-	}
-
 	return (
 		<div>
-			<RootList>
-				<Folder code="root">
-					<Folder code="FolderExample">
-						<Folder code="FolderExample">
-							<Folder code="FolderExample">
-								<Folder code="FolderExample">
-									<LinkFolder code="example1" />
-									<LinkFolder code="example2" />
-									<LinkFolder code="example3" />
-								</Folder>
-							</Folder>
-						</Folder>
-					</Folder>
-				</Folder>
-			</RootList>
+			{/* <EllipsisH3 width="100px">zxczxczxczxczxczxczxccccccccccccc</EllipsisH3>
+			<h1>sdfsdfsdfsdfsdfsdf</h1>
+			<h2>sdfsdfsdfsdfsdfsdf</h2>
+			<h3>sdfsdfsdfsdfsdfsdf</h3>
+			<h4 color="blue">sdfsdfsdfsdfsdfsdf</h4>
+			<h5>sdfsdfsdfsdfsdfsdf</h5>
+			<h6>sdfsdfsdfsdfsdfsdf</h6> */}
+			<Post
+				thumbnail="/image/thumbnail/thumbnailTest.jpg"
+				title="fkfkfkfksjdflkjsadlkfja;sdkf;alksd;flkasdjf"
+				subTitle="subTitleasdfffffffffffffffffffffffffffffffffffffzxcvzcvzcvzxcvzxcvasdfasdfasdfqewrqwerqwerqwefdsafsdfasdvcxzxcvzxcvadfadsfwerqwerqwerfdsasdfsdf"
+				tagList={[
+					'reacr',
+					'hooks',
+					'useState',
+					'12341234123',
+					'asda',
+					'111',
+					'sdfsdf',
+					'vcxvzxcvzcvzxcv',
+					'asdfasdfsd',
+					'dfsdf',
+					'zsdsad',
+					'xcvcvxv',
+				]}
+				createdDate="2022.10.11"
+				updatedDate="2022.10.11"
+			/>
+			<Post
+				thumbnail="/image/thumbnail/thumbnailTest.jpg"
+				title="fkfkfkfksjdflkjsadlkfja;sdkf;alksd;flkasdjf"
+				subTitle="subTitleasdfffffffffffffffffffffffffffffffffffffzxcvzcvzcvzxcvzxcvasdfasdfasdfqewrqwerqwerqwefdsafsdfasdvcxzxcvzxcvadfadsfwerqwerqwerfdsasdfsdf"
+				tagList={['reacr', 'hooks', 'useState', '12341234123', 'asdadfafasdf', '111', 'sdfsdf']}
+				createdDate="2022.10.11"
+				updatedDate={undefined}
+			/>
 			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<DateBox createdDate="2022년 8월 2일" updatedDate="2022년 8월 3일" />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+
+			<ElBox>asdasdasdasdasasdffffffffffffffffffffffffffffffd</ElBox>
 		</div>
 	)
 }

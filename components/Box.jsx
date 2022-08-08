@@ -56,7 +56,7 @@ export const PaddingBox = styled.div`
     ${({ left }) => (left ? `padding-left: ${left};` : null)}
 `
 
-export const RowBetweenBox = styled.div`
+export const RowBox = styled.div`
 	display: flex;
 	flex-direction: row;
 
@@ -67,7 +67,7 @@ export const RowBetweenBox = styled.div`
 	}
 `
 
-export const ColumnBetweenBox = styled.div`
+export const ColumnBox = styled.div`
 	display: flex;
 	flex-direction: column;
 
