@@ -11,6 +11,7 @@ export const nightTheme = {
         accent1: '#94FFF1',
         accent2: '#e8e1b3',
         sub: '#505050',
+        sub2: 'gray',
 
     },
     // size: {

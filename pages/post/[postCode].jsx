@@ -10,7 +10,7 @@ import HeadTab from '@pageComponents/common/HeadTab'
 import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, Writer } from '@pageComponents/post'
 import PostExplorer from '@components/PostExplorer'
 import DateBox from '@components/DateBox'
-import { TagList } from '@components/Tag'
+import { TagContainer, TagType1 } from '@components/Tag'
 
 import { dateFormat_ver1 } from '@commonFun/date'
 
@@ -57,7 +57,11 @@ const PostDetail = (props) => {
 										: undefined
 								}
 							/>
-							<TagList list={postData[postCode]?.tagList ?? new Array()} />
+							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
+								{(postData[postCode]?.tagList ?? new Array()).map((tag) => (
+									<TagType1 key={tag}>{tag}</TagType1>
+								))}
+							</TagContainer>
 						</PostHead>
 						<PostBody>
 							<Content>{postData[postCode].PostContent()}</Content>

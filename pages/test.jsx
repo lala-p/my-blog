@@ -10,6 +10,7 @@ import Box, { PaddingBox } from '@components/Box'
 import { Icon_Clock } from '@components/Icon'
 import DateBox from '@components/DateBox'
 import Post from '@components/Post'
+import { TagContainer, TagType1, TagType2 } from '@components/Tag'
 
 import { getFolderNameByCode } from '@commonFun/folder'
 
@@ -26,9 +27,38 @@ const ElBox = styled.div`
 
 const Test = () => {
 	useEffect(() => {}, [])
+	const testText = `
+		<TagContainer width="40rem" horizontalGap="0.625rem" verticalGap="0.625rem">
+			<TagType1>vzxcv</TagType1>
+			<TagType1>zzcvzxcvzxcv</TagType1>
+			<TagType1>zxcvzcvzxv</TagType1>
+			<TagType1>zxvzxcvzxcv</TagType1>
+			<TagType1>zxcvzcvzxcvzxcv</TagType1>
+			<TagType1>vzcvzxcvzxcv</TagType1>
+		</TagContainer>
+	`
 
 	return (
 		<div>
+			<br />
+			<br />
+			{/* <div style={{ width: '30rem' }}> */}
+			<TagContainer width="40rem" horizontalGap="0.625rem" verticalGap="0.625rem">
+				<TagType1>vzxcv</TagType1>
+				<TagType1>zzcvzxcvzxcv</TagType1>
+				<TagType1>zxcvzcvzxv</TagType1>
+				<TagType1>zxvzxcvzxcv</TagType1>
+				<TagType1>zxcvzcvzxcvzxcv</TagType1>
+				<TagType1>vzcvzxcvzxcv</TagType1>
+			</TagContainer>
+			{/* </div> */}
+
+			<br />
+			<br />
+			<br />
+			<br />
+			<div dangerouslySetInnerHTML={{ __html: testText }}></div>
+
 			{/* <EllipsisH3 width="100px">zxczxczxczxczxczxczxccccccccccccc</EllipsisH3>
 			<h1>sdfsdfsdfsdfsdfsdf</h1>
 			<h2>sdfsdfsdfsdfsdfsdf</h2>

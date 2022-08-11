@@ -5,7 +5,8 @@ import DateBox from './DateBox'
 import { EllipsisText, EllipsisH4 } from './Text'
 import { RowBox, ColumnBox } from './Box'
 import { ColumnList } from './List'
-import { TagList } from './Tag'
+// import { TagList } from './Tag'
+import { TagContainer, TagType2 } from './Tag'
 
 import { dateFormat_ver1 } from '@commonFun/date'
 
@@ -41,7 +42,7 @@ const PostInfoContainer = styled.div`
 			margin-bottom: 0.5rem;
 		}
 		&:nth-child(3) {
-			height: 2.425rem;
+			height: 1.5rem;
 			overflow: hidden;
 		}
 		&:last-child {
@@ -70,7 +71,11 @@ const Post = (props) => {
 				<EllipsisText color="sub" line="2" width="30rem">
 					{props.subTitle === undefined ? null : props.subTitle}
 				</EllipsisText>
-				<TagList list={props.tagList ?? new Array()} />
+				<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
+					{(props.tagList ?? new Array()).map((tag) => (
+						<TagType2 key={tag}>{tag}</TagType2>
+					))}
+				</TagContainer>
 				<DateBox createdDate={props.createdDate} updatedDate={props.updatedDate} />
 			</PostInfoContainer>
 		</ContainerBox>
