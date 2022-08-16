@@ -7,3 +7,6 @@ const postData = Object.assign({}, postData1)
 
 
 export default postData
+
+
+

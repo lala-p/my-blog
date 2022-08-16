@@ -14,6 +14,8 @@ import { TagContainer, TagType1, TagType2 } from '@components/Tag'
 
 import { getFolderNameByCode } from '@commonFun/folder'
 
+// import { postDataEx } from '@data/postData'
+
 const ElBox = styled.div`
 	width: 6rem;
 	text-overflow: ellipsis;
@@ -26,47 +28,14 @@ const ElBox = styled.div`
 `
 
 const Test = () => {
-	useEffect(() => {}, [])
-	const testText = `
-		<TagContainer width="40rem" horizontalGap="0.625rem" verticalGap="0.625rem">
-			<TagType1>vzxcv</TagType1>
-			<TagType1>zzcvzxcvzxcv</TagType1>
-			<TagType1>zxcvzcvzxv</TagType1>
-			<TagType1>zxvzxcvzxcv</TagType1>
-			<TagType1>zxcvzcvzxcvzxcv</TagType1>
-			<TagType1>vzcvzxcvzxcv</TagType1>
-		</TagContainer>
-	`
+	useEffect(() => {
+		// console.log(postDataEx.postCode)
+	}, [])
 
 	return (
 		<div>
-			<br />
-			<br />
-			{/* <div style={{ width: '30rem' }}> */}
-			<TagContainer width="40rem" horizontalGap="0.625rem" verticalGap="0.625rem">
-				<TagType1>vzxcv</TagType1>
-				<TagType1>zzcvzxcvzxcv</TagType1>
-				<TagType1>zxcvzcvzxv</TagType1>
-				<TagType1>zxvzxcvzxcv</TagType1>
-				<TagType1>zxcvzcvzxcvzxcv</TagType1>
-				<TagType1>vzcvzxcvzxcv</TagType1>
-			</TagContainer>
-			{/* </div> */}
-
-			<br />
-			<br />
-			<br />
-			<br />
-			<div dangerouslySetInnerHTML={{ __html: testText }}></div>
-
-			{/* <EllipsisH3 width="100px">zxczxczxczxczxczxczxccccccccccccc</EllipsisH3>
-			<h1>sdfsdfsdfsdfsdfsdf</h1>
-			<h2>sdfsdfsdfsdfsdfsdf</h2>
-			<h3>sdfsdfsdfsdfsdfsdf</h3>
-			<h4 color="blue">sdfsdfsdfsdfsdfsdf</h4>
-			<h5>sdfsdfsdfsdfsdfsdf</h5>
-			<h6>sdfsdfsdfsdfsdfsdf</h6> */}
-			<Post
+			{/* {postDataEx.PostContent()} */}
+			{/* <Post
 				thumbnail="/image/thumbnail/thumbnailTest.jpg"
 				title="fkfkfkfksjdflkjsadlkfja;sdkf;alksd;flkasdjf"
 				subTitle="subTitleasdfffffffffffffffffffffffffffffffffffffzxcvzcvzcvzxcvzxcvasdfasdfasdfqewrqwerqwerqwefdsafsdfasdvcxzxcvzxcvadfadsfwerqwerqwerfdsasdfsdf"
@@ -95,9 +64,7 @@ const Test = () => {
 				createdDate="2022.10.11"
 				updatedDate={undefined}
 			/>
-			<br />
-
-			<ElBox>asdasdasdasdasasdffffffffffffffffffffffffffffffd</ElBox>
+			<br /> */}
 		</div>
 	)
 }

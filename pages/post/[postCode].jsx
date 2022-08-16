@@ -8,8 +8,8 @@ import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
 import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, Writer } from '@pageComponents/post'
+import { DateBox, PostedDate, UpdatedDate } from '@pageComponents/post/DateBox'
 import PostExplorer from '@components/PostExplorer'
-import DateBox from '@components/DateBox'
 import { TagContainer, TagType1 } from '@components/Tag'
 
 import { dateFormat_ver1 } from '@commonFun/date'
@@ -49,14 +49,12 @@ const PostDetail = (props) => {
 						<PostHead>
 							<PostTitle>{postData[postCode].title}</PostTitle>
 							<Writer>{postData[postCode]?.writer ?? 'lala-p'}</Writer>
-							<DateBox
-								createdDate={dateFormat_ver1(postData[postCode].createdDate)}
-								updatedDate={
-									postData[postCode]?.updatedDate !== undefined
-										? dateFormat_ver1(postData[postCode].updatedDate)
-										: undefined
-								}
-							/>
+							<DateBox>
+								<PostedDate>{dateFormat_ver1(postData[postCode].createdDate)}</PostedDate>
+								{postData[postCode]?.updatedDate !== undefined ? (
+									<UpdatedDate>{dateFormat_ver1(postData[postCode].updatedDate)}</UpdatedDate>
+								) : null}
+							</DateBox>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
 								{(postData[postCode]?.tagList ?? new Array()).map((tag) => (
 									<TagType1 key={tag}>{tag}</TagType1>

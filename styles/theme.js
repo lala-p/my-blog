@@ -14,20 +14,6 @@ export const nightTheme = {
         sub2: 'gray',
 
     },
-    // size: {
-    //     header: {
-    //         width : '', 
-    //         height: '',
-    //     },
-    //     menu_tab: {
-    //         width : '', 
-    //         height: '',
-    //     },
-    //     sub_tab: {
-    //         width : '', 
-    //         height: '',
-    //     },
-    // },
 
     color1: '#181824',
     color2: '#333340',

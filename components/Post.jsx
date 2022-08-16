@@ -1,16 +1,17 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styled from 'styled-components'
 
-import DateBox from './DateBox'
+// import DateBox from './DateBox'
+import { DateBox, PostedDate, UpdatedDate } from './DateBox1'
 import { EllipsisText, EllipsisH4 } from './Text'
-import { RowBox, ColumnBox } from './Box'
+import Box, { RowBox, ColumnBox } from './Box'
 import { ColumnList } from './List'
-// import { TagList } from './Tag'
 import { TagContainer, TagType2 } from './Tag'
 
 import { dateFormat_ver1 } from '@commonFun/date'
 
-const ContainerBox = styled.div`
+const ContainerBox = styled(Box)`
 	display: inline-flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -50,7 +51,7 @@ const PostInfoContainer = styled.div`
 		}
 	}
 `
-const ThumbnailContainer = styled.div`
+const ThumbnailContainer = styled(Box)`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -61,7 +62,7 @@ const ThumbnailContainer = styled.div`
 const Post = (props) => {
 	return (
 		<ContainerBox>
-			<ThumbnailContainer>
+			<ThumbnailContainer selectNone>
 				<ImageBox>
 					<Image src={props.thumbnail} layout="fill" objectFit="cover" />
 				</ImageBox>
@@ -76,7 +77,10 @@ const Post = (props) => {
 						<TagType2 key={tag}>{tag}</TagType2>
 					))}
 				</TagContainer>
-				<DateBox createdDate={props.createdDate} updatedDate={props.updatedDate} />
+				<DateBox>
+					<PostedDate>{props.createdDate}</PostedDate>
+					{props.updatedDate !== undefined ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
+				</DateBox>
 			</PostInfoContainer>
 		</ContainerBox>
 	)
@@ -87,14 +91,16 @@ export const PostList = (props) => {
 		<ColumnList>
 			{props.listData.map((data, index) => (
 				<li key={index}>
-					<Post
-						thumbnail={data.thumbnail}
-						title={data.title}
-						subTitle={data.subTitle}
-						tagList={data.tagList}
-						createdDate={data.createdDate}
-						updatedDate={data.updatedDate}
-					/>
+					<Link href={'/post/' + data.code}>
+						<Post
+							thumbnail={data.thumbnail}
+							title={data.title}
+							subTitle={data.subTitle}
+							tagList={data.tagList}
+							createdDate={data.createdDate}
+							updatedDate={data.updatedDate}
+						/>
+					</Link>
 				</li>
 			))}
 		</ColumnList>
