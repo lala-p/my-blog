@@ -1,7 +1,9 @@
-import { PageContainer, Left, Center, MainContainer, Box, Content } from '@pageComponents/common'
+import { PageContainer, Left, Center, MainContainer, Title, Writer, Content } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
-import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
+import { NoticeContainer } from '@pageComponents/notice'
+import { NoticeBody, NoticeHead } from '../../pageComponents/notice'
+import { DateBox, CreatedDate, UpdatedDate } from '@pageComponents/notice/DateBox'
 
 export async function getServerSideProps({ query: { noticeNo } }) {
 	return {
@@ -22,7 +24,19 @@ const NoticeDetail = (props) => {
 			<Center>
 				<HeadTab />
 				<MainContainer>
-					<div>notice</div>
+					<NoticeContainer>
+						<NoticeHead>
+							<Title>공지사항 Notice notice</Title>
+							<Writer>lala-p</Writer>
+							<DateBox>
+								<CreatedDate>2022년 10월 10일</CreatedDate>
+								{true !== undefined ? <UpdatedDate>2022년 10월 11일</UpdatedDate> : null}
+							</DateBox>
+						</NoticeHead>
+						<NoticeBody>
+							<Content></Content>
+						</NoticeBody>
+					</NoticeContainer>
 				</MainContainer>
 			</Center>
 		</PageContainer>

@@ -2,14 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styled from 'styled-components'
 
-// import DateBox from './DateBox'
 import { DateBox, PostedDate, UpdatedDate } from './DateBox1'
 import { EllipsisText, EllipsisH4 } from './Text'
-import Box, { RowBox, ColumnBox } from './Box'
+import Box from './Box'
 import { ColumnList } from './List'
 import { TagContainer, TagType2 } from './Tag'
-
-import { dateFormat_ver1 } from '@commonFun/date'
 
 const ContainerBox = styled(Box)`
 	display: inline-flex;
@@ -17,8 +14,6 @@ const ContainerBox = styled(Box)`
 	justify-content: space-between;
 
 	padding: 1rem 1rem 1rem 0;
-
-	/* border: 1px solid ${({ theme }) => theme.color.text}; */
 `
 
 const ImageBox = styled.div`
@@ -27,9 +22,9 @@ const ImageBox = styled.div`
 	height: 100%;
 `
 
-const PostSubTitle = styled(EllipsisText)`
-	${({ displayNone }) => (displayNone ? 'display: none;' : null)}
-`
+// const PostSubTitle = styled(EllipsisText)`
+// 	${({ displayNone }) => (displayNone ? 'display: none;' : null)}
+// `
 
 const PostInfoContainer = styled.div`
 	width: 30rem;

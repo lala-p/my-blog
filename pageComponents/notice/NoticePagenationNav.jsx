@@ -10,7 +10,7 @@ import { getLastPageNum, getPages, getNextPageNum, getPrevPageNum, isFirstPages,
 
 const PageNumber = styled.p`
 	color: ${({ current, theme }) => (current ? theme.color.background2 : theme.color.text)};
-	font-size: 14px;
+	font-size: 1rem;
 `
 
 const PageNumberList = styled.ul`
@@ -22,19 +22,18 @@ const PageNumberList = styled.ul`
 
 const CircleBox = styled.div`
 	display: flex;
-	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 
-	width: 35px;
-	height: 35px;
+	width: 2.5rem;
+	height: 2.5rem;
 
 	background-color: ${({ current, theme }) => (current ? theme.color.text : theme.color.background2)};
 
 	border: 1px solid ${({ theme }) => theme.color.text};
 	border-radius: 50%;
 
-	margin: 0 7px 0 7px;
+	margin: 0 0.5rem;
 `
 
 const ArrowBox = styled.div`
@@ -51,8 +50,8 @@ const Container = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 
-	width: 500px;
-	height: 70px;
+	width: 32rem;
+	height: 4.5rem;
 `
 
 const NoticePagenationNav = (props) => {

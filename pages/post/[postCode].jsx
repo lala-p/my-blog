@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { menuActions } from '@reducers/menuSlice'
 
-import { PageContainer, Left, Center, MainContainer, Content } from '@pageComponents/common'
+import { PageContainer, Left, Center, MainContainer, Title, Writer, Content } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
-import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle, Writer } from '@pageComponents/post'
+import { PostContainer, PostHead, PostBody, PostFoot, SideContainer, PostTitle } from '@pageComponents/post'
 import { DateBox, PostedDate, UpdatedDate } from '@pageComponents/post/DateBox'
 import PostExplorer from '@components/PostExplorer'
 import { TagContainer, TagType1 } from '@components/Tag'
@@ -57,7 +57,9 @@ const PostDetail = (props) => {
 							</DateBox>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
 								{(postData[postCode]?.tagList ?? new Array()).map((tag) => (
-									<TagType1 key={tag}>{tag}</TagType1>
+									<TagType1 key={tag} cursorPointer>
+										{tag}
+									</TagType1>
 								))}
 							</TagContainer>
 						</PostHead>

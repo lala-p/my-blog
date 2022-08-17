@@ -11,21 +11,11 @@ import { Icon_Clock } from '@components/Icon'
 import DateBox from '@components/DateBox'
 import Post from '@components/Post'
 import { TagContainer, TagType1, TagType2 } from '@components/Tag'
+import NoticeLinkBox from '@pageComponents/notice/NoticeLinkBox'
 
 import { getFolderNameByCode } from '@commonFun/folder'
 
 // import { postDataEx } from '@data/postData'
-
-const ElBox = styled.div`
-	width: 6rem;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	word-break: break-word;
-
-	display: -webkit-box;
-	-webkit-line-clamp: 2; // 원하는 라인수
-	-webkit-box-orient: vertical;
-`
 
 const Test = () => {
 	useEffect(() => {
@@ -35,7 +25,7 @@ const Test = () => {
 	return (
 		<div>
 			{/* {postDataEx.PostContent()} */}
-			{/* <Post
+			<Post
 				thumbnail="/image/thumbnail/thumbnailTest.jpg"
 				title="fkfkfkfksjdflkjsadlkfja;sdkf;alksd;flkasdjf"
 				subTitle="subTitleasdfffffffffffffffffffffffffffffffffffffzxcvzcvzcvzxcvzxcvasdfasdfasdfqewrqwerqwerqwefdsafsdfasdvcxzxcvzxcvadfadsfwerqwerqwerfdsasdfsdf"
@@ -64,7 +54,13 @@ const Test = () => {
 				createdDate="2022.10.11"
 				updatedDate={undefined}
 			/>
-			<br /> */}
+			<NoticeLinkBox
+				noticeNo={1}
+				title="공지사항 Notice notice"
+				createdDate="2022년 1월 1일"
+				updatedDate="2022년 3월 1일"
+			/>
+			<br />
 		</div>
 	)
 }

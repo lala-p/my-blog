@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 import Text from '@components/Text'
-import { IconText, IconBox, Icon_Calendar, Icon_Refresh } from '@components/Icon'
+import { IconText, IconBox, Icon_Clock, Icon_Refresh } from '@components/Icon'
 
-export const PostedDate = (props) => {
+export const CreatedDate = (props) => {
 	return (
-		<IconText title="posted_date" lineHeight="1.125rem" between="0.625rem">
-			<IconBox width="1rem" height="1rem" selectNone>
-				<Icon_Calendar />
+		<IconText title="created_date" lineHeight="1.125rem" between="0.625rem">
+			<IconBox width="1.125rem" height="1.125rem" selectNone>
+				<Icon_Clock />
 			</IconBox>
 			<Text>{props.children}</Text>
 		</IconText>

@@ -4,10 +4,7 @@ import Text from '@components/Text'
 import { IconText, IconBox, Icon_Pencil } from '@components/Icon'
 
 export const PostContainer = styled.div`
-	display: block;
-	width: 830px;
-
-	margin-right: 30px;
+	width: 52rem;
 
 	@media (max-width: ${({ subTabOpen }) => (subTabOpen ? '1450px' : '1250px')}) {
 		margin: auto;
@@ -20,7 +17,7 @@ export const PostContainer = styled.div`
 `
 
 export const PostHead = styled.div`
-	margin-top: 30px;
+	margin-top: 2rem;
 
 	> * {
 		&:first-child {
@@ -39,18 +36,18 @@ export const PostHead = styled.div`
 `
 
 export const PostBody = styled.div`
-	margin-top: 20px;
+	margin-top: 1.5rem;
 `
 
 export const PostFoot = styled.div`
-	margin-top: 50px;
+	margin-top: 3.25;
 `
 
 export const SideContainer = styled.div`
 	width: 250px;
 
 	background-color: yellow;
-
+	margin-left: 30px;
 	@media (max-width: ${({ subTabOpen }) => (subTabOpen ? '1450px' : '1250px')}) {
 		display: none;
 	}

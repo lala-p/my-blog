@@ -1,5 +1,8 @@
 import styled from 'styled-components'
 
+import Text from '@components/Text'
+import { IconText, IconBox, Icon_Pencil } from '@components/Icon'
+
 export const PageContainer = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -29,10 +32,23 @@ export const MainContainer = styled.div`
 	padding-top: 45px;
 `
 
-export const Box = styled.div`
-	margin-top: ${({ top }) => top ?? '0'};
-	margin-bottom: ${({ bottom }) => bottom ?? '0'};
+export const Title = styled.h1`
+	font-size: 3rem;
+	line-height: 1.5;
+	word-break: keep-all;
+	overflow-wrap: break-word;
 `
+
+export const Writer = (props) => {
+	return (
+		<IconText title="writer" between="0.75rem">
+			<IconBox width="1rem" height="1rem" selectNone>
+				<Icon_Pencil />
+			</IconBox>
+			<Text>{props.children}</Text>
+		</IconText>
+	)
+}
 
 export const Content = styled.div`
 	width: 100%;

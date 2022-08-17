@@ -1,34 +1,27 @@
 import styled from 'styled-components'
 
-export const PostedDate = styled.div`
+const DateText = styled.div`
 	font-size: 1rem;
 	color: ${({ theme }) => theme.color.sub};
-
-	::before {
-		content: 'posted ';
-		/* margin-left: 0.75rem;
-		margin-right: 0.75rem; */
-	}
 `
 
-export const UpdatedDate = styled.div`
-	font-size: 1rem;
-	color: ${({ theme }) => theme.color.sub};
-
+const UpdatedText = styled(DateText)`
 	::before {
-		content: '· updated ';
-		/* margin-left: 0.5rem; */
-		/* margin-right: 0.75rem; */
+		content: '·';
+		margin-left: 0.5rem;
+		margin-right: 0.5rem;
+		color: ${({ theme }) => theme.color.sub};
 	}
 `
+export const PostedDate = (props) => {
+	return <DateText>posted&nbsp;{props.children}</DateText>
+}
+
+export const UpdatedDate = (props) => {
+	return <UpdatedText>updated&nbsp;{props.children}</UpdatedText>
+}
 
 export const DateBox = styled.div`
 	display: inline-flex;
 	flex-direction: row;
-
-	> * {
-		&:nth-child(2) {
-			margin-left: 0.5rem;
-		}
-	}
 `

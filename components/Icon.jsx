@@ -121,6 +121,26 @@ export const Icon_Megaphone = (props) => {
 	)
 }
 
+export const Icon_Megaphone1 = (props) => {
+	const [getColor] = useTheme()
+
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			version="1.1"
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
+			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
+		>
+			<path
+				d="m23 16a1 1 0 0 1 -.446-.105l-2-1a1 1 0 0 1 .894-1.79l2 1a1 1 0 0 1 -.448 1.895zm-1.553-9.1 2-1a1 1 0 1 0 -.894-1.79l-2 1a1 1 0 0 0 .894 1.79zm2.553 3.1a1 1 0 0 0 -1-1h-2a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1zm-6 9v-18a1 1 0 0 0 -2 0c0 2.949-2.583 4-5 4h-7a4 4 0 0 0 -4 4v2a4 4 0 0 0 4 4h7c2.417 0 5 1.051 5 4a1 1 0 0 0 2 0zm-9.814-2h-4.186a6 6 0 0 1 -1.382-.167l2.5 5.582a2.671 2.671 0 0 0 2.44 1.585 2.462 2.462 0 0 0 2.242-3.472z"
+				fill={getColor(props.color) ?? getColor('text')}
+			/>
+		</svg>
+	)
+}
+
 export const Icon_User = (props) => {
 	const [getColor] = useTheme()
 	const fillColor = getColor(props.color) ?? getColor('text')
@@ -144,6 +164,30 @@ export const Icon_User = (props) => {
 					fill={fillColor}
 				/>
 			</g>
+		</svg>
+	)
+}
+
+export const Icon_Calendar = (props) => {
+	const [getColor] = useTheme()
+	const fillColor = getColor(props.color) ?? getColor('text')
+
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			version="1.1"
+			width={props.width ?? '100%'}
+			height={props.height ?? '100%'}
+			viewBox="0 0 24 24"
+			preserveAspectRatio="none"
+		>
+			<path
+				d="M19,2H18V1a1,1,0,0,0-2,0V2H8V1A1,1,0,0,0,6,1V2H5A5.006,5.006,0,0,0,0,7V19a5.006,5.006,0,0,0,5,5H19a5.006,5.006,0,0,0,5-5V7A5.006,5.006,0,0,0,19,2ZM2,7A3,3,0,0,1,5,4H19a3,3,0,0,1,3,3V8H2ZM19,22H5a3,3,0,0,1-3-3V10H22v9A3,3,0,0,1,19,22Z"
+				fill={fillColor}
+			/>
+			<circle cx="7" cy="15" r="1.5" fill={fillColor} />
+			<circle cx="12" cy="15" r="1.5" fill={fillColor} />
+			<circle cx="17" cy="15" r="1.5" fill={fillColor} />
 		</svg>
 	)
 }

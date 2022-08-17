@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styled from 'styled-components'
 
 export const Text = styled.div`
@@ -16,9 +15,12 @@ export const EllipsisText = styled(Text)`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
 
@@ -30,9 +32,12 @@ export const EllipsisH1 = styled.h1`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
 
@@ -44,9 +49,12 @@ export const EllipsisH2 = styled.h2`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
 
@@ -58,12 +66,14 @@ export const EllipsisH3 = styled.h3`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
-
 export const EllipsisH4 = styled.h4`
 	width: ${({ width }) => width ?? '100%'};
 
@@ -72,9 +82,12 @@ export const EllipsisH4 = styled.h4`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
 
@@ -86,9 +99,12 @@ export const EllipsisH5 = styled.h5`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
 
@@ -100,9 +116,12 @@ export const EllipsisH6 = styled.h6`
 
 	${({ line }) =>
 		line
-			? 'word-break: break-word; display: -webkit-box; -webkit-line-clamp: ' +
-			  line +
-			  '; -webkit-box-orient: vertical;'
+			? `
+				word-break: break-word; 
+				display: -webkit-box; 
+				-webkit-line-clamp: ${line}; 
+				-webkit-box-orient: vertical;
+			`
 			: 'white-space: nowrap;'}
 `
 
