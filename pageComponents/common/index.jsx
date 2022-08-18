@@ -24,11 +24,8 @@ export const Center = styled.div`
 `
 
 export const MainContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-
-	justify-content: center;
-
+	width: 52rem;
+	margin: auto;
 	padding-top: 45px;
 `
 

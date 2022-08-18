@@ -1,7 +1,7 @@
 import { PageContainer, Left, Center, MainContainer, Title, Writer, Content } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
-import { NoticeContainer } from '@pageComponents/notice'
+import { DetailMainContainer } from '@pageComponents/notice'
 import { NoticeBody, NoticeHead } from '../../pageComponents/notice'
 import { DateBox, CreatedDate, UpdatedDate } from '@pageComponents/notice/DateBox'
 
@@ -24,7 +24,7 @@ const NoticeDetail = (props) => {
 			<Center>
 				<HeadTab />
 				<MainContainer>
-					<NoticeContainer>
+					<DetailMainContainer>
 						<NoticeHead>
 							<Title>공지사항 Notice notice</Title>
 							<Writer>lala-p</Writer>
@@ -36,7 +36,7 @@ const NoticeDetail = (props) => {
 						<NoticeBody>
 							<Content></Content>
 						</NoticeBody>
-					</NoticeContainer>
+					</DetailMainContainer>
 				</MainContainer>
 			</Center>
 		</PageContainer>

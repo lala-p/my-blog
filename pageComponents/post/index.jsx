@@ -3,6 +3,15 @@ import styled from 'styled-components'
 import Text from '@components/Text'
 import { IconText, IconBox, Icon_Pencil } from '@components/Icon'
 
+export const MainContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+
+	padding-top: 45px;
+`
+
 export const PostContainer = styled.div`
 	width: 52rem;
 

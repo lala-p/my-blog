@@ -1,12 +1,12 @@
 import { useEffect, useState, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { noticeActions } from '@reducers/noticeSlice'
 
-// import { LeftIconBox, RightIconBox, DoubleLeftIconBox, DoubleRightIconBox } from '@components/IconBox'
+import { Icon_Left, Icon_Right, Icon_DoubleLeft, Icon_DoubleRight } from '@components/Icon'
 
-import { getLastPageNum, getPages, getNextPageNum, getPrevPageNum, isFirstPages, isLastPages } from '@commonFun/notice'
+import noticeData from '../../data/noticeData'
 
 const PageNumber = styled.p`
 	color: ${({ current, theme }) => (current ? theme.color.background2 : theme.color.text)};
@@ -37,12 +37,14 @@ const CircleBox = styled.div`
 `
 
 const ArrowBox = styled.div`
+	visibility: hidden;
+
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
 
-	${({ hide }) => (hide === true ? 'visibility: hidden;' : null)}
+	${({ show }) => (show === true ? 'visibility: visible;' : null)}
 `
 
 const Container = styled.div`
@@ -57,54 +59,42 @@ const Container = styled.div`
 const NoticePagenationNav = (props) => {
 	const dispatch = useDispatch()
 
-	const currentPage = useSelector((state) => state.notice.currentPage)
-	const limit = useSelector((state) => state.notice.limit)
-	const pageLimit = useSelector((state) => state.notice.pageLimit)
+	const currentPage = props.currentPage
 
-	const [pageData, setPagetData] = useState(new Object())
+	const setCurrentPage = (pageNum) => {
+		dispatch(noticeActions.setCurrentPage(pageNum))
+		window.scrollTo(0, 0)
+	}
 
-	const setCurrentPage = useCallback(
-		(pageNum) => {
-			dispatch(noticeActions.setCurrentPage(pageNum))
-		},
-		[currentPage],
-	)
-
-	useEffect(() => {
-		let data = {
-			next: getNextPageNum(currentPage, pageLimit),
-			prev: getPrevPageNum(currentPage, pageLimit),
-			first: 1,
-			last: getLastPageNum(limit),
-			isFirst: isFirstPages(currentPage, pageLimit),
-			isLast: isLastPages(currentPage, limit, pageLimit),
-		}
-
-		setPagetData(data)
-	}, [currentPage])
+	const nextPage = noticeData.getNextPage(currentPage)
+	const prevPage = noticeData.getPrevPage(currentPage)
+	const firstPage = 1
+	const lastPage = noticeData.getLastPageNum()
+	const isNotFirstPages = !noticeData.isFirstPages(currentPage)
+	const isNotLastPages = !noticeData.isLastPages(currentPage)
 
 	return (
 		<Container>
-			<ArrowBox hide={pageData.isFirst}>
-				<div
+			<ArrowBox show={isNotFirstPages}>
+				<CircleBox
 					onClick={() => {
-						setCurrentPage(pageData.first)
+						setCurrentPage(firstPage)
 					}}
 				>
-					first
-				</div>
-				<div
+					<Icon_DoubleLeft width="1rem" height="1rem" />
+				</CircleBox>
+				<CircleBox
 					onClick={() => {
-						setCurrentPage(pageData.prev)
+						setCurrentPage(prevPage)
 					}}
 				>
-					prev
-				</div>
+					<Icon_Left width="1rem" height="1rem" />
+				</CircleBox>
 			</ArrowBox>
 			<PageNumberList>
-				{getPages(currentPage, limit, pageLimit).map((page, index) => (
+				{noticeData.getCurrentPages(currentPage).map((page) => (
 					<CircleBox
-						key={index}
+						key={page}
 						onClick={() => {
 							setCurrentPage(page)
 						}}
@@ -114,21 +104,21 @@ const NoticePagenationNav = (props) => {
 					</CircleBox>
 				))}
 			</PageNumberList>
-			<ArrowBox hide={pageData.isLast}>
-				<div
+			<ArrowBox show={isNotLastPages}>
+				<CircleBox
 					onClick={() => {
-						setCurrentPage(pageData.next)
+						setCurrentPage(nextPage)
 					}}
 				>
-					next
-				</div>
-				<div
+					<Icon_Right width="1rem" height="1rem" />
+				</CircleBox>
+				<CircleBox
 					onClick={() => {
-						setCurrentPage(pageData.last)
+						setCurrentPage(lastPage)
 					}}
 				>
-					last
-				</div>
+					<Icon_DoubleRight width="1rem" height="1rem" />
+				</CircleBox>
 			</ArrowBox>
 		</Container>
 	)

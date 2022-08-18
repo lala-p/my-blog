@@ -7,7 +7,7 @@ import { ColumnList } from '@components/List'
 import { DateBox, CreatedDate, UpdatedDate } from '@components/DateBox2'
 
 const ContainerBox = styled.div`
-	width: 40rem;
+	/* width: 100%; */
 
 	padding: 1rem;
 	padding-top: 1.25rem;
@@ -47,12 +47,7 @@ export const NoticeLinkBoxList = (props) => {
 		<ColumnList>
 			{props.listData.map((data) => (
 				<li key={data.noticeNo}>
-					<NoticeLinkBox
-						noticeNo={data.noticeNo}
-						title={data.title}
-						createdDate={data.createdDate}
-						updatedDate={data.updatedDate}
-					/>
+					<NoticeLinkBox noticeNo={data.noticeNo} title={data.title} createdDate={data.createdDate} updatedDate={data.updatedDate} />
 				</li>
 			))}
 		</ColumnList>
