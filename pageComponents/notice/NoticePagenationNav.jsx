@@ -52,7 +52,7 @@ const Container = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 
-	width: 32rem;
+	width: 29rem;
 	height: 4.5rem;
 `
 

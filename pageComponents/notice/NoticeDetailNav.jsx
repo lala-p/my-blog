@@ -2,7 +2,6 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 import Text, { EllipsisText, SelectNoneText } from '@components/Text'
-import Box from '@components/Box'
 
 import { dateFormat2 } from '@commonFun/date'
 
@@ -32,8 +31,8 @@ const NoticeTitle = styled(EllipsisText)`
 
 export const NextNotice = (props) => {
 	return (
-		<NoticeContainer next>
-			<Box selectNone>다음글&nbsp;|</Box>
+		<NoticeContainer>
+			<SelectNoneText>다음글&nbsp;|</SelectNoneText>
 			<Link href={'/notice/' + props.data.noticeNo}>
 				<NoticeTitle>{props.data.title}</NoticeTitle>
 			</Link>
@@ -45,7 +44,7 @@ export const NextNotice = (props) => {
 export const PrevNotice = (props) => {
 	return (
 		<NoticeContainer>
-			<Box selectNone>이전글&nbsp;|</Box>
+			<SelectNoneText>이전글&nbsp;|</SelectNoneText>
 			<Link href={'/notice/' + props.data.noticeNo}>
 				<NoticeTitle>{props.data.title}</NoticeTitle>
 			</Link>
@@ -55,7 +54,7 @@ export const PrevNotice = (props) => {
 }
 export const UndefinedNextNotice = () => {
 	return (
-		<NoticeContainer next>
+		<NoticeContainer>
 			<SelectNoneText color="sub">다음글&nbsp;|&nbsp;</SelectNoneText>
 		</NoticeContainer>
 	)
@@ -63,7 +62,7 @@ export const UndefinedNextNotice = () => {
 
 export const UndefinedPrevNotice = () => {
 	return (
-		<NoticeContainer next>
+		<NoticeContainer>
 			<SelectNoneText color="sub">이전글&nbsp;|&nbsp;</SelectNoneText>
 		</NoticeContainer>
 	)

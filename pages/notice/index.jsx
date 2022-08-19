@@ -24,8 +24,8 @@ const NoticeHome = () => {
 			<Center>
 				<HeadTab />
 				<IndexMainContainer>
-					<IconText between="1.25rem">
-						<IconBox width="4rem" height="4rem" selectNone>
+					<IconText between="6rem">
+						<IconBox width="4rem" height="4rem" absolute selectNone>
 							<Icon_Megaphone1 />
 						</IconBox>
 						<Text size="3.75rem">공지사항</Text>

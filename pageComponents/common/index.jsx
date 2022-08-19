@@ -28,9 +28,9 @@ export const MainContainer = styled.div`
 	margin: auto;
 	padding-top: 45px;
 
-	@media (max-width: 860px) {
-		padding: 0 1rem;
+	@media (max-width: 864px) {
 		width: 100%;
+		padding: 0 1rem;
 	}
 `
 

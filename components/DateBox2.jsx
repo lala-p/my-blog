@@ -35,9 +35,12 @@ export const DateBox = styled.div`
 		&:nth-child(2) {
 			::before {
 				content: '·';
-				font-weight: bold;
+
 				margin-left: 0.75rem;
 				margin-right: 0.75rem;
+
+				font-weight: bold;
+				color: ${({ theme }) => theme.color.sub};
 			}
 		}
 	}

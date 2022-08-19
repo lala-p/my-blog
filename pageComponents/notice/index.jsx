@@ -19,19 +19,24 @@ export const NoticeHead = styled.div`
 `
 
 export const NoticeBody = styled(Content)`
+	min-height: 25rem;
 	margin-top: 5rem;
 `
 
-export const NoticeFoot = styled.div``
+export const NoticeFoot = styled.div`
+	margin-top: 5rem;
+`
 
 export const IndexMainContainer = styled(MainContainer)`
+	padding-bottom: 5rem;
+
 	> * {
 		&:first-child {
-			margin-top: 5rem;
+			margin-top: 8rem;
 			margin-left: 2rem;
 		}
 		&:nth-child(2) {
-			margin-top: 8rem;
+			margin-top: 10rem;
 		}
 		&:last-child {
 			margin: auto;
@@ -40,4 +45,6 @@ export const IndexMainContainer = styled(MainContainer)`
 	}
 `
 
-export const DetailMainContainer = styled(MainContainer)``
+export const DetailMainContainer = styled(MainContainer)`
+	padding-bottom: 5rem;
+`
