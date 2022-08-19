@@ -27,6 +27,11 @@ export const MainContainer = styled.div`
 	width: 52rem;
 	margin: auto;
 	padding-top: 45px;
+
+	@media (max-width: 860px) {
+		padding: 0 1rem;
+		width: 100%;
+	}
 `
 
 export const Title = styled.h1`
@@ -46,6 +51,10 @@ export const Writer = (props) => {
 		</IconText>
 	)
 }
+
+export const Hr = styled.hr`
+	color: ${({ theme }) => theme.color.text};
+`
 
 export const Content = styled.div`
 	width: 100%;

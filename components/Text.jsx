@@ -7,6 +7,14 @@ export const Text = styled.div`
 	${({ lineHeight }) => (lineHeight ? `line-height: ${lineHeight};` : null)}
 `
 
+export const SelectNoneText = styled(Text)`
+	-ms-user-select: none;
+	-moz-user-select: -moz-none;
+	-khml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+`
+
 export const EllipsisText = styled(Text)`
 	width: ${({ width }) => width ?? '100%'};
 

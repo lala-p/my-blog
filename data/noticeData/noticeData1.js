@@ -359,7 +359,6 @@ noticeData1[27] = new NoticeBase(27)
 
 noticeData1[27].title = '111vcxcvzxcvzxcvzxcbzxcgadfjakslrqwieorpuijlkja;lksdjfalksdurqiwoef;lkaj;sdlkfja;sldkjf111'
 noticeData1[27].createdDate = new Date('2022-03-03')
-noticeData1[27].updatedDate = new Date('2022-04-03')
 noticeData1[27].NoticeContent = () => {
 	return (
 		<>

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import Text from '@components/Text'
 import { IconText, IconBox, Icon_Pencil } from '@components/Icon'
+import { Content } from '../common'
 
 export const MainContainer = styled.div`
 	display: flex;
@@ -44,7 +45,7 @@ export const PostHead = styled.div`
 	}
 `
 
-export const PostBody = styled.div`
+export const PostBody = styled(Content)`
 	margin-top: 1.5rem;
 `
 

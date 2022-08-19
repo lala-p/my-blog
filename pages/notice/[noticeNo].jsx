@@ -1,9 +1,12 @@
-import { PageContainer, Left, Center, MainContainer, Title, Writer, Content } from '@pageComponents/common'
+import { PageContainer, Left, Center, Title, Writer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
-import { DetailMainContainer } from '@pageComponents/notice'
-import { NoticeBody, NoticeHead } from '../../pageComponents/notice'
+import { DetailMainContainer, NoticeHead, NoticeBody, NoticeFoot } from '@pageComponents/notice'
+import { NoticeDetailNav, NextNotice, PrevNotice, UndefinedNextNotice, UndefinedPrevNotice } from '@pageComponents/notice/NoticeDetailNav'
 import { DateBox, CreatedDate, UpdatedDate } from '@pageComponents/notice/DateBox'
+
+import noticeData from '@data/noticeData'
+import { dateFormat1, dateFormat2 } from '@commonFun/date'
 
 export async function getServerSideProps({ query: { noticeNo } }) {
 	return {
@@ -14,7 +17,10 @@ export async function getServerSideProps({ query: { noticeNo } }) {
 }
 
 const NoticeDetail = (props) => {
-	const noticeNo = props.noticeNo
+	const noticeNo = Number(props.noticeNo)
+	const currentNotice = noticeData.getCurrentNotice(noticeNo)
+	const nextNotice = noticeData.getNextNotice(noticeNo)
+	const prevNotice = noticeData.getPrevNotice(noticeNo)
 
 	return (
 		<PageContainer>
@@ -23,21 +29,23 @@ const NoticeDetail = (props) => {
 			</Left>
 			<Center>
 				<HeadTab />
-				<MainContainer>
-					<DetailMainContainer>
-						<NoticeHead>
-							<Title>공지사항 Notice notice</Title>
-							<Writer>lala-p</Writer>
-							<DateBox>
-								<CreatedDate>2022년 10월 10일</CreatedDate>
-								{true !== undefined ? <UpdatedDate>2022년 10월 11일</UpdatedDate> : null}
-							</DateBox>
-						</NoticeHead>
-						<NoticeBody>
-							<Content></Content>
-						</NoticeBody>
-					</DetailMainContainer>
-				</MainContainer>
+				<DetailMainContainer>
+					<NoticeHead>
+						<Title>{currentNotice.title}</Title>
+						<Writer>{currentNotice.writer}</Writer>
+						<DateBox>
+							<CreatedDate>{dateFormat1(currentNotice.createdDate)}</CreatedDate>
+							{currentNotice.updatedDate !== undefined ? <UpdatedDate>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate> : null}
+						</DateBox>
+					</NoticeHead>
+					<NoticeBody>{currentNotice.NoticeContent()}</NoticeBody>
+					<NoticeFoot>
+						<NoticeDetailNav>
+							{nextNotice !== undefined ? <NextNotice data={nextNotice} /> : <UndefinedNextNotice />}
+							{prevNotice !== undefined ? <PrevNotice data={prevNotice} /> : <UndefinedPrevNotice />}
+						</NoticeDetailNav>
+					</NoticeFoot>
+				</DetailMainContainer>
 			</Center>
 		</PageContainer>
 	)

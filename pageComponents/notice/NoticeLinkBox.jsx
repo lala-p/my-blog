@@ -5,10 +5,9 @@ import { Icon_Megaphone1 } from '@components/Icon'
 import { EllipsisH4 } from '@components/Text'
 import { ColumnList } from '@components/List'
 import { DateBox, CreatedDate, UpdatedDate } from '@components/DateBox2'
+import Box from '@components/Box'
 
-const ContainerBox = styled.div`
-	/* width: 100%; */
-
+const ContainerBox = styled(Box)`
 	padding: 1rem;
 	padding-top: 1.25rem;
 
@@ -29,7 +28,7 @@ const ContainerBox = styled.div`
 const NoticeLinkBox = (props) => {
 	return (
 		<Link href={'/notice/' + props.noticeNo}>
-			<ContainerBox title={props.title}>
+			<ContainerBox title={props.title} cursorPointer>
 				<EllipsisH4>
 					<Icon_Megaphone1 width="1.75rem" height="1.75rem" /> {props.title}
 				</EllipsisH4>

@@ -12,7 +12,7 @@ import { DateBox, PostedDate, UpdatedDate } from '@pageComponents/post/DateBox'
 import PostExplorer from '@components/PostExplorer'
 import { TagContainer, TagType1 } from '@components/Tag'
 
-import { dateFormat_ver1 } from '@commonFun/date'
+import { dateFormat1 } from '@commonFun/date'
 
 import postData from '@data/postData'
 
@@ -50,8 +50,8 @@ const PostDetail = (props) => {
 							<Title>{postData[postCode].title}</Title>
 							<Writer>{postData[postCode]?.writer ?? 'lala-p'}</Writer>
 							<DateBox>
-								<PostedDate>{dateFormat_ver1(postData[postCode].createdDate)}</PostedDate>
-								{postData[postCode]?.updatedDate !== undefined ? <UpdatedDate>{dateFormat_ver1(postData[postCode].updatedDate)}</UpdatedDate> : null}
+								<PostedDate>{dateFormat1(postData[postCode].createdDate)}</PostedDate>
+								{postData[postCode]?.updatedDate !== undefined ? <UpdatedDate>{dateFormat1(postData[postCode].updatedDate)}</UpdatedDate> : null}
 							</DateBox>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
 								{(postData[postCode]?.tagList ?? new Array()).map((tag) => (
@@ -61,9 +61,7 @@ const PostDetail = (props) => {
 								))}
 							</TagContainer>
 						</PostHead>
-						<PostBody>
-							<Content>{postData[postCode].PostContent()}</Content>
-						</PostBody>
+						<PostBody>{postData[postCode].PostContent()}</PostBody>
 						<PostFoot></PostFoot>
 					</PostContainer>
 					<SideContainer subTabOpen={subTabOpenState}>asasdasdasdasdasd</SideContainer>

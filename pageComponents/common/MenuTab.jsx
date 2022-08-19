@@ -27,7 +27,6 @@ const MenuList = styled(ColumnList)`
 const MenuTab = (props) => {
 	const router = useRouter()
 	const dispatch = useDispatch()
-	const [getColor] = useTheme()
 
 	const activeMenu = props.activeMenu
 

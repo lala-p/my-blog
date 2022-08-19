@@ -9,9 +9,9 @@ import { IconText, IconBox, Icon_Megaphone1 } from '@components/Icon'
 import Text from '@components/Text'
 import NoticePagenationNav from '@pageComponents/notice/NoticePagenationNav'
 
-import { dateFormat_ver1 } from '@commonFun/date'
+import { dateFormat1 } from '@commonFun/date'
 
-import noticeData from '../../data/noticeData'
+import noticeData from '@data/noticeData'
 
 const NoticeHome = () => {
 	const currentPage = useSelector((state) => state.notice.currentPage)
@@ -36,8 +36,8 @@ const NoticeHome = () => {
 								<NoticeLinkBox
 									noticeNo={data.noticeNo}
 									title={data.title}
-									createdDate={dateFormat_ver1(data.createdDate)}
-									updatedDate={dateFormat_ver1(data.updatedDate)}
+									createdDate={dateFormat1(data.createdDate)}
+									updatedDate={data.updatedDate !== undefined ? dateFormat1(data.updatedDate) : undefined}
 								/>
 							</li>
 						))}
