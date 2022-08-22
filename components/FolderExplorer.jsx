@@ -4,7 +4,6 @@ import Link from 'next/link'
 
 import { folderActions } from '@reducers/folderSlice'
 
-import { ColumnList } from './List'
 import { EllipsisText } from './Text'
 import { IconText, IconBox, Icon_Home, Icon_Clock } from './Icon'
 
@@ -17,11 +16,6 @@ const Container = styled.div`
 
 const RootList = styled.ul`
 	line-height: 1.25rem;
-`
-
-const FolderName = styled(EllipsisText)`
-	padding-left: 2rem;
-	font-size: 1.125rem;
 `
 
 const FolderContentList = styled.ul`
@@ -55,13 +49,7 @@ const FolderExplorer = (props) => {
 
 		return (
 			<li>
-				<IconText
-					title={name}
-					onClick={() => folderClick(code)}
-					lineHeight="1.25rem"
-					between="2rem"
-					cursorPointer
-				>
+				<IconText title={name} onClick={() => folderClick(code)} lineHeight="1.25rem" between="2rem" cursorPointer>
 					<IconBox width="1rem" height="1rem" absolute selectNone>
 						{open ? <Icon_Home /> : <Icon_Clock color="sub" />}
 					</IconBox>

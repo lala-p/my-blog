@@ -17,6 +17,8 @@ noticeData1[0].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[1] = new NoticeBase(1)
 
 noticeData1[1].title = '111111'
@@ -29,6 +31,8 @@ noticeData1[1].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[2] = new NoticeBase(2)
 
@@ -43,6 +47,8 @@ noticeData1[2].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[3] = new NoticeBase(3)
 
 noticeData1[3].title = '111111'
@@ -55,6 +61,8 @@ noticeData1[3].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[4] = new NoticeBase(4)
 
@@ -69,6 +77,8 @@ noticeData1[4].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[5] = new NoticeBase(5)
 
 noticeData1[5].title = '111111'
@@ -81,6 +91,8 @@ noticeData1[5].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[6] = new NoticeBase(6)
 
@@ -95,6 +107,8 @@ noticeData1[6].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[7] = new NoticeBase(7)
 
 noticeData1[7].title = '111111'
@@ -107,6 +121,8 @@ noticeData1[7].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[8] = new NoticeBase(8)
 
@@ -121,6 +137,8 @@ noticeData1[8].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[9] = new NoticeBase(9)
 
 noticeData1[9].title = '111111'
@@ -133,6 +151,8 @@ noticeData1[9].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[10] = new NoticeBase(10)
 
@@ -147,6 +167,8 @@ noticeData1[10].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[11] = new NoticeBase(11)
 
 noticeData1[11].title = '111111'
@@ -159,6 +181,8 @@ noticeData1[11].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[12] = new NoticeBase(12)
 
@@ -173,6 +197,8 @@ noticeData1[12].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[13] = new NoticeBase(13)
 
 noticeData1[13].title = '111111'
@@ -185,6 +211,8 @@ noticeData1[13].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[14] = new NoticeBase(14)
 
@@ -199,6 +227,8 @@ noticeData1[14].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[15] = new NoticeBase(15)
 
 noticeData1[15].title = '111111'
@@ -211,6 +241,8 @@ noticeData1[15].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[16] = new NoticeBase(16)
 
@@ -225,6 +257,8 @@ noticeData1[16].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[17] = new NoticeBase(17)
 
 noticeData1[17].title = '111111'
@@ -237,6 +271,8 @@ noticeData1[17].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[18] = new NoticeBase(18)
 
@@ -251,6 +287,8 @@ noticeData1[18].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[19] = new NoticeBase(19)
 
 noticeData1[19].title = '111111'
@@ -263,6 +301,8 @@ noticeData1[19].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[20] = new NoticeBase(20)
 
@@ -277,6 +317,8 @@ noticeData1[20].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[21] = new NoticeBase(21)
 
 noticeData1[21].title = '111111'
@@ -289,6 +331,8 @@ noticeData1[21].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[22] = new NoticeBase(22)
 
@@ -303,6 +347,8 @@ noticeData1[22].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[23] = new NoticeBase(23)
 
 noticeData1[23].title = '111111'
@@ -315,6 +361,8 @@ noticeData1[23].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[24] = new NoticeBase(24)
 
@@ -329,6 +377,8 @@ noticeData1[24].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[25] = new NoticeBase(25)
 
 noticeData1[25].title = '111111'
@@ -341,6 +391,8 @@ noticeData1[25].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 noticeData1[26] = new NoticeBase(26)
 
@@ -355,6 +407,8 @@ noticeData1[26].NoticeContent = () => {
 	)
 }
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[27] = new NoticeBase(27)
 
 noticeData1[27].title = '111vcxcvzxcvzxcvzxcbzxcgadfjakslrqwieorpuijlkja;lksdjfalksdurqiwoef;lkaj;sdlkfja;sldkjf111'
@@ -366,5 +420,7 @@ noticeData1[27].NoticeContent = () => {
 		</>
 	)
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 export default noticeData1
