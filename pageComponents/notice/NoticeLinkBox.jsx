@@ -2,7 +2,8 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 import Text, { EllipsisH4 } from '@components/Text'
-import { DateBox, CreatedDate, UpdatedDate } from '@components/DateBox2'
+import { DateBox2 } from '../../components/DateBox'
+import { CreatedDate2, UpdatedDate2 } from '../../components/Date'
 import Box from '@components/Box'
 
 const ContainerBox = styled(Box)`
@@ -53,10 +54,10 @@ const NoticeLinkBox = (props) => {
 				<NoticeNo size="3rem">No.{props.noticeNo}</NoticeNo>
 				<NoticeInfo>
 					<EllipsisH4>{props.title}</EllipsisH4>
-					<DateBox>
-						<CreatedDate>{props.createdDate}</CreatedDate>
-						{props.updatedDate !== undefined ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
-					</DateBox>
+					<DateBox2>
+						<CreatedDate2>{props.createdDate}</CreatedDate2>
+						{props.updatedDate !== undefined ? <UpdatedDate2>{props.updatedDate}</UpdatedDate2> : null}
+					</DateBox2>
 				</NoticeInfo>
 			</ContainerBox>
 		</Link>

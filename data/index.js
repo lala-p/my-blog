@@ -1,7 +1,9 @@
-import { postObject, PostSystem } from './postData'
-import { folderObject, FolderSystem } from './folderData'
-import { noticeObject, NoticeSystem } from './noticeData'
+import { PostData, FolderData, NoticeData } from './dataClass'
 
-export const folderData = new FolderSystem(folderObject, postObject)
-export const postData = new PostSystem(postObject, folderObject)
-export const noticeData = new NoticeSystem(noticeObject, 10, 5)
+import postObject from './postObject'
+import folderObject from './folderObject'
+import noticeObject from './noticeObject'
+
+export const postData = new PostData(postObject, folderObject)
+export const folderData = new FolderData(folderObject, postObject)
+export const noticeData = new NoticeData(noticeObject, 10, 5)

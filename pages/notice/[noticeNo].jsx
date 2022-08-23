@@ -3,7 +3,9 @@ import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
 import { DetailMainContainer, NoticeHead, NoticeBody, NoticeFoot } from '@pageComponents/notice'
 import { NoticeDetailNav, NextNotice, PrevNotice, UndefinedNextNotice, UndefinedPrevNotice } from '@pageComponents/notice/NoticeDetailNav'
-import { DateBox, CreatedDate, UpdatedDate } from '@pageComponents/notice/DateBox'
+
+import { DateBox1 } from '../../components/DateBox'
+import { CreatedDate1, UpdatedDate1 } from '../../components/Date'
 
 import { noticeData } from '@data'
 import { dateFormat1 } from '@commonFun/date'
@@ -33,10 +35,10 @@ const NoticeDetail = (props) => {
 					<NoticeHead>
 						<Title>{currentNotice.title}</Title>
 						<Writer>{currentNotice.writer}</Writer>
-						<DateBox>
-							<CreatedDate>{dateFormat1(currentNotice.createdDate)}</CreatedDate>
-							{currentNotice.updatedDate !== undefined ? <UpdatedDate>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate> : null}
-						</DateBox>
+						<DateBox1>
+							<CreatedDate1>{dateFormat1(currentNotice.createdDate)}</CreatedDate1>
+							{currentNotice.updatedDate !== undefined ? <UpdatedDate1>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate1> : null}
+						</DateBox1>
 					</NoticeHead>
 					<NoticeBody>{currentNotice.NoticeContent()}</NoticeBody>
 					<NoticeFoot>

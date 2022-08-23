@@ -8,9 +8,10 @@ import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
 import { MainContainer, PostContainer, PostHead, PostBody, PostFoot, SideContainer } from '@pageComponents/post'
-import { DateBox, PostedDate, UpdatedDate } from '@pageComponents/post/DateBox'
 import PostExplorer from '@components/PostExplorer'
 import { TagContainer, TagType1 } from '@components/Tag'
+import { DateBox1 } from '../../components/DateBox'
+import { CreatedDate3, UpdatedDate1 } from '../../components/Date'
 
 import { dateFormat1 } from '@commonFun/date'
 
@@ -49,11 +50,11 @@ const PostDetail = (props) => {
 					<PostContainer>
 						<PostHead>
 							<Title>{post.title}</Title>
-							<Writer>{post.writer ?? 'lala-p'}</Writer>
-							<DateBox>
-								<PostedDate>{dateFormat1(post.createdDate)}</PostedDate>
-								{post.updatedDate !== undefined ? <UpdatedDate>{dateFormat1(post.updatedDate)}</UpdatedDate> : null}
-							</DateBox>
+							<Writer>{post.writer}</Writer>
+							<DateBox1>
+								<CreatedDate3>{dateFormat1(post.createdDate)}</CreatedDate3>
+								{post.updatedDate !== undefined ? <UpdatedDate1>{dateFormat1(post.updatedDate)}</UpdatedDate1> : null}
+							</DateBox1>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
 								{post.tagList.map((tag) => (
 									<TagType1 key={tag} cursorPointer>

@@ -5,7 +5,7 @@ import Text, { EllipsisText, SelectNoneText } from '@components/Text'
 
 import { dateFormat2 } from '@commonFun/date'
 
-export const NoticeContainer = styled.div`
+export const NoticeContainerBox = styled.div`
 	display: flex;
 	flex-direction: row;
 
@@ -16,8 +16,12 @@ export const NoticeContainer = styled.div`
 			margin-left: 1rem;
 			max-width: 70%;
 
-			@media (max-width: 576px) {
-				max-width: 70%;
+			@media (max-width: 720px) {
+				max-width: 60%;
+			}
+
+			@media (max-width: 560px) {
+				max-width: 55%;
 			}
 		}
 		&:nth-child(3) {
@@ -31,40 +35,40 @@ const NoticeTitle = styled(EllipsisText)`
 
 export const NextNotice = (props) => {
 	return (
-		<NoticeContainer>
+		<NoticeContainerBox>
 			<SelectNoneText>다음글&nbsp;|</SelectNoneText>
 			<Link href={'/notice/' + props.data.noticeNo}>
 				<NoticeTitle>{props.data.title}</NoticeTitle>
 			</Link>
 			<Text>{dateFormat2(props.data.createdDate)}</Text>
-		</NoticeContainer>
+		</NoticeContainerBox>
 	)
 }
 
 export const PrevNotice = (props) => {
 	return (
-		<NoticeContainer>
+		<NoticeContainerBox>
 			<SelectNoneText>이전글&nbsp;|</SelectNoneText>
 			<Link href={'/notice/' + props.data.noticeNo}>
 				<NoticeTitle>{props.data.title}</NoticeTitle>
 			</Link>
 			<Text>{dateFormat2(props.data.createdDate)}</Text>
-		</NoticeContainer>
+		</NoticeContainerBox>
 	)
 }
 export const UndefinedNextNotice = () => {
 	return (
-		<NoticeContainer>
-			<SelectNoneText color="sub">다음글&nbsp;|&nbsp;</SelectNoneText>
-		</NoticeContainer>
+		<NoticeContainerBox>
+			<SelectNoneText color="sub">다음글&nbsp;|</SelectNoneText>
+		</NoticeContainerBox>
 	)
 }
 
 export const UndefinedPrevNotice = () => {
 	return (
-		<NoticeContainer>
-			<SelectNoneText color="sub">이전글&nbsp;|&nbsp;</SelectNoneText>
-		</NoticeContainer>
+		<NoticeContainerBox>
+			<SelectNoneText color="sub">이전글&nbsp;|</SelectNoneText>
+		</NoticeContainerBox>
 	)
 }
 

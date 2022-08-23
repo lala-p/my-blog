@@ -1,30 +1,15 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import styled from 'styled-components'
 
-import { DateBox, PostedDate, UpdatedDate } from './DateBox1'
-import { EllipsisText, EllipsisH4 } from './Text'
+import { DateBox3 } from './DateBox'
+import Text, { EllipsisText, EllipsisH4 } from './Text'
 import Box from './Box'
-import { ColumnList } from './List'
 import { TagContainer, TagType2 } from './Tag'
 
 const ContainerBox = styled(Box)`
-	display: inline-flex;
+	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
-
-	padding: 1rem 1rem 1rem 0;
 `
-
-const ImageBox = styled.div`
-	position: relative;
-	width: 100%;
-	height: 100%;
-`
-
-// const PostSubTitle = styled(EllipsisText)`
-// 	${({ displayNone }) => (displayNone ? 'display: none;' : null)}
-// `
 
 const PostInfoContainer = styled.div`
 	width: 30rem;
@@ -47,10 +32,7 @@ const PostInfoContainer = styled.div`
 	}
 `
 const ThumbnailContainer = styled(Box)`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
+	position: relative;
 	width: 13rem;
 `
 
@@ -58,9 +40,7 @@ const Post = (props) => {
 	return (
 		<ContainerBox>
 			<ThumbnailContainer selectNone>
-				<ImageBox>
-					<Image src={props.thumbnail} layout="fill" objectFit="cover" />
-				</ImageBox>
+				<Image src={props.thumbnail} layout="fill" objectFit="cover" />
 			</ThumbnailContainer>
 			<PostInfoContainer>
 				<EllipsisH4>{props.title}</EllipsisH4>
@@ -72,33 +52,12 @@ const Post = (props) => {
 						<TagType2 key={tag}>{tag}</TagType2>
 					))}
 				</TagContainer>
-				<DateBox>
-					<PostedDate>{props.createdDate}</PostedDate>
-					{props.updatedDate !== undefined ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
-				</DateBox>
+				<DateBox3>
+					<Text>{props.createdDate}</Text>
+					{props.updatedDate !== undefined ? <Text>{props.updatedDate}</Text> : null}
+				</DateBox3>
 			</PostInfoContainer>
 		</ContainerBox>
-	)
-}
-
-export const PostList = (props) => {
-	return (
-		<ColumnList>
-			{props.listData.map((data, index) => (
-				<li key={index}>
-					<Link href={'/post/' + data.code}>
-						<Post
-							thumbnail={data.thumbnail}
-							title={data.title}
-							subTitle={data.subTitle}
-							tagList={data.tagList}
-							createdDate={data.createdDate}
-							updatedDate={data.updatedDate}
-						/>
-					</Link>
-				</li>
-			))}
-		</ColumnList>
 	)
 }
 

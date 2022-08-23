@@ -1,52 +1,81 @@
 import styled from 'styled-components'
 
-import Text from './Text'
-import Box, { PaddingBox, MarginBox } from './Box'
-import { IconText, IconBox, Icon_Clock, Icon_Refresh } from './Icon'
-
-const PostedDate = (props) => {
-	return (
-		<IconText title="posted_date" lineHeight="1.125rem" between="0.625rem">
-			<IconBox width="1.125rem" height="1.125rem" selectNone>
-				<Icon_Clock />
-			</IconBox>
-			<Text>{props.children}</Text>
-		</IconText>
-	)
-}
-
-const UpdatedIconText = styled(IconText)`
-	::before {
-		content: '·';
-		font-weight: bold;
-		margin-left: 0.75rem;
-		margin-right: 0.75rem;
-	}
-`
-
-const UpdatedDate = (props) => {
-	return (
-		<UpdatedIconText title="updated_date" lineHeight="1.125rem" between="0.625rem">
-			<IconBox width="1rem" height="1rem" selectNone>
-				<Icon_Refresh />
-			</IconBox>
-			<Text>{props.children}</Text>
-		</UpdatedIconText>
-	)
-}
-
-const ContainerBox = styled.div`
+export const DateBox = styled.div`
 	display: inline-flex;
 	flex-direction: row;
 `
 
-const DateBox = (props) => {
-	return (
-		<ContainerBox>
-			<PostedDate>{props.createdDate}</PostedDate>
-			{props.updatedDate !== undefined ? <UpdatedDate>{props.updatedDate}</UpdatedDate> : null}
-		</ContainerBox>
-	)
-}
+export const DateBox1 = styled(DateBox)`
+	> * {
+		&:nth-child(2) {
+			::before {
+				content: '·';
+				font-weight: bold;
+				margin-left: 0.75rem;
+				margin-right: 0.75rem;
+			}
+		}
+	}
+`
 
-export default DateBox
+export const DateBox2 = styled(DateBox)`
+	> * {
+		&:nth-child(2) {
+			::before {
+				content: '·';
+
+				margin-left: 0.75rem;
+				margin-right: 0.75rem;
+
+				font-weight: bold;
+				color: ${({ theme }) => theme.color.sub};
+			}
+		}
+	}
+`
+export const DateBox3 = styled(DateBox)`
+	> * {
+		color: ${({ theme }) => theme.color.sub};
+
+		&:first-child {
+			::before {
+				content: 'posted';
+
+				margin-right: 0.75rem;
+
+				color: ${({ theme }) => theme.color.sub};
+			}
+		}
+
+		&:nth-child(2) {
+			margin-left: 1rem;
+			::before {
+				content: 'updated';
+
+				margin-right: 0.75rem;
+
+				color: ${({ theme }) => theme.color.sub};
+			}
+		}
+	}
+`
+
+export const DateBox4 = styled(DateBox)`
+	> * {
+		&:first-child {
+			::before {
+				content: 'last posted';
+				margin-right: 0.75rem;
+			}
+		}
+
+		&:nth-child(2) {
+			margin-left: 2rem;
+
+			::before {
+				content: 'last updated';
+				margin-right: 0.75rem;
+			}
+		}
+	}
+`
