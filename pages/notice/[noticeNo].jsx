@@ -5,7 +5,7 @@ import { DetailMainContainer, NoticeHead, NoticeBody, NoticeFoot } from '@pageCo
 import { NoticeDetailNav, NextNotice, PrevNotice, UndefinedNextNotice, UndefinedPrevNotice } from '@pageComponents/notice/NoticeDetailNav'
 import { DateBox, CreatedDate, UpdatedDate } from '@pageComponents/notice/DateBox'
 
-import noticeData from '@data/noticeData'
+import { noticeData } from '@data'
 import { dateFormat1 } from '@commonFun/date'
 
 export async function getServerSideProps({ query: { noticeNo } }) {

@@ -4,6 +4,8 @@ import NoticeBase from './noticeBase'
 
 const noticeData1 = new Object()
 
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 noticeData1[0] = new NoticeBase(0)
 
 noticeData1[0].title = 'first notice'

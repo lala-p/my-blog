@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import Text, { EllipsisText } from './Text'
-import Box from './Box'
-import { ColumnList } from './List'
+import { EllipsisText } from './Text'
 import { IconText, IconBox, Icon_Left } from './Icon'
 
-import { getParentData, getFileListDataByPostCode } from '@commonFun/post'
+import { postData } from '@data'
 
 const Container = styled.div`
 	width: 11rem;
@@ -28,16 +26,15 @@ const FolderName = styled(EllipsisText)`
 
 const PostExplorer = (props) => {
 	const currentPostCode = props.currentPostCode
-	const fileListData = getFileListDataByPostCode(props.currentPostCode)
-
-	const parentFolderName = getParentData(currentPostCode).name
+	const fileListData = postData.getFileListData(currentPostCode)
+	const parentFolderName = postData.getParentFolderName(currentPostCode)
 
 	return (
 		<Container>
 			<FolderName title={parentFolderName}>{parentFolderName}</FolderName>
 			<List>
 				{fileListData.map((data, index) => {
-					const stateColor = currentPostCode !== data.postCode ? 'sub' : null
+					const stateColor = currentPostCode !== data.postCode ? 'sub' : undefined
 
 					return (
 						<li key={index}>

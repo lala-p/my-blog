@@ -7,7 +7,7 @@ import { folderActions } from '@reducers/folderSlice'
 import { EllipsisText } from './Text'
 import { IconText, IconBox, Icon_Home, Icon_Clock } from './Icon'
 
-import { getFolderNameByCode } from '@commonFun/folder'
+import { folderData } from '@data'
 
 const Container = styled.div`
 	width: 11rem;
@@ -44,7 +44,7 @@ const FolderExplorer = (props) => {
 
 	const Folder = (props) => {
 		const code = props.code
-		const name = getFolderNameByCode(code)
+		const name = folderData.getFolderName(code)
 		const open = openFolderList.includes(code)
 
 		return (
@@ -62,7 +62,7 @@ const FolderExplorer = (props) => {
 
 	const LinkFolder = (props) => {
 		const code = props.code
-		const name = getFolderNameByCode(code)
+		const name = folderData.getFolderName(code)
 		const open = currentFolderCode == code
 
 		return (
@@ -86,7 +86,6 @@ const FolderExplorer = (props) => {
 					<Folder code="FolderExample">
 						<LinkFolder code="example1" />
 						<LinkFolder code="example2" />
-						<LinkFolder code="example3" />
 					</Folder>
 				</Folder>
 			</RootList>

@@ -1,49 +1,164 @@
-import { folderObject } from '../folderData'
-
 import postData1 from './postData1'
 
-class PostSystem {
+export const postObject = Object.assign({}, postData1)
+
+export class PostSystem {
 	#postObject
 	#folderObject
+
+	#allPostCodeList
+	#allPostDataList
 
 	constructor(postObject, folderObject) {
 		this.#postObject = postObject
 		this.#folderObject = folderObject
+
+		this.#allPostCodeList = Object.keys(postObject)
+		this.#allPostDataList = Object.values(postObject)
 	}
 
-	getPost() {}
+	getParentCode(postCode) {
+		return this.#postObject[postCode].parent
+	}
 
-	getNextPost() {}
+	getParentFolderName(postCode) {
+		return this.#folderObject[this.#postObject[postCode].parent].name
+	}
 
-	getPrevPost() {}
+	getParentChildList(postCode) {
+		return this.#folderObject[this.#postObject[postCode].parent].childList
+	}
 
-	getParentCode() {}
+	getIndexInParentChildList(postCode) {
+		this.#folderObject[this.#postObject[postCode].parent].childList.indexOf(postCode)
+	}
 
-	getParentFolderName() {}
+	getPost(postCode) {
+		return this.#postObject[postCode]
+	}
 
-	getParentChildList() {}
+	getNextPost(postCode) {
+		const currentIndex = this.getIndexInParentChildList(postCode)
+		const parentChildList = this.getParentChildList(postCode)
 
-	getIndexInParentChildList() {}
+		return this.#postObject[parentChildList[currentIndex + 1]]
+	}
 
-	getFileListData() {}
+	getPrevPost(postCode) {
+		const currentIndex = this.getIndexInParentChildList(postCode)
+		const parentChildList = this.getParentChildList(postCode)
 
-	getLinkData() {}
+		return this.#postObject[parentChildList[currentIndex - 1]]
+	}
 
-	getSearchResultByTitleKeyword() {}
+	getAllPostCode() {
+		return this.#allPostCodeList
+	}
 
-	getSearchResultByTag() {}
+	getFileListData(postCode) {
+		let fileListData = new Array()
 
-	getAllTag() {}
+		for (const childPostCode of this.getParentChildList(postCode)) {
+			fileListData.push({
+				postCode: childPostCode,
+				title: this.#postObject[childPostCode].title,
+			})
+		}
 
-	getTagCountData() {}
+		return fileListData
+	}
 
-	getTagCountDataRank() {}
+	getPostLinkDataList(postCodeList) {
+		let postLinkDataList = new Array()
 
-	getAllTagSortByCount(sort = 'desc') {}
+		for (const postCode of postCodeList) {
+			postLinkDataList.push({
+				postCode: postCode,
+				title: this.#postObject[postCode].title,
+				subTitle: this.#postObject[postCode].subTitle,
+				createdDate: this.#postObject[postCode].createdDate,
+				updatedDate: this.#postObject[postCode].updatedDate,
+				tagList: this.#postObject[postCode].tagList,
+			})
+		}
+
+		return postLinkDataList
+	}
+
+	getSearchResultByTitleKeyword(keyword) {
+		const allPostLinkData = this.getPostLinkDataList(this.#allPostCodeList)
+
+		const regExp = new RegExp(keyword)
+		const searchResult = allPostLinkData.filter((linkData) => regExp.test(linkData.title))
+
+		return searchResult
+	}
+
+	getSearchResultByTag(tagList) {
+		const allPostLinkData = this.getPostLinkDataList(this.#allPostCodeList)
+
+		const tagSet = new Set(tagList)
+		const searchResult = allPostLinkData.filter((linkData) => {
+			const linkDataTagSet = new Set(linkData.tagList)
+			const intersect = Array.from(tagSet).filter((tag) => linkDataTagSet.has(tag))
+
+			return intersect.length !== 0
+		})
+
+		return searchResult
+	}
+
+	getAllTag() {
+		let allTagSet = new Set()
+
+		for (const postData of this.#allPostDataList) {
+			for (const tag of postData.tagList) {
+				allTagSet.add(tag)
+			}
+		}
+
+		return Array.from(allTagSet)
+	}
+
+	getTagCountData(tagList) {
+		let postTagCountData = new Object()
+
+		for (const postData of this.#allPostDataList) {
+			for (const tag of postData.tagList) {
+				if (tagList.includes(tag)) {
+					if (tag in postTagCountData) {
+						postTagCountData[tag] = postTagCountData[tag] + 1
+					} else {
+						postTagCountData[tag] = 1
+					}
+				}
+			}
+		}
+
+		return postTagCountData
+	}
+
+	getTagListSortByCount(tagList, sort = 'desc') {
+		let sortedTagList = new Array()
+		const tagCountData = this.getTagCountData(tagList)
+		let sortdTagCountDataList = new Array()
+
+		for (const [tag, count] in Object.entries(tagCountData)) {
+			sortdTagCountDataList.push({ tag, count })
+		}
+
+		sortdTagCountDataList = sortdTagCountDataList.sort((a, b) => {
+			return b.count - a.count
+		})
+
+		for (const tagCountData of sortdTagCountDataList) {
+			sortedTagList.push(tagCountData.tag)
+		}
+
+		if (sort === 'asc') {
+			sortedTagList = sortedTagList.reverse()
+		}
+
+		return sortedTagList
+	}
 }
-
-export const postObject = Object.assign({}, postData1)
-
-const postData = new PostSystem(postObject, folderObject)
-
-export default postData

@@ -11,11 +11,10 @@ import NoticePagenationNav from '@pageComponents/notice/NoticePagenationNav'
 
 import { dateFormat1 } from '@commonFun/date'
 
-import noticeData from '@data/noticeData'
+import { noticeData } from '../../data'
 
 const NoticeHome = () => {
 	const currentPage = useSelector((state) => state.notice.currentPage)
-
 	return (
 		<PageContainer>
 			<Left>

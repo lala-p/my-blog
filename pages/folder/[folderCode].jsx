@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux'
 import { menuActions } from '@reducers/menuSlice'
 import { folderActions } from '@reducers/folderSlice'
 
-import { PageContainer, Left, Center, MainContainer, Box, Content } from '@pageComponents/common'
+import { PageContainer, Left, Center, MainContainer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
 import FolderExplorer from '@components/FolderExplorer'
 
-import { getFolderParents } from '@commonFun/folder'
+import { folderData } from '@data'
 
 export async function getServerSideProps({ query: { folderCode } }) {
 	return {
@@ -28,7 +28,7 @@ const FolderDetail = (props) => {
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
-		dispatch(folderActions.folderOpen(getFolderParents(folderCode)))
+		dispatch(folderActions.folderOpen(folderData.getFolderPath(folderCode)))
 	}, [])
 
 	return (

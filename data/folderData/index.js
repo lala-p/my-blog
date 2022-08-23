@@ -1,8 +1,8 @@
-import { postObject } from '../postData'
-
 import folderData1 from './folderData1'
 
-class FolderSystem {
+export const folderObject = Object.assign({}, folderData1)
+
+export class FolderSystem {
 	#folderObject
 	#poshObject
 
@@ -11,7 +11,7 @@ class FolderSystem {
 		this.#poshObject = postObject
 	}
 
-	getFolderNameByCode(folderCode) {
+	getFolderName(folderCode) {
 		return this.#folderObject[folderCode].name
 	}
 
@@ -65,8 +65,6 @@ class FolderSystem {
 	}
 }
 
-export const folderObject = Object.assign({}, folderData1)
+// const folderData = new FolderSystem(folderObject, postObject)
 
-const folderData = new FolderSystem(folderObject, postObject)
-
-export default folderData
+// export default folderData

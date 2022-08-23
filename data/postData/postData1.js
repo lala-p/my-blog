@@ -1,98 +1,100 @@
 import React from 'react'
-import styled from 'styled-components'
-import Image from 'next/image'
 
+import PostBase from './postBase'
 
 let postData1 = new Object()
 
-postData1['file1'] = {
-	type: 'file',
-	title: 'What is JavaScript?',
-	subTitle: "it's me.",
-	createdDate: new Date('2022-07-01 17:00:00'),
-	tagList: ['react', 'FileExample1', 'useCallback', '후기'],
-	PostContent: () => {
-		return (
-			<>
-				<h1>file1</h1>
-			</>
-		)
-	},
-	tableOfContents: [
-		{ contents: '', id: '' },
-		{ contents: '', id: '', sub: false },
-		{ contents: '', id: '' },
-		{ contents: '', id: '' },
-	],
-	parent: 'example1',
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+postData1['file1'] = new PostBase()
+
+postData1['file1'].parent = 'example1'
+postData1['file1'].title = 'What is JavaScript?'
+postData1['file1'].subTitle = "it's me."
+postData1['file1'].createdDate = new Date('2022-07-01 17:00:00')
+postData1['file1'].tagList = ['react', 'FileExample1', 'useCallback', '후기']
+postData1['file1'].PostContent = () => {
+	return (
+		<>
+			<h1>file1</h1>
+		</>
+	)
+}
+// postData1['file1'].tableOfContents = [
+// 	{ contents: '', id: '' },
+// 	{ contents: '', id: '', sub: false },
+// 	{ contents: '', id: '' },
+// 	{ contents: '', id: '' },
+// ]
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+postData1['file2'] = new PostBase()
+
+postData1['file2'].parent = 'example1'
+postData1['file2'].title = 'ek shfrh tlvek'
+postData1['file2'].subTitle = "it's me."
+postData1['file2'].createdDate = new Date('2022-07-01 17:00:00')
+postData1['file2'].tagList = ['react', 'FileExample1', 'useCallback', '후기']
+postData1['file2'].PostContent = () => {
+	return (
+		<>
+			<h1>file1</h1>
+		</>
+	)
 }
 
-postData1['file2'] = {
-	type: 'file',
-	title: 'asdfsadf',
-	subTitle: '2222222222222222222222222',
-	createdDate: new Date('2022-07-01 18:00:00'),
-	updatedDate: new Date('2022-07-03 17:00:00'),
-	tagList: ['nextJs', 'useState', '후기', 'useCallback'],
-	PostContent: () => {
-		return (
-			<>
-				<h1>file2</h1>
-			</>
-		)
-	},
-	parent: 'example1',
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+postData1['file3'] = new PostBase()
+
+postData1['file3'].parent = 'example1'
+postData1['file3'].title = 'dhkdkdkdk wlqdp wkrhr tlvek'
+postData1['file3'].subTitle = "it's me."
+postData1['file3'].createdDate = new Date('2022-07-01 17:00:00')
+postData1['file3'].tagList = ['react', 'FileExample1', 'useCallback', '후기']
+postData1['file3'].PostContent = () => {
+	return (
+		<>
+			<h1>file1</h1>
+		</>
+	)
 }
 
-postData1['file3'] = {
-	type: 'file',
-	title: 'file33333hahahahahahahahahahahah',
-	subTitle: 'hahahahahahahahahahahah',
-	createdDate: new Date('2022-07-01 18:00:00'),
-	updatedDate: new Date('2022-07-03 17:00:00'),
-	tagList: ['nextJs', 'useState', '후기', 'useCallback'],
-	PostContent: () => {
-		return (
-			<>
-				<h1>file3</h1>
-			</>
-		)
-	},
-	parent: 'example1',
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+postData1['file4'] = new PostBase()
+
+postData1['file4'].parent = 'example2'
+postData1['file4'].title = 'rmflrh dkaneh djqtdjTek.'
+postData1['file4'].subTitle = "it's me."
+postData1['file4'].createdDate = new Date('2022-07-01 17:00:00')
+postData1['file4'].tagList = ['react', 'FileExample1', 'useCallback', '후기']
+postData1['file4'].PostContent = () => {
+	return (
+		<>
+			<h1>file1</h1>
+		</>
+	)
 }
 
-postData1['file4'] = {
-	type: 'file',
-	title: 'rmflrh dkaneh djqtdjTek',
-	subTitle: 'hahahahahahahahahahahah',
-	createdDate: new Date('2022-07-01 18:00:00'),
-	updatedDate: new Date('2022-07-03 17:00:00'),
-	tagList: ['nextJs', 'useState', '후기', 'useCallback'],
-	PostContent: () => {
-		return (
-			<>
-				<h1>file4</h1>
-			</>
-		)
-	},
-	parent: 'example1',
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+postData1['file5'] = new PostBase()
+
+postData1['file5'].parent = 'example2'
+postData1['file5'].title = 'file55555555555555555555'
+postData1['file5'].subTitle = "it's me."
+postData1['file5'].createdDate = new Date('2022-07-01 17:00:00')
+postData1['file5'].tagList = ['react', 'FileExample1', 'useCallback', '후기']
+postData1['file5'].PostContent = () => {
+	return (
+		<>
+			<h1>file1</h1>
+		</>
+	)
 }
 
-postData1['file5'] = {
-	type: 'file',
-	title: '후기',
-	subTitle: 'hahahahahahahahahahahah',
-	createdDate: new Date('2022-07-01 18:00:00'),
-	updatedDate: new Date('2022-07-03 17:00:00'),
-	tagList: ['nextJs', 'useState', '후기', 'useCallback'],
-	PostContent: () => {
-		return (
-			<>
-				<h1>file5</h1>
-			</>
-		)
-	},
-	parent: 'example1',
-}
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 export default postData1

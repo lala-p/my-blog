@@ -1,4 +1,3 @@
-import { useEffect, useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
@@ -6,7 +5,7 @@ import { noticeActions } from '@reducers/noticeSlice'
 
 import { Icon_Left, Icon_Right, Icon_DoubleLeft, Icon_DoubleRight } from '@components/Icon'
 
-import noticeData from '../../data/noticeData'
+import { noticeData } from '@data'
 
 const PageNumber = styled.p`
 	color: ${({ current, theme }) => (current ? theme.color.background2 : theme.color.text)};

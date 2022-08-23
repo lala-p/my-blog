@@ -1,4 +1,4 @@
-import noticeData from '@data/noticeData'
+import { noticeData } from '@data'
 
 export const getNextNoticeData = (noticeNo) => {
 	return noticeData[noticeNo + 1]

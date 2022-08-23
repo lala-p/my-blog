@@ -1,18 +1,20 @@
 import noticeData1 from './noticeData1'
 
-class NoticeSystem {
-	#noticeList
+export const noticeObject = Object.assign({}, noticeData1)
+
+export class NoticeSystem {
+	#noticeObject
 	#limit
 	#pageLimit
 
-	constructor(noticeList, limit, pageLimit) {
-		this.#noticeList = noticeList
+	constructor(noticeObject, limit, pageLimit) {
+		this.#noticeObject = noticeObject
 		this.#limit = limit
 		this.#pageLimit = pageLimit
 	}
 
 	getCurrentNotice(noticeNo) {
-		return this.#noticeList[noticeNo]
+		return this.#noticeObject[noticeNo]
 	}
 
 	getNextNotice(noticeNo) {
@@ -20,9 +22,9 @@ class NoticeSystem {
 			return undefined
 		} else {
 			return {
-				noticeNo: this.#noticeList[noticeNo + 1].noticeNo,
-				title: this.#noticeList[noticeNo + 1].title,
-				createdDate: this.#noticeList[noticeNo + 1].createdDate,
+				noticeNo: this.#noticeObject[noticeNo + 1].noticeNo,
+				title: this.#noticeObject[noticeNo + 1].title,
+				createdDate: this.#noticeObject[noticeNo + 1].createdDate,
 			}
 		}
 	}
@@ -32,30 +34,30 @@ class NoticeSystem {
 			return undefined
 		} else {
 			return {
-				noticeNo: this.#noticeList[noticeNo - 1].noticeNo,
-				title: this.#noticeList[noticeNo - 1].title,
-				createdDate: this.#noticeList[noticeNo - 1].createdDate,
+				noticeNo: this.#noticeObject[noticeNo - 1].noticeNo,
+				title: this.#noticeObject[noticeNo - 1].title,
+				createdDate: this.#noticeObject[noticeNo - 1].createdDate,
 			}
 		}
 	}
 
 	// getAllNoticeCount() {
-	// 	return Object.keys(this.#noticeList).length
+	// 	return Object.keys(this.#noticeObject).length
 	// }
 
 	getLastNoticeNo() {
-		return Object.keys(this.#noticeList).length - 1
+		return Object.keys(this.#noticeObject).length - 1
 	}
 
 	getLastPageNum() {
-		const allNoticesCount = Object.keys(this.#noticeList).length
+		const allNoticesCount = Object.keys(this.#noticeObject).length
 		const allPagesCount = Math.trunc(allNoticesCount / this.#limit) + (allNoticesCount % this.#limit == 0 ? 0 : 1)
 
 		return allPagesCount
 	}
 
 	getCurrentPageNoticeList(currentPageNum) {
-		let currentPageNoticeList = new Array()
+		let currentPagenoticeList = new Array()
 
 		const lastNotice = this.getLastNoticeNo()
 		const startNum = lastNotice - (currentPageNum - 1) * this.#limit
@@ -64,16 +66,16 @@ class NoticeSystem {
 			if (index < 0) {
 				break
 			} else {
-				currentPageNoticeList.push({
-					noticeNo: this.#noticeList[index].noticeNo,
-					title: this.#noticeList[index].title,
-					createdDate: this.#noticeList[index].createdDate,
-					updatedDate: this.#noticeList[index].updatedDate,
+				currentPagenoticeList.push({
+					noticeNo: this.#noticeObject[index].noticeNo,
+					title: this.#noticeObject[index].title,
+					createdDate: this.#noticeObject[index].createdDate,
+					updatedDate: this.#noticeObject[index].updatedDate,
 				})
 			}
 		}
 
-		return currentPageNoticeList
+		return currentPagenoticeList
 	}
 
 	getCurrentPages(currentPageNum) {
@@ -112,9 +114,3 @@ class NoticeSystem {
 		return currentPageNum >= startNum && currentPageNum <= lastNum
 	}
 }
-
-const noticeList = Object.assign({}, noticeData1)
-
-const noticeData = new NoticeSystem(noticeList, 10, 5)
-
-export default noticeData

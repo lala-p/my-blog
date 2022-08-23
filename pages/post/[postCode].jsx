@@ -14,7 +14,7 @@ import { TagContainer, TagType1 } from '@components/Tag'
 
 import { dateFormat1 } from '@commonFun/date'
 
-import postData from '@data/postData'
+import { postData } from '@data'
 
 export async function getServerSideProps({ query: { postCode } }) {
 	return {
@@ -28,6 +28,7 @@ const PostDetail = (props) => {
 	const dispatch = useDispatch()
 
 	const postCode = props.postCode
+	const post = postData.getPost(postCode)
 	const subTabOpenState = useSelector((state) => state.menu.subTabOpenState)
 
 	useEffect(() => {
@@ -47,21 +48,21 @@ const PostDetail = (props) => {
 				<MainContainer>
 					<PostContainer>
 						<PostHead>
-							<Title>{postData[postCode].title}</Title>
-							<Writer>{postData[postCode]?.writer ?? 'lala-p'}</Writer>
+							<Title>{post.title}</Title>
+							<Writer>{post.writer ?? 'lala-p'}</Writer>
 							<DateBox>
-								<PostedDate>{dateFormat1(postData[postCode].createdDate)}</PostedDate>
-								{postData[postCode]?.updatedDate !== undefined ? <UpdatedDate>{dateFormat1(postData[postCode].updatedDate)}</UpdatedDate> : null}
+								<PostedDate>{dateFormat1(post.createdDate)}</PostedDate>
+								{post.updatedDate !== undefined ? <UpdatedDate>{dateFormat1(post.updatedDate)}</UpdatedDate> : null}
 							</DateBox>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
-								{(postData[postCode]?.tagList ?? new Array()).map((tag) => (
+								{post.tagList.map((tag) => (
 									<TagType1 key={tag} cursorPointer>
 										{tag}
 									</TagType1>
 								))}
 							</TagContainer>
 						</PostHead>
-						<PostBody>{postData[postCode].PostContent()}</PostBody>
+						<PostBody>{post.PostContent()}</PostBody>
 						<PostFoot></PostFoot>
 					</PostContainer>
 					<SideContainer subTabOpen={subTabOpenState}>asasdasdasdasdasd</SideContainer>
