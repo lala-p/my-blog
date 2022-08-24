@@ -4,8 +4,8 @@ import HeadTab from '@pageComponents/common/HeadTab'
 import { DetailMainContainer, NoticeHead, NoticeBody, NoticeFoot } from '@pageComponents/notice'
 import { NoticeDetailNav, NextNotice, PrevNotice, UndefinedNextNotice, UndefinedPrevNotice } from '@pageComponents/notice/NoticeDetailNav'
 
-import { DateBox1 } from '../../components/DateBox'
-import { CreatedDate1, UpdatedDate1 } from '../../components/Date'
+import { DateBox1 } from '@components/DateBox'
+import { CreatedDate1, UpdatedDate1 } from '@components/Date'
 
 import { noticeData } from '@data'
 import { dateFormat1 } from '@commonFun/date'

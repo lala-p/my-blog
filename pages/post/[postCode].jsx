@@ -10,8 +10,8 @@ import HeadTab from '@pageComponents/common/HeadTab'
 import { MainContainer, PostContainer, PostHead, PostBody, PostFoot, SideContainer } from '@pageComponents/post'
 import PostExplorer from '@components/PostExplorer'
 import { TagContainer, TagType1 } from '@components/Tag'
-import { DateBox1 } from '../../components/DateBox'
-import { CreatedDate3, UpdatedDate1 } from '../../components/Date'
+import { DateBox1 } from '@components/DateBox'
+import { CreatedDate3, UpdatedDate1 } from '@components/Date'
 
 import { dateFormat1 } from '@commonFun/date'
 

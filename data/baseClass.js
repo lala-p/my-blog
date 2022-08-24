@@ -2,11 +2,12 @@ export class Post {
 	constructor() {
 		this.parent = null
 		this.title = null
-		this.subTitle = undefined
+		this.subTitle = null
 		this.writer = 'lala-p'
 		this.createdDate = null
 		this.updatedDate = undefined
 		this.tagList = new Array()
+		this.thumbnail = '/image/thumbnail/empty_thumbnail.jpg'
 		this.PostContent = () => {
 			return (
 				<>

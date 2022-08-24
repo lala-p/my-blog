@@ -222,6 +222,24 @@ export class FolderData {
 
 		return lastUpdatedDate
 	}
+
+	getChildPostDataList(folderCode) {
+		let childPostDataList = new Array()
+
+		for (const postCode of this.#folderObject[folderCode].childList) {
+			childPostDataList.push({
+				postCode,
+				thumbnail: this.#poshObject[postCode].thumbnail,
+				title: this.#poshObject[postCode].title,
+				subTitle: this.#poshObject[postCode].subTitle,
+				tagList: this.#poshObject[postCode].tagList,
+				createdDate: this.#poshObject[postCode].createdDate,
+				updatedDate: this.#poshObject[postCode].updatedDate,
+			})
+		}
+
+		return childPostDataList
+	}
 }
 
 export class NoticeData {

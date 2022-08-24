@@ -2,8 +2,8 @@ import Link from 'next/link'
 import styled from 'styled-components'
 
 import Text, { EllipsisH4 } from '@components/Text'
-import { DateBox2 } from '../../components/DateBox'
-import { CreatedDate2, UpdatedDate2 } from '../../components/Date'
+import { DateBox2 } from '@components/DateBox'
+import { CreatedDate2, UpdatedDate2 } from '@components/Date'
 import Box from '@components/Box'
 
 const ContainerBox = styled(Box)`
