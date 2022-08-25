@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import { menuActions } from '@reducers/menuSlice'
+import { noticeActions } from '@reducers/noticeSlice'
 
 import { ColumnList } from '@components/List'
-import { IconBox, Icon_Home, Icon_File, Icon_Search, Icon_Megaphone, Icon_User } from '@components/Icon'
+import { Icon_Home, Icon_File, Icon_Search, Icon_Megaphone, Icon_User } from '@components/Icon'
 
 import useTheme from '@hooks/useTheme'
 
@@ -24,16 +25,18 @@ const MenuList = styled(ColumnList)`
 	align-items: center;
 `
 
+const MenuBox = styled.div`
+	width: 1.5rem;
+	height: 1.5rem;
+
+	cursor: pointer;
+`
+
 const MenuTab = (props) => {
 	const router = useRouter()
 	const dispatch = useDispatch()
 
 	const activeMenu = props.activeMenu
-
-	const menuIconSize = {
-		width: '1.5rem',
-		height: '1.5rem',
-	}
 
 	const getActiveColor = (menu) => {
 		return activeMenu == menu ? 'accent2' : 'sub'
@@ -47,40 +50,43 @@ const MenuTab = (props) => {
 		}
 	}
 
+	const noticeMenuClick = () => {
+		dispatch(noticeActions.setCurrentPage(1))
+		router.push('/notice')
+	}
+
 	return (
 		<Container>
 			<MenuList between="2rem">
 				<li>
 					<Link href="/">
-						<IconBox title="home" width={menuIconSize.width} height={menuIconSize.height} cursorPointer>
+						<MenuBox title="home">
 							<Icon_Home color={getActiveColor('home')} />
-						</IconBox>
+						</MenuBox>
 					</Link>
 				</li>
 				<li>
-					<IconBox title="post" width="1.5rem" height="1.5rem" onClick={postMenuClick} cursorPointer>
+					<MenuBox title="post" onClick={postMenuClick}>
 						<Icon_File color={getActiveColor('post')} />
-					</IconBox>
+					</MenuBox>
 				</li>
 				<li>
 					<Link href="/search">
-						<IconBox title="search" width={menuIconSize.width} height={menuIconSize.height} cursorPointer>
+						<MenuBox title="search">
 							<Icon_Search color={getActiveColor('search')} />
-						</IconBox>
+						</MenuBox>
 					</Link>
 				</li>
 				<li>
-					<Link href="/notice">
-						<IconBox title="notice" width={menuIconSize.width} height={menuIconSize.height} cursorPointer>
-							<Icon_Megaphone color={getActiveColor('notice')} />
-						</IconBox>
-					</Link>
+					<MenuBox title="notice" onClick={noticeMenuClick}>
+						<Icon_Megaphone color={getActiveColor('notice')} />
+					</MenuBox>
 				</li>
 				<li>
 					<Link href="/profile">
-						<IconBox title="profile" width={menuIconSize.width} height={menuIconSize.height} cursorPointer>
+						<MenuBox title="profile">
 							<Icon_User color={getActiveColor('profile')} />
-						</IconBox>
+						</MenuBox>
 					</Link>
 				</li>
 			</MenuList>

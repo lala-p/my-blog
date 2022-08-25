@@ -24,13 +24,14 @@ export const Center = styled.div`
 `
 
 export const MainContainer = styled.div`
-	width: 52rem;
+	width: 768px;
 	margin: auto;
 	padding-top: 45px;
 
-	@media (max-width: 864px) {
+	@media (max-width: 768px) {
 		width: 100%;
 		padding: 0 1rem;
+		padding-top: 45px;
 	}
 `
 

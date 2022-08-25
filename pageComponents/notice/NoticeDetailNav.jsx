@@ -16,12 +16,20 @@ export const NoticeContainerBox = styled.div`
 			margin-left: 1rem;
 			max-width: 70%;
 
-			@media (max-width: 720px) {
+			@media (max-width: 768px) {
 				max-width: 60%;
 			}
 
-			@media (max-width: 560px) {
+			@media (max-width: 600px) {
 				max-width: 55%;
+			}
+
+			@media (max-width: 480px) {
+				max-width: 43%;
+			}
+
+			@media (max-width: 375px) {
+				max-width: 40%;
 			}
 		}
 		&:nth-child(3) {

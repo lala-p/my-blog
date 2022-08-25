@@ -1,30 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    // currentMode: 'home',
-    limit: 5,
-    currentPage: 1,
-    pageLimit: 5,
-    // currentNoticeNo: null,
-
+	currentPage: 1,
 }
 
 const noticeSlice = createSlice({
-    name: 'notice',
-    initialState,
-    reducers: {
-        // setCurrentNoticeMode: (state, action) => {
-        //     state.currentMode = action.payload
-        // },
-        setCurrentPage: (state, action) => {
-            state.currentPage = action.payload
-        },
-        // setCurrentNoticeNo: (state, action) => {
-        //     state.currentNoticeNo = action.payload
-        // },
-        
-        
-    },
+	name: 'notice',
+	initialState,
+	reducers: {
+		setCurrentPage: (state, action) => {
+			state.currentPage = action.payload
+		},
+	},
 })
 
 export const noticeActions = noticeSlice.actions

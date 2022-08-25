@@ -1,3 +1,7 @@
+const pageLimit = 5
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
 export class PostData {
 	#postObject
 	#folderObject
@@ -157,15 +161,21 @@ export class PostData {
 
 		return sortedTagList
 	}
+
+	getSortCreatedDateDesc() {}
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 export class FolderData {
 	#folderObject
 	#poshObject
+	#limit
 
-	constructor(folderObject, postObject) {
+	constructor(folderObject, postObject, limit) {
 		this.#folderObject = folderObject
 		this.#poshObject = postObject
+		this.#limit = limit
 	}
 
 	getFolderName(folderCode) {
@@ -223,11 +233,15 @@ export class FolderData {
 		return lastUpdatedDate
 	}
 
-	getChildPostDataList(folderCode) {
-		let childPostDataList = new Array()
+	getPageChildList(folderCode, pageNum) {
+		let pageChildList = new Array()
+		let childList = [...this.#folderObject[folderCode].childList].reverse()
+		const startIndex = (pageNum - 1) * this.#limit
 
-		for (const postCode of this.#folderObject[folderCode].childList) {
-			childPostDataList.push({
+		childList = childList.slice(startIndex, startIndex + this.#limit)
+
+		for (const postCode of childList) {
+			pageChildList.push({
 				postCode,
 				thumbnail: this.#poshObject[postCode].thumbnail,
 				title: this.#poshObject[postCode].title,
@@ -238,19 +252,62 @@ export class FolderData {
 			})
 		}
 
-		return childPostDataList
+		return pageChildList
+	}
+
+	getLastPageNum(folderCode) {
+		const allChildCount = this.#folderObject[folderCode].childList.length
+		const allPagesCount = Math.trunc(allChildCount / this.#limit) + (allChildCount % this.#limit == 0 ? 0 : 1)
+
+		return allPagesCount
+	}
+
+	getCurrentPageList(folderCode, currentPageNum) {
+		let currentPages = new Array()
+
+		const startNum = currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit) + 1
+		const lastPage = this.getLastPageNum(folderCode)
+
+		for (let index = startNum; index < startNum + pageLimit; index++) {
+			if (index > lastPage) {
+				break
+			} else {
+				currentPages.push(index)
+			}
+		}
+
+		return currentPages
+	}
+
+	getNextPage(currentPageNum) {
+		return currentPageNum % pageLimit == 0 ? currentPageNum + 1 : currentPageNum + pageLimit - (currentPageNum % pageLimit) + 1
+	}
+
+	getPrevPage(currentPageNum) {
+		return currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit)
+	}
+
+	isFirstPages(currentPageNum) {
+		return currentPageNum <= pageLimit && currentPageNum > 0
+	}
+
+	isLastPages(folderCode, currentPageNum) {
+		const lastNum = this.getLastPageNum(folderCode)
+		const startNum = lastNum - (lastNum % pageLimit == 0 ? pageLimit : lastNum % pageLimit) + 1
+
+		return currentPageNum >= startNum && currentPageNum <= lastNum
 	}
 }
+
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 export class NoticeData {
 	#noticeObject
 	#limit
-	#pageLimit
 
-	constructor(noticeObject, limit, pageLimit) {
+	constructor(noticeObject, limit) {
 		this.#noticeObject = noticeObject
 		this.#limit = limit
-		this.#pageLimit = pageLimit
 	}
 
 	getCurrentNotice(noticeNo) {
@@ -314,13 +371,13 @@ export class NoticeData {
 		return currentPagenoticeList
 	}
 
-	getCurrentPages(currentPageNum) {
+	getCurrentPageList(currentPageNum) {
 		let currentPages = new Array()
 
-		const startNum = currentPageNum - (currentPageNum % this.#pageLimit == 0 ? this.#pageLimit : currentPageNum % this.#pageLimit) + 1
+		const startNum = currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit) + 1
 		const lastPage = this.getLastPageNum()
 
-		for (let index = startNum; index < startNum + this.#pageLimit; index++) {
+		for (let index = startNum; index < startNum + pageLimit; index++) {
 			if (index > lastPage) {
 				break
 			} else {
@@ -332,20 +389,20 @@ export class NoticeData {
 	}
 
 	getNextPage(currentPageNum) {
-		return currentPageNum % this.#pageLimit == 0 ? currentPageNum + 1 : currentPageNum + this.#pageLimit - (currentPageNum % this.#pageLimit) + 1
+		return currentPageNum % pageLimit == 0 ? currentPageNum + 1 : currentPageNum + pageLimit - (currentPageNum % pageLimit) + 1
 	}
 
 	getPrevPage(currentPageNum) {
-		return currentPageNum - (currentPageNum % this.#pageLimit == 0 ? this.#pageLimit : currentPageNum % this.#pageLimit)
+		return currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit)
 	}
 
 	isFirstPages(currentPageNum) {
-		return currentPageNum <= this.#pageLimit && currentPageNum > 0
+		return currentPageNum <= pageLimit && currentPageNum > 0
 	}
 
 	isLastPages(currentPageNum) {
 		const lastNum = this.getLastPageNum()
-		const startNum = lastNum - (lastNum % this.#pageLimit == 0 ? this.#pageLimit : lastNum % this.#pageLimit) + 1
+		const startNum = lastNum - (lastNum % pageLimit == 0 ? pageLimit : lastNum % pageLimit) + 1
 
 		return currentPageNum >= startNum && currentPageNum <= lastNum
 	}

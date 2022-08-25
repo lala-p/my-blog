@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { MainContainer, Content } from '../common'
+import Text from '@components/Text'
 
 export const NoticeHead = styled.div`
 	padding-bottom: 0.75rem;
@@ -27,8 +28,16 @@ export const NoticeFoot = styled.div`
 	margin-top: 5rem;
 `
 
+export const Notice = styled(Text)`
+	font-size: 3.75rem;
+
+	@media (max-width: 768px) {
+		font-size: 2.75rem;
+	}
+`
+
 export const IndexMainContainer = styled(MainContainer)`
-	padding-bottom: 5rem;
+	padding-bottom: 2rem;
 
 	> * {
 		&:first-child {
@@ -39,7 +48,9 @@ export const IndexMainContainer = styled(MainContainer)`
 			margin-top: 10rem;
 		}
 		&:last-child {
-			margin: auto;
+			display: flex;
+			flex-direction: row;
+
 			margin-top: 5rem;
 		}
 	}

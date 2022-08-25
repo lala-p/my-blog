@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -10,13 +10,16 @@ import { PageContainer, Left, Center } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
+import PagenationNav from '@pageComponents/common/PagenationNav'
 import { IndexMainContainer, FolderInfo } from '@pageComponents/folder'
 import { PostLinkBox, ThumbnailBox, PostInfo } from '@pageComponents/folder/PostLinkBox'
+// import { PagenationNav, PageInput, ArrowBox } from '@pageComponents/folder/PagenationNav'
 import FolderExplorer from '@components/FolderExplorer'
 import { DateBox3, DateBox4 } from '@components/DateBox'
 import Text, { EllipsisText, EllipsisH4 } from '@components/Text'
 import { ColumnList } from '@components/List'
 import { TagContainer, TagType2 } from '@components/Tag'
+import { Icon_Left, Icon_Right } from '@components/Icon'
 
 import { folderData } from '@data'
 
@@ -35,11 +38,33 @@ const FolderDetail = (props) => {
 
 	const folderCode = props.folderCode
 	const subTabOpenState = useSelector((state) => state.menu.subTabOpenState)
+	const currentPage = useSelector((state) => state.folder.currentPage)
+
+	const pageChildList = folderData.getPageChildList(folderCode, currentPage)
+
+	const pageData = {
+		currentPage,
+		nextPage: folderData.getNextPage(currentPage),
+		prevPage: folderData.getPrevPage(currentPage),
+		firstPage: 1,
+		lastPage: folderData.getLastPageNum(folderCode),
+		isFirstPages: folderData.isFirstPages(currentPage),
+		isLastPages: folderData.isLastPages(folderCode, currentPage),
+	}
+
+	const setCurrentPage = (pageNum) => {
+		dispatch(folderActions.setCurrentPage(pageNum))
+	}
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
 		dispatch(folderActions.folderOpen(folderData.getFolderPath(folderCode, false)))
 	}, [])
+
+	useEffect(() => {
+		setCurrentPage(1)
+		window.scrollTo(0, 0)
+	}, [folderCode])
 
 	return (
 		<PageContainer>
@@ -60,12 +85,12 @@ const FolderDetail = (props) => {
 						</DateBox4>
 					</FolderInfo>
 					<ColumnList between="3rem">
-						{folderData.getChildPostDataList(folderCode).map((data) => (
+						{pageChildList.map((data) => (
 							<li key={data.postCode}>
 								<Link href={'/post/' + data.postCode}>
 									<PostLinkBox cursorPointer>
 										<ThumbnailBox selectNone>
-											<Image src={data.thumbnail} layout="fill" objectFit="cover" />
+											<Image src={data.thumbnail} layout="fill" objectFit="cover" alt="thumbnail" priority />
 										</ThumbnailBox>
 										<PostInfo>
 											<EllipsisH4 title={data.title}>{data.title}</EllipsisH4>
@@ -87,6 +112,7 @@ const FolderDetail = (props) => {
 							</li>
 						))}
 					</ColumnList>
+					<PagenationNav currentPageList={folderData.getCurrentPageList(folderCode, currentPage)} pageData={pageData} setPageEvent={setCurrentPage} />
 				</IndexMainContainer>
 			</Center>
 		</PageContainer>
