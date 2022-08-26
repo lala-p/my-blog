@@ -14,23 +14,19 @@ import { noticeActions } from '@reducers/noticeSlice'
 import { dateFormat1 } from '@commonFun/date'
 
 import { noticeData } from '@data'
+import noticeObject from '@data/noticeObject'
+import { Pagenation } from '@data/dataClass'
 
-const limit = 2
+const noticeNoList = Object.keys(noticeObject).sort((a, b) => {
+	return b - a
+})
+
+const noticePagenation = new Pagenation(noticeNoList, 5, 10)
 
 const NoticeHome = () => {
 	const dispatch = useDispatch()
 
 	const currentPage = useSelector((state) => state.notice.currentPage)
-
-	const pageData = {
-		currentPage,
-		nextPage: noticeData.getNextPage(currentPage),
-		prevPage: noticeData.getPrevPage(currentPage),
-		firstPage: 1,
-		lastPage: noticeData.getLastPageNum(limit),
-		isFirstPages: noticeData.isFirstPages(currentPage),
-		isLastPages: noticeData.isLastPages(currentPage),
-	}
 
 	const setCurrentPage = (pageNum) => {
 		dispatch(noticeActions.setCurrentPage(pageNum))
@@ -51,7 +47,7 @@ const NoticeHome = () => {
 						<Notice>공지사항</Notice>
 					</IconText>
 					<ColumnList between="2rem">
-						{noticeData.getCurrentPageNoticeList(currentPage, limit).map((data) => (
+						{noticeData.getNoticeLinkDataList(noticePagenation.getPagenationDataList(currentPage)).map((data) => (
 							<li key={data.noticeNo}>
 								<NoticeLinkBox
 									noticeNo={data.noticeNo}
@@ -62,7 +58,7 @@ const NoticeHome = () => {
 							</li>
 						))}
 					</ColumnList>
-					<PagenationNav currentPageList={noticeData.getCurrentPageList(currentPage)} pageData={pageData} setPageEvent={setCurrentPage} />
+					<PagenationNav currentPage={currentPage} pagenation={noticePagenation} setPageEvent={setCurrentPage} />
 				</IndexMainContainer>
 			</Center>
 		</PageContainer>

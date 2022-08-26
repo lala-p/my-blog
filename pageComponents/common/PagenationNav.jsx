@@ -88,8 +88,16 @@ const Container = styled.div`
 `
 
 const PagenationNav = (props) => {
-	const currentPageList = props.currentPageList
-	const { currentPage, nextPage, prevPage, firstPage, lastPage, isFirstPages, isLastPages } = props.pageData
+	const currentPage = props.currentPage
+	const pagenation = props.pagenation
+	const { nextPage, prevPage, firstPage, lastPage, isFirstPages, isLastPages } = {
+		nextPage: pagenation.getNextPage(currentPage),
+		prevPage: pagenation.getPrevPage(currentPage),
+		firstPage: 1,
+		lastPage: pagenation.getLastPageNum(),
+		isFirstPages: pagenation.isFirstPages(currentPage),
+		isLastPages: pagenation.isLastPages(currentPage),
+	}
 
 	const setPage = (pageNum) => {
 		props.setPageEvent(pageNum)
@@ -115,7 +123,7 @@ const PagenationNav = (props) => {
 				</Arrow>
 			</ArrowBox>
 			<PageNumberList between="1.25rem">
-				{currentPageList.map((page) => (
+				{pagenation.getPageList(currentPage).map((page) => (
 					<PageNumber
 						key={page}
 						onClick={() => {

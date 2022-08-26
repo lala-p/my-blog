@@ -1,4 +1,70 @@
-const pageLimit = 5
+export class Pagenation {
+	#dataList
+	#pageLimit
+	#limit
+
+	constructor(dataList, pageLimit, limit) {
+		this.#pageLimit = pageLimit
+		this.#limit = limit
+		this.#dataList = dataList
+	}
+
+	getLastPageNum() {
+		return Math.trunc(this.#dataList.length / this.#limit) + (this.#dataList.length % this.#limit == 0 ? 0 : 1)
+	}
+
+	getPagenationDataList(pageNum) {
+		let pagenationDataList = new Array()
+
+		const startNum = (pageNum - 1) * this.#limit
+
+		for (let index = startNum; index < startNum + this.#limit; index++) {
+			pagenationDataList.push(this.#dataList[index])
+
+			if (this.#dataList[index] === this.#dataList.at(-1)) {
+				break
+			}
+		}
+
+		return pagenationDataList
+	}
+
+	getPageList(pageNum) {
+		let pageList = new Array()
+
+		const startNum = pageNum - (pageNum % this.#pageLimit == 0 ? this.#pageLimit : pageNum % this.#pageLimit) + 1
+		const lastPage = this.getLastPageNum()
+
+		for (let index = startNum; index < startNum + this.#pageLimit; index++) {
+			if (index > lastPage) {
+				break
+			} else {
+				pageList.push(index)
+			}
+		}
+
+		return pageList
+	}
+
+	getNextPage(pageNum) {
+		return pageNum % this.#pageLimit == 0 ? pageNum + 1 : pageNum + this.#pageLimit - (pageNum % this.#pageLimit) + 1
+	}
+
+	getPrevPage(pageNum) {
+		return pageNum - (pageNum % this.#pageLimit == 0 ? this.#pageLimit : pageNum % this.#pageLimit)
+	}
+
+	isFirstPages(pageNum) {
+		return pageNum <= this.#pageLimit && pageNum > 0
+	}
+
+	isLastPages(pageNum) {
+		const lastNum = this.getLastPageNum()
+		const startNum = lastNum - (lastNum % this.#pageLimit == 0 ? this.#pageLimit : lastNum % this.#pageLimit) + 1
+
+		return pageNum >= startNum && pageNum <= lastNum
+	}
+}
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -73,7 +139,8 @@ export class PostData {
 
 		for (const postCode of postCodeList) {
 			postLinkDataList.push({
-				postCode: postCode,
+				postCode,
+				thumbnail: this.#postObject[postCode].thumbnail,
 				title: this.#postObject[postCode].title,
 				subTitle: this.#postObject[postCode].subTitle,
 				createdDate: this.#postObject[postCode].createdDate,
@@ -85,27 +152,61 @@ export class PostData {
 		return postLinkDataList
 	}
 
-	getSearchResultByTitleKeyword(keyword) {
-		const allPostLinkData = this.getPostLinkDataList(this.#allPostCodeList)
+	sortCreatedDateDesc(postCodeList) {
+		let sortedList = [...postCodeList].sort((a, b) => {
+			this.#postObject[b].createdDate - this.#postObject[a].createdDate
+		})
 
-		const regExp = new RegExp(keyword)
-		const searchResult = allPostLinkData.filter((linkData) => regExp.test(linkData.title))
+		return sortedList
+	}
 
-		return searchResult
+	getSearchResultByTitle(title) {
+		const regExp = new RegExp(title, 'i')
+		const searchResult = this.#allPostCodeList.filter((postCode) => regExp.test(this.#postObject[postCode].title))
+
+		return this.sortCreatedDateDesc(searchResult)
 	}
 
 	getSearchResultByTag(tagList) {
-		const allPostLinkData = this.getPostLinkDataList(this.#allPostCodeList)
+		let searchResult = new Array()
 
-		const tagSet = new Set(tagList)
-		const searchResult = allPostLinkData.filter((linkData) => {
-			const linkDataTagSet = new Set(linkData.tagList)
-			const intersect = Array.from(tagSet).filter((tag) => linkDataTagSet.has(tag))
+		for (const postCode of this.#allPostCodeList) {
+			for (const tag of tagList) {
+				if (new RegExp(tag, 'i').test(this.#postObject[postCode].tagList.join())) {
+					searchResult.push(postCode)
+					break
+				}
+			}
+		}
 
-			return intersect.length !== 0
-		})
+		return this.sortCreatedDateDesc(searchResult)
+	}
 
-		return searchResult
+	getSearchResult(searchValue) {
+		let searchResult = new Array()
+
+		for (const postCode of this.#allPostCodeList) {
+			if (new RegExp(searchValue, 'i').test(this.#postObject[postCode].title)) {
+				searchResult.push(postCode)
+				continue
+			}
+
+			// let stop = false
+			const tagList = searchValue.split(' ')
+			for (const tag of tagList) {
+				if (new RegExp(tag, 'i').test(this.#postObject[postCode].tagList.join())) {
+					searchResult.push(postCode)
+					// stop = true
+					break
+				}
+			}
+
+			// if (stop == true) {
+			// 	continue
+			// }
+		}
+
+		return this.sortCreatedDateDesc(searchResult)
 	}
 
 	getAllTag() {
@@ -161,8 +262,6 @@ export class PostData {
 
 		return sortedTagList
 	}
-
-	getSortCreatedDateDesc() {}
 }
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -170,12 +269,10 @@ export class PostData {
 export class FolderData {
 	#folderObject
 	#poshObject
-	#limit
 
-	constructor(folderObject, postObject, limit) {
+	constructor(folderObject, postObject) {
 		this.#folderObject = folderObject
 		this.#poshObject = postObject
-		this.#limit = limit
 	}
 
 	getFolderName(folderCode) {
@@ -200,6 +297,10 @@ export class FolderData {
 		}
 
 		return path
+	}
+
+	getChildList(folderCode) {
+		return this.#folderObject[folderCode].childList
 	}
 
 	getChildListLength(folderCode) {
@@ -232,82 +333,15 @@ export class FolderData {
 
 		return lastUpdatedDate
 	}
-
-	getPageChildList(folderCode, pageNum) {
-		let pageChildList = new Array()
-		let childList = [...this.#folderObject[folderCode].childList].reverse()
-		const startIndex = (pageNum - 1) * this.#limit
-
-		childList = childList.slice(startIndex, startIndex + this.#limit)
-
-		for (const postCode of childList) {
-			pageChildList.push({
-				postCode,
-				thumbnail: this.#poshObject[postCode].thumbnail,
-				title: this.#poshObject[postCode].title,
-				subTitle: this.#poshObject[postCode].subTitle,
-				tagList: this.#poshObject[postCode].tagList,
-				createdDate: this.#poshObject[postCode].createdDate,
-				updatedDate: this.#poshObject[postCode].updatedDate,
-			})
-		}
-
-		return pageChildList
-	}
-
-	getLastPageNum(folderCode) {
-		const allChildCount = this.#folderObject[folderCode].childList.length
-		const allPagesCount = Math.trunc(allChildCount / this.#limit) + (allChildCount % this.#limit == 0 ? 0 : 1)
-
-		return allPagesCount
-	}
-
-	getCurrentPageList(folderCode, currentPageNum) {
-		let currentPages = new Array()
-
-		const startNum = currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit) + 1
-		const lastPage = this.getLastPageNum(folderCode)
-
-		for (let index = startNum; index < startNum + pageLimit; index++) {
-			if (index > lastPage) {
-				break
-			} else {
-				currentPages.push(index)
-			}
-		}
-
-		return currentPages
-	}
-
-	getNextPage(currentPageNum) {
-		return currentPageNum % pageLimit == 0 ? currentPageNum + 1 : currentPageNum + pageLimit - (currentPageNum % pageLimit) + 1
-	}
-
-	getPrevPage(currentPageNum) {
-		return currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit)
-	}
-
-	isFirstPages(currentPageNum) {
-		return currentPageNum <= pageLimit && currentPageNum > 0
-	}
-
-	isLastPages(folderCode, currentPageNum) {
-		const lastNum = this.getLastPageNum(folderCode)
-		const startNum = lastNum - (lastNum % pageLimit == 0 ? pageLimit : lastNum % pageLimit) + 1
-
-		return currentPageNum >= startNum && currentPageNum <= lastNum
-	}
 }
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 export class NoticeData {
 	#noticeObject
-	#limit
 
-	constructor(noticeObject, limit) {
+	constructor(noticeObject) {
 		this.#noticeObject = noticeObject
-		this.#limit = limit
 	}
 
 	getCurrentNotice(noticeNo) {
@@ -315,7 +349,13 @@ export class NoticeData {
 	}
 
 	getNextNotice(noticeNo) {
-		if (noticeNo == this.getLastNoticeNo()) {
+		const lastNoticeNo = Object.keys(this.#noticeObject)
+			.sort((a, b) => {
+				return a - b
+			})
+			.at(-1)
+
+		if (noticeNo == lastNoticeNo) {
 			return undefined
 		} else {
 			return {
@@ -327,7 +367,13 @@ export class NoticeData {
 	}
 
 	getPrevNotice(noticeNo) {
-		if (noticeNo - 1 < 0) {
+		const firstNoticeNo = Object.keys(this.#noticeObject)
+			.sort((a, b) => {
+				return a - b
+			})
+			.at(0)
+
+		if (noticeNo == firstNoticeNo) {
 			return undefined
 		} else {
 			return {
@@ -338,72 +384,18 @@ export class NoticeData {
 		}
 	}
 
-	getLastNoticeNo() {
-		return Object.keys(this.#noticeObject).length - 1
-	}
+	getNoticeLinkDataList(noticeNoList) {
+		let noticeLinkDataList = new Array()
 
-	getLastPageNum() {
-		const allNoticesCount = Object.keys(this.#noticeObject).length
-		const allPagesCount = Math.trunc(allNoticesCount / this.#limit) + (allNoticesCount % this.#limit == 0 ? 0 : 1)
-
-		return allPagesCount
-	}
-
-	getCurrentPageNoticeList(currentPageNum) {
-		let currentPagenoticeList = new Array()
-
-		const lastNotice = this.getLastNoticeNo()
-		const startNum = lastNotice - (currentPageNum - 1) * this.#limit
-
-		for (let index = startNum; index > startNum - this.#limit; index--) {
-			if (index < 0) {
-				break
-			} else {
-				currentPagenoticeList.push({
-					noticeNo: this.#noticeObject[index].noticeNo,
-					title: this.#noticeObject[index].title,
-					createdDate: this.#noticeObject[index].createdDate,
-					updatedDate: this.#noticeObject[index].updatedDate,
-				})
-			}
+		for (const noticeNo of noticeNoList) {
+			noticeLinkDataList.push({
+				noticeNo,
+				title: this.#noticeObject[noticeNo].title,
+				createdDate: this.#noticeObject[noticeNo].createdDate,
+				updatedDate: this.#noticeObject[noticeNo].updatedDate,
+			})
 		}
 
-		return currentPagenoticeList
-	}
-
-	getCurrentPageList(currentPageNum) {
-		let currentPages = new Array()
-
-		const startNum = currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit) + 1
-		const lastPage = this.getLastPageNum()
-
-		for (let index = startNum; index < startNum + pageLimit; index++) {
-			if (index > lastPage) {
-				break
-			} else {
-				currentPages.push(index)
-			}
-		}
-
-		return currentPages
-	}
-
-	getNextPage(currentPageNum) {
-		return currentPageNum % pageLimit == 0 ? currentPageNum + 1 : currentPageNum + pageLimit - (currentPageNum % pageLimit) + 1
-	}
-
-	getPrevPage(currentPageNum) {
-		return currentPageNum - (currentPageNum % pageLimit == 0 ? pageLimit : currentPageNum % pageLimit)
-	}
-
-	isFirstPages(currentPageNum) {
-		return currentPageNum <= pageLimit && currentPageNum > 0
-	}
-
-	isLastPages(currentPageNum) {
-		const lastNum = this.getLastPageNum()
-		const startNum = lastNum - (lastNum % pageLimit == 0 ? pageLimit : lastNum % pageLimit) + 1
-
-		return currentPageNum >= startNum && currentPageNum <= lastNum
+		return noticeLinkDataList
 	}
 }

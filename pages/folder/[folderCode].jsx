@@ -16,7 +16,8 @@ import { DateBox4 } from '@components/DateBox'
 import Text from '@components/Text'
 import { ColumnList } from '@components/List'
 
-import { folderData } from '@data'
+import { folderData, postData } from '@data'
+import { Pagenation } from '@data/dataClass'
 
 import { dateFormat1 } from '@commonFun/date'
 
@@ -35,17 +36,7 @@ const FolderDetail = (props) => {
 	const subTabOpenState = useSelector((state) => state.menu.subTabOpenState)
 	const currentPage = useSelector((state) => state.folder.currentPage)
 
-	const pageChildList = folderData.getPageChildList(folderCode, currentPage)
-
-	const pageData = {
-		currentPage,
-		nextPage: folderData.getNextPage(currentPage),
-		prevPage: folderData.getPrevPage(currentPage),
-		firstPage: 1,
-		lastPage: folderData.getLastPageNum(folderCode),
-		isFirstPages: folderData.isFirstPages(currentPage),
-		isLastPages: folderData.isLastPages(folderCode, currentPage),
-	}
+	const folderChildPagenation = new Pagenation([...folderData.getChildList(folderCode)].reverse(), 5, 1)
 
 	const setCurrentPage = (pageNum) => {
 		dispatch(folderActions.setCurrentPage(pageNum))
@@ -80,13 +71,13 @@ const FolderDetail = (props) => {
 						</DateBox4>
 					</FolderInfo>
 					<ColumnList between="3rem">
-						{pageChildList.map((data) => (
+						{postData.getPostLinkDataList(folderChildPagenation.getPagenationDataList(currentPage)).map((data) => (
 							<li key={data.postCode}>
 								<PostLinkBox data={data} />
 							</li>
 						))}
 					</ColumnList>
-					<PagenationNav currentPageList={folderData.getCurrentPageList(folderCode, currentPage)} pageData={pageData} setPageEvent={setCurrentPage} />
+					<PagenationNav currentPage={currentPage} pagenation={folderChildPagenation} setPageEvent={setCurrentPage} />
 				</IndexMainContainer>
 			</Center>
 		</PageContainer>
