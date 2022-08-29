@@ -11,9 +11,15 @@ import { noticeData } from '@data'
 import { dateFormat1 } from '@commonFun/date'
 
 export async function getStaticPaths() {
+	let allNoticeLinkList = new Array()
+
+	for (const noticeNo of noticeData.getAllNoticeNoList()) {
+		allNoticeLinkList.push('/notice/' + String(noticeNo))
+	}
+
 	return {
-		paths: [],
-		fallback: true,
+		paths: allNoticeLinkList,
+		fallback: false,
 	}
 }
 

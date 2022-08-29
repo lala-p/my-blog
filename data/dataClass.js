@@ -384,6 +384,10 @@ export class NoticeData {
 		}
 	}
 
+	getAllNoticeNoList() {
+		return Object.keys(this.#noticeObject)
+	}
+
 	getNoticeLinkDataList(noticeNoList) {
 		let noticeLinkDataList = new Array()
 
