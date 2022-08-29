@@ -122,7 +122,7 @@ const PagenationNav = (props) => {
 					<Icon_Left />
 				</Arrow>
 			</ArrowBox>
-			<PageNumberList between="1.25rem">
+			<PageNumberList>
 				{pagenation.getPageList(currentPage).map((page) => (
 					<PageNumber
 						key={page}

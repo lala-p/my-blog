@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { PageContainer, Left, Center, Title, Writer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
@@ -32,21 +33,23 @@ const NoticeDetail = (props) => {
 			<Center>
 				<HeadTab />
 				<DetailMainContainer>
-					<NoticeHead>
-						<Title>{currentNotice.title}</Title>
-						<Writer>{currentNotice.writer}</Writer>
-						<DateBox1>
-							<CreatedDate1>{dateFormat1(currentNotice.createdDate)}</CreatedDate1>
-							{currentNotice.updatedDate !== undefined ? <UpdatedDate1>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate1> : null}
-						</DateBox1>
-					</NoticeHead>
-					<NoticeBody>{currentNotice.NoticeContent()}</NoticeBody>
-					<NoticeFoot>
-						<NoticeDetailNav>
-							{nextNotice !== undefined ? <NextNotice data={nextNotice} /> : <UndefinedNextNotice />}
-							{prevNotice !== undefined ? <PrevNotice data={prevNotice} /> : <UndefinedPrevNotice />}
-						</NoticeDetailNav>
-					</NoticeFoot>
+					<Suspense fallback={<h1>Loading...!@!</h1>}>
+						<NoticeHead>
+							<Title>{currentNotice.title}</Title>
+							<Writer>{currentNotice.writer}</Writer>
+							<DateBox1>
+								<CreatedDate1>{dateFormat1(currentNotice.createdDate)}</CreatedDate1>
+								{currentNotice.updatedDate !== undefined ? <UpdatedDate1>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate1> : null}
+							</DateBox1>
+						</NoticeHead>
+						<NoticeBody>{currentNotice.NoticeContent()}</NoticeBody>
+						<NoticeFoot>
+							<NoticeDetailNav>
+								{nextNotice !== undefined ? <NextNotice data={nextNotice} /> : <UndefinedNextNotice />}
+								{prevNotice !== undefined ? <PrevNotice data={prevNotice} /> : <UndefinedPrevNotice />}
+							</NoticeDetailNav>
+						</NoticeFoot>
+					</Suspense>
 				</DetailMainContainer>
 			</Center>
 		</PageContainer>

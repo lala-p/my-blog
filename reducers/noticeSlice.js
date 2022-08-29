@@ -15,4 +15,5 @@ const noticeSlice = createSlice({
 })
 
 export const noticeActions = noticeSlice.actions
+
 export default noticeSlice.reducer
