@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import { PageContainer, Left, Center, Title, Writer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
@@ -19,11 +20,13 @@ export async function getServerSideProps({ query: { noticeNo } }) {
 	}
 }
 
+const DynamicTest = dynamic(() => import('../../pageComponents/notice/test'), { suspense: true })
+
 const NoticeDetail = (props) => {
 	const noticeNo = Number(props.noticeNo)
-	const currentNotice = noticeData.getCurrentNotice(noticeNo)
-	const nextNotice = noticeData.getNextNotice(noticeNo)
-	const prevNotice = noticeData.getPrevNotice(noticeNo)
+	// const currentNotice = noticeData.getCurrentNotice(noticeNo)
+	// const nextNotice = noticeData.getNextNotice(noticeNo)
+	// const prevNotice = noticeData.getPrevNotice(noticeNo)
 
 	return (
 		<PageContainer>
@@ -34,7 +37,8 @@ const NoticeDetail = (props) => {
 				<HeadTab />
 				<DetailMainContainer>
 					<Suspense fallback={<h1>Loading...!@!</h1>}>
-						<NoticeHead>
+						<DynamicTest noticeNo={noticeNo} />
+						{/* <NoticeHead>
 							<Title>{currentNotice.title}</Title>
 							<Writer>{currentNotice.writer}</Writer>
 							<DateBox1>
@@ -48,7 +52,7 @@ const NoticeDetail = (props) => {
 								{nextNotice !== undefined ? <NextNotice data={nextNotice} /> : <UndefinedNextNotice />}
 								{prevNotice !== undefined ? <PrevNotice data={prevNotice} /> : <UndefinedPrevNotice />}
 							</NoticeDetailNav>
-						</NoticeFoot>
+						</NoticeFoot> */}
 					</Suspense>
 				</DetailMainContainer>
 			</Center>
