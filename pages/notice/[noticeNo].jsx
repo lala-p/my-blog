@@ -1,5 +1,3 @@
-import dynamic from 'next/dynamic'
-import { Suspense } from 'react'
 import { PageContainer, Left, Center, Title, Writer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
@@ -12,21 +10,27 @@ import { CreatedDate1, UpdatedDate1 } from '@components/Date'
 import { noticeData } from '@data'
 import { dateFormat1 } from '@commonFun/date'
 
-export async function getServerSideProps({ query: { noticeNo } }) {
+export async function getStaticPaths() {
+	return {
+		paths: [],
+		fallback: true,
+	}
+}
+
+export async function getStaticProps({ params }) {
 	return {
 		props: {
-			noticeNo,
+			noticeNo: params.noticeNo,
 		},
 	}
 }
 
-const DynamicTest = dynamic(() => import('../../pageComponents/notice/test'), { suspense: true })
-
 const NoticeDetail = (props) => {
 	const noticeNo = Number(props.noticeNo)
-	// const currentNotice = noticeData.getCurrentNotice(noticeNo)
-	// const nextNotice = noticeData.getNextNotice(noticeNo)
-	// const prevNotice = noticeData.getPrevNotice(noticeNo)
+
+	const currentNotice = noticeData.getCurrentNotice(noticeNo)
+	const nextNotice = noticeData.getNextNotice(noticeNo)
+	const prevNotice = noticeData.getPrevNotice(noticeNo)
 
 	return (
 		<PageContainer>
@@ -36,24 +40,21 @@ const NoticeDetail = (props) => {
 			<Center>
 				<HeadTab />
 				<DetailMainContainer>
-					<Suspense fallback={<h1>Loading...!@!</h1>}>
-						<DynamicTest noticeNo={noticeNo} />
-						{/* <NoticeHead>
-							<Title>{currentNotice.title}</Title>
-							<Writer>{currentNotice.writer}</Writer>
-							<DateBox1>
-								<CreatedDate1>{dateFormat1(currentNotice.createdDate)}</CreatedDate1>
-								{currentNotice.updatedDate !== undefined ? <UpdatedDate1>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate1> : null}
-							</DateBox1>
-						</NoticeHead>
-						<NoticeBody>{currentNotice.NoticeContent()}</NoticeBody>
-						<NoticeFoot>
-							<NoticeDetailNav>
-								{nextNotice !== undefined ? <NextNotice data={nextNotice} /> : <UndefinedNextNotice />}
-								{prevNotice !== undefined ? <PrevNotice data={prevNotice} /> : <UndefinedPrevNotice />}
-							</NoticeDetailNav>
-						</NoticeFoot> */}
-					</Suspense>
+					<NoticeHead>
+						<Title>{currentNotice.title}</Title>
+						<Writer>{currentNotice.writer}</Writer>
+						<DateBox1>
+							<CreatedDate1>{dateFormat1(currentNotice.createdDate)}</CreatedDate1>
+							{currentNotice.updatedDate !== undefined ? <UpdatedDate1>{dateFormat1(currentNotice.updatedDate)} </UpdatedDate1> : null}
+						</DateBox1>
+					</NoticeHead>
+					<NoticeBody>{currentNotice.NoticeContent()}</NoticeBody>
+					<NoticeFoot>
+						<NoticeDetailNav>
+							{nextNotice !== undefined ? <NextNotice data={nextNotice} /> : <UndefinedNextNotice />}
+							{prevNotice !== undefined ? <PrevNotice data={prevNotice} /> : <UndefinedPrevNotice />}
+						</NoticeDetailNav>
+					</NoticeFoot>
 				</DetailMainContainer>
 			</Center>
 		</PageContainer>
