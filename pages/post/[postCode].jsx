@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { menuActions } from '@reducers/menuSlice'
 
-import { PageContainer, Left, Center, Title, Writer, Content } from '@pageComponents/common'
+import { PageContainer, Left, Center, Title, Writer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
@@ -17,10 +17,17 @@ import { dateFormat1 } from '@commonFun/date'
 
 import { postData } from '@data'
 
-export async function getServerSideProps({ query: { postCode } }) {
+export async function getStaticPaths() {
+	return {
+		paths: postData.getAllPostCode().map((postCode) => '/post/' + postCode),
+		fallback: false,
+	}
+}
+
+export async function getStaticProps({ params }) {
 	return {
 		props: {
-			postCode,
+			postCode: params.postCode,
 		},
 	}
 }

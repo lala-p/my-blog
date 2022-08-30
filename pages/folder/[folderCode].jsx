@@ -21,10 +21,17 @@ import { Pagenation } from '@data/dataClass'
 
 import { dateFormat1 } from '@commonFun/date'
 
-export async function getServerSideProps({ query: { folderCode } }) {
+export async function getStaticPaths() {
+	return {
+		paths: folderData.getAllFolderCode().map((folderCode) => '/folder/' + folderCode),
+		fallback: false,
+	}
+}
+
+export async function getStaticProps({ params }) {
 	return {
 		props: {
-			folderCode,
+			folderCode: params.folderCode,
 		},
 	}
 }

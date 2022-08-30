@@ -307,6 +307,10 @@ export class FolderData {
 		return this.#folderObject[folderCode].childList.length
 	}
 
+	getAllFolderCode() {
+		return Object.keys(this.#folderObject)
+	}
+
 	getChildLastPostedDate(folderCode) {
 		let childList = this.#folderObject[folderCode].childList
 		let lastPostedDate = this.#poshObject[childList.at(-1)].createdDate
@@ -382,6 +386,12 @@ export class NoticeData {
 				createdDate: this.#noticeObject[noticeNo - 1].createdDate,
 			}
 		}
+	}
+
+	getSortedNoticeNoList() {
+		return Object.keys(this.#noticeObject).sort((a, b) => {
+			return b - a
+		})
 	}
 
 	getAllNoticeNoList() {

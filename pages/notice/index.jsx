@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { PageContainer, Left, Center } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
@@ -14,14 +13,9 @@ import { noticeActions } from '@reducers/noticeSlice'
 import { dateFormat1 } from '@commonFun/date'
 
 import { noticeData } from '@data'
-import noticeObject from '@data/noticeObject'
 import { Pagenation } from '@data/dataClass'
 
-const noticeNoList = Object.keys(noticeObject).sort((a, b) => {
-	return b - a
-})
-
-const noticePagenation = new Pagenation(noticeNoList, 5, 10)
+const noticePagenation = new Pagenation(noticeData.getSortedNoticeNoList(), 5, 10)
 
 const NoticeHome = () => {
 	const dispatch = useDispatch()
