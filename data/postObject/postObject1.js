@@ -51,7 +51,7 @@ postObject1['file3'].parent = 'example1'
 postObject1['file3'].title = '최신 문법'
 postObject1['file3'].subTitle = "it's me."
 postObject1['file3'].createdDate = new Date('2022-07-01 17:00:00')
-postObject1['file3'].tagList = ['javascript', 'ES6', '표준']
+postObject1['file3'].tagList = ['react', 'javascript', 'ES6', '표준']
 postObject1['file3'].PostContent = () => {
 	return (
 		<>
@@ -68,7 +68,7 @@ postObject1['file4'].parent = 'example2'
 postObject1['file4'].title = '프로젝트 후기'
 postObject1['file4'].subTitle = "it's me."
 postObject1['file4'].createdDate = new Date('2022-07-01 17:00:00')
-postObject1['file4'].tagList = ['개인 프로젝트', 'blog', '블로그', '후기']
+postObject1['file4'].tagList = ['react', '개인 프로젝트', 'blog', '블로그', '후기']
 postObject1['file4'].PostContent = () => {
 	return (
 		<>

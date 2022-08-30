@@ -12,7 +12,7 @@ import HeadTab from '@pageComponents/common/HeadTab'
 import PostLinkBox from '@pageComponents/common/PostLinkBox'
 import FolderLinkBox from '@pageComponents/common/FolderLinkBox'
 import PagenationNav from '@pageComponents/common/PagenationNav'
-import { IndexMainContainer, LinkFolderContainer, FolderContainer, FolderInfo, WrapBox } from '@pageComponents/folder'
+import { LinkFolderContainer, FolderContainer, FolderInfo, WrapBox } from '@pageComponents/folder'
 import FolderExplorer from '@components/FolderExplorer'
 import { DateBox4 } from '@components/DateBox'
 import Text from '@components/Text'
@@ -47,7 +47,7 @@ const FolderDetail = (props) => {
 	const currentPage = useSelector((state) => state.folder.currentPage)
 
 	const folderType = folderData.getFolderType(folderCode)
-	const folderChildPagenation = new Pagenation([...folderData.getChildList(folderCode)].reverse(), 5, 1)
+	const folderChildPagenation = new Pagenation([...folderData.getChildList(folderCode)].reverse(), 5, 10)
 
 	const folderLinkBoxClick = (folderCode) => {
 		dispatch(folderActions.folderOpen(new Array(folderCode)))
