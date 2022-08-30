@@ -299,12 +299,30 @@ export class FolderData {
 		return path
 	}
 
+	getFolderType(folderCode) {
+		return this.#folderObject[folderCode].type
+	}
+
 	getChildList(folderCode) {
 		return this.#folderObject[folderCode].childList
 	}
 
 	getChildListLength(folderCode) {
 		return this.#folderObject[folderCode].childList.length
+	}
+
+	getFolderLinkDataList(folderCodeList) {
+		let folderLinkDataList = new Array()
+
+		for (const folderCode of folderCodeList) {
+			folderLinkDataList.push({
+				folderCode,
+				name: this.#folderObject[folderCode].name,
+				thumbnail: this.#folderObject[folderCode].thumbnail,
+			})
+		}
+
+		return folderLinkDataList
 	}
 
 	getAllFolderCode() {

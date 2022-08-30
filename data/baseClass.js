@@ -25,6 +25,8 @@ export class Folder {
 		this.name = null
 		this.parent = undefined
 		this.childList = new Array()
+		// this.thumbnail = '/image/thumbnail/empty_thumbnail.jpg'
+		this.thumbnail = '/image/thumbnail/thumbnailTest.jpg'
 	}
 }
 

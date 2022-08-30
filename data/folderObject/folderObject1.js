@@ -7,7 +7,7 @@ let folderObject1 = new Object()
 folderObject1['root'] = new Folder()
 
 folderObject1['root'].name = 'Root'
-folderObject1['root'].childList = ['childList']
+folderObject1['root'].childList = ['FolderExample']
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -15,7 +15,7 @@ folderObject1['FolderExample'] = new Folder()
 
 folderObject1['FolderExample'].name = 'folderEx'
 folderObject1['FolderExample'].parent = 'root'
-folderObject1['FolderExample'].childList = ['example1', 'example2', 'example3']
+folderObject1['FolderExample'].childList = ['example1', 'example2']
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
