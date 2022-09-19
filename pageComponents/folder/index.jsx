@@ -9,7 +9,7 @@ export const WrapBox = styled.div`
 
 export const FolderContainer = styled(MainContainer)``
 
-export const LinkFolderContainer = styled(MainContainer)`
+export const PostFolderContainer = styled(MainContainer)`
 	/* padding-bottom: 2rem;
 
 	> * {

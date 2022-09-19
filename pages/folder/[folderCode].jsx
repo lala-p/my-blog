@@ -12,7 +12,7 @@ import HeadTab from '@pageComponents/common/HeadTab'
 import PostLinkBox from '@pageComponents/common/PostLinkBox'
 import FolderLinkBox from '@pageComponents/common/FolderLinkBox'
 import PagenationNav from '@pageComponents/common/PagenationNav'
-import { LinkFolderContainer, FolderContainer, FolderInfo, WrapBox } from '@pageComponents/folder'
+import { PostFolderContainer, FolderContainer, FolderInfo, WrapBox } from '@pageComponents/folder'
 import FolderExplorer from '@components/FolderExplorer'
 import { DateBox4 } from '@components/DateBox'
 import Text from '@components/Text'
@@ -87,7 +87,7 @@ const FolderDetail = (props) => {
 						</WrapBox>
 					</FolderContainer>
 				) : (
-					<LinkFolderContainer>
+					<PostFolderContainer>
 						<FolderInfo>
 							<h1>{folderData.getFolderName(folderCode)}</h1>
 							<DateBox4>
@@ -103,7 +103,7 @@ const FolderDetail = (props) => {
 							))}
 						</ColumnList>
 						<PagenationNav currentPage={currentPage} pagenation={folderChildPagenation} setPageEvent={setCurrentPage} />
-					</LinkFolderContainer>
+					</PostFolderContainer>
 				)}
 			</Center>
 		</PageContainer>
