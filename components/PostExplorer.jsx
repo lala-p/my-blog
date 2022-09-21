@@ -1,8 +1,10 @@
 import styled from 'styled-components'
-import Link from 'next/link'
+
+import useKeyPressState from '@hooks/useKeyPressEvent'
 
 import { EllipsisText } from './Text'
 import { IconText, IconBox, Icon_Left } from './Icon'
+import SwitchLink from './SwitchLink'
 
 import { postData } from '@data'
 
@@ -22,30 +24,40 @@ const List = styled.ul`
 
 const FolderName = styled(EllipsisText)`
 	margin-bottom: 0.75rem;
+
+	${({ cursorPointer }) => (cursorPointer ? 'cursor: pointer;' : null)}
 `
 
 const PostExplorer = (props) => {
 	const currentPostCode = props.currentPostCode
+
 	const fileListData = postData.getFileListData(currentPostCode)
+	const parentCode = postData.getParentCode(currentPostCode)
 	const parentFolderName = postData.getParentFolderName(currentPostCode)
+
+	const isCtrlPress = useKeyPressState('Control')
 
 	return (
 		<Container>
-			<FolderName title={parentFolderName}>{parentFolderName}</FolderName>
+			<SwitchLink href={'/folder/' + parentCode} state={isCtrlPress} passHref>
+				<FolderName title={parentFolderName} color={isCtrlPress ? 'accent1' : undefined} underline={isCtrlPress} cursorPointer={isCtrlPress}>
+					{parentFolderName}
+				</FolderName>
+			</SwitchLink>
 			<List>
 				{fileListData.map((data, index) => {
-					const stateColor = currentPostCode !== data.postCode ? 'sub' : undefined
+					const color = isCtrlPress || currentPostCode !== data.postCode ? 'sub' : undefined
 
 					return (
 						<li key={index}>
-							<Link href={'/post/' + data.postCode}>
-								<IconText title={data.title} lineHeight="1.25rem" between="1.5rem" cursorPointer>
+							<SwitchLink href={'/post/' + data.postCode} state={!isCtrlPress} passHref>
+								<IconText title={data.title} lineHeight="1.25rem" between="1.5rem" underline={isCtrlPress} cursorPointer>
 									<IconBox width="1rem" height="1rem" absolute selectNone>
-										<Icon_Left color={stateColor} />
+										<Icon_Left color={color} />
 									</IconBox>
-									<EllipsisText color={stateColor}>{data.title}</EllipsisText>
+									<EllipsisText color={color}>{data.title}</EllipsisText>
 								</IconText>
-							</Link>
+							</SwitchLink>
 						</li>
 					)
 				})}

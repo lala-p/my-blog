@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import Link from 'next/link'
 
 import { menuActions } from '@reducers/menuSlice'
 
@@ -64,9 +65,9 @@ const PostDetail = (props) => {
 							</DateBox1>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
 								{post.tagList.map((tag) => (
-									<TagType1 key={tag} cursorPointer>
-										{tag}
-									</TagType1>
+									<Link href={'/search?q=' + tag} key={tag}>
+										<TagType1 cursorPointer>{tag}</TagType1>
+									</Link>
 								))}
 							</TagContainer>
 						</PostHead>

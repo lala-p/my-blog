@@ -5,6 +5,7 @@ export const Text = styled.div`
 	font-size: ${({ size }) => size ?? '1rem'};
 	${({ bold }) => (bold ? 'font-weight: bold;' : null)}
 	${({ lineHeight }) => (lineHeight ? `line-height: ${lineHeight};` : null)}
+	${({ underline }) => (underline ? 'text-decoration: underline;' : null)}
 `
 
 export const SelectNoneText = styled(Text)`

@@ -6,10 +6,11 @@ import styled from 'styled-components'
 import { menuActions } from '@reducers/menuSlice'
 import { noticeActions } from '@reducers/noticeSlice'
 
+import useKeyPressState from '@hooks/useKeyPressEvent'
+
 import { ColumnList } from '@components/List'
 import { Icon_Home, Icon_File, Icon_Search, Icon_Megaphone, Icon_User } from '@components/Icon'
-
-import useTheme from '@hooks/useTheme'
+import SwitchLink from '../../components/SwitchLink'
 
 const Container = styled.div`
 	position: fixed;
@@ -32,61 +33,72 @@ const MenuBox = styled.div`
 	cursor: pointer;
 `
 
+const Line = styled.hr`
+	${({ hide }) => (hide ? 'display: none;' : null)}
+
+	position: relative;
+	top: 0.25rem;
+	height: 0.1rem;
+	background-color: ${({ theme }) => theme.color.accent1};
+	border: 0;
+`
+
 const MenuTab = (props) => {
 	const router = useRouter()
 	const dispatch = useDispatch()
 
 	const activeMenu = props.activeMenu
 
+	const isCtrlPress = useKeyPressState('Control')
+
 	const getActiveColor = (menu) => {
 		return activeMenu == menu ? 'accent2' : 'sub'
-	}
-
-	const postMenuClick = () => {
-		if (activeMenu == 'post') {
-			dispatch(menuActions.subTabSwitch())
-		} else {
-			router.push('/post')
-		}
-	}
-
-	const noticeMenuClick = () => {
-		dispatch(noticeActions.setCurrentPage(1))
-		router.push('/notice')
 	}
 
 	return (
 		<Container>
 			<MenuList between="2rem">
 				<li>
-					<Link href="/">
-						<MenuBox title="home">
-							<Icon_Home color={getActiveColor('home')} />
+					<Link href="/" passHref>
+						<a>
+							<MenuBox title="home">
+								<Icon_Home color={getActiveColor('home')} />
+							</MenuBox>
+						</a>
+					</Link>
+				</li>
+
+				<li>
+					<SwitchLink href="/post" state={activeMenu != 'post' || (activeMenu == 'post' && isCtrlPress)} offEvent={() => dispatch(menuActions.subTabSwitch())} passHref>
+						<MenuBox title="post">
+							<Icon_File color={activeMenu == 'post' && isCtrlPress ? 'accent1' : getActiveColor('post')} />
+							<Line hide={activeMenu != 'post' || !isCtrlPress} />
 						</MenuBox>
+					</SwitchLink>
+				</li>
+				<li>
+					<Link href="/search" passHref>
+						<a>
+							<MenuBox title="search">
+								<Icon_Search color={getActiveColor('search')} />
+							</MenuBox>
+						</a>
 					</Link>
 				</li>
 				<li>
-					<MenuBox title="post" onClick={postMenuClick}>
-						<Icon_File color={getActiveColor('post')} />
-					</MenuBox>
-				</li>
-				<li>
-					<Link href="/search">
-						<MenuBox title="search">
-							<Icon_Search color={getActiveColor('search')} />
+					<SwitchLink href="/notice" state={true} onEvent={() => dispatch(noticeActions.setCurrentPage(1))} passHref>
+						<MenuBox title="notice">
+							<Icon_Megaphone color={getActiveColor('notice')} />
 						</MenuBox>
-					</Link>
+					</SwitchLink>
 				</li>
 				<li>
-					<MenuBox title="notice" onClick={noticeMenuClick}>
-						<Icon_Megaphone color={getActiveColor('notice')} />
-					</MenuBox>
-				</li>
-				<li>
-					<Link href="/profile">
-						<MenuBox title="profile">
-							<Icon_User color={getActiveColor('profile')} />
-						</MenuBox>
+					<Link href="/profile" passHref>
+						<a>
+							<MenuBox title="profile">
+								<Icon_User color={getActiveColor('profile')} />
+							</MenuBox>
+						</a>
 					</Link>
 				</li>
 			</MenuList>

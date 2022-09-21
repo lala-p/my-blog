@@ -4,9 +4,9 @@ export class Pagenation {
 	#limit
 
 	constructor(dataList, pageLimit, limit) {
+		this.#dataList = dataList
 		this.#pageLimit = pageLimit
 		this.#limit = limit
-		this.#dataList = dataList
 	}
 
 	getLastPageNum() {

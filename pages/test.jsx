@@ -1,38 +1,47 @@
-import styled from 'styled-components'
 import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+import Link from 'next/link'
 
-import FolderLinkBox from '../pageComponents/common/FolderLinkBox'
+import useKeyPressState from '../hooks/useKeyPressEvent'
 
-const Point2 = styled.div`
-	position: absolute;
-	bottom: 10rem;
-	left: 5rem;
-	width: 5rem;
-	height: 3rem;
-	border-radius: 0 5rem 0 0;
-	/* backgroun: 40px solid rgba(0, 0, 0, 0); */
-	/* border-bottom: 5rem solid ${({ theme }) => theme.color.background1}; */
-	background-color: ${({ theme }) => theme.color.background1};
+import SwitchLink from '../components/SwitchLink'
+
+const Example1 = styled.div`
+	color: yellowgreen;
 `
 
 const Test = () => {
-	const [value, setValue] = useState(123)
+	const ctrlPress = useKeyPressState('Control')
 
-	useEffect(() => {
-		console.log(typeof value)
-	})
+	// useEffect(() => {
+	// document.addEventListener('keydown', function (e) {
+	// 	console.log(e.key)
+	// })
+	// })
 
 	return (
 		<div>
-			{/* <input onChange={(e) => setValue(Number(e.target.value))} /> */}
+			<h1>ctrl</h1>
+			<a href="/">asjkdlfa;skdfj;lskdjf;alksdjf</a>
+			<br />
+			{ctrlPress ? 'ctrl' : 'no'}
+			<br />
+			<Link href="/" passHref={false}>
+				<a>
+					<Example1>zxczxczxczxczxczxczxc</Example1>
+				</a>
+			</Link>
+			<SwitchLink href="/" state={ctrlPress}>
+				<Example1>zxczxczxczxczxczxczxc</Example1>
+			</SwitchLink>
 			<br />
 			<br />
 			<br />
-			<FolderLinkBox data={{ thumbnail: '/image/thumbnail/thumbnailTest.jpg', name: 'my-blog 토이 프로젝트' }} />
-			<Point2></Point2>
-
 			<br />
 			<br />
+			<SwitchLink href="/" state={ctrlPress} passHref>
+				<Example1>zxczxczxczxczxczxczxc</Example1>
+			</SwitchLink>
 		</div>
 	)
 }

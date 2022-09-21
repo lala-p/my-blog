@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import Link from 'next/link'
+
+import useKeyPressState from '@hooks/useKeyPressEvent'
 
 import { folderActions } from '@reducers/folderSlice'
 
 import { EllipsisText } from './Text'
 import { IconText, IconBox, Icon_Home, Icon_Clock } from './Icon'
+import SwitchLink from './SwitchLink'
 
 import { folderData } from '@data'
 
@@ -29,17 +30,13 @@ const FolderContentList = styled.ul`
 	${({ parentOpen }) => (parentOpen ? null : 'display: none;')}
 `
 
-const FolderName = styled(EllipsisText)`
-	${({ underline }) => (underline ? 'text-decoration: underline;' : null)}
-`
-
 const FolderExplorer = (props) => {
 	const dispatch = useDispatch()
 
 	const openFolderList = useSelector((state) => state.folder.openFolderList)
 	const currentFolderCode = props.currentFolderCode
 
-	const [isCtrlPress, setIsCtrlPress] = useState(false)
+	const isCtrlPress = useKeyPressState('Control')
 
 	const folderOpenSwitch = (folderCode) => {
 		if (openFolderList.includes(folderCode)) {
@@ -56,25 +53,16 @@ const FolderExplorer = (props) => {
 
 		return (
 			<li>
-				{isCtrlPress ? (
-					<Link href={'/folder/' + code}>
-						<IconText title={name} lineHeight="1.25rem" between="2rem" cursorPointer>
-							<IconBox width="1rem" height="1rem" absolute selectNone>
-								{open ? <Icon_Home color="accent1" /> : <Icon_Clock color="accent1" />}
-							</IconBox>
-							<FolderName color="accent1" underline>
-								{name}
-							</FolderName>
-						</IconText>
-					</Link>
-				) : (
-					<IconText title={name} onClick={() => folderOpenSwitch(code)} lineHeight="1.25rem" between="2rem" cursorPointer>
+				<SwitchLink href={'/folder/' + code} state={isCtrlPress} offEvent={() => folderOpenSwitch(code)} passHref>
+					<IconText title={name} lineHeight="1.25rem" between="2rem" cursorPointer>
 						<IconBox width="1rem" height="1rem" absolute selectNone>
-							{open ? <Icon_Home /> : <Icon_Clock color="sub" />}
+							{open ? <Icon_Home color={isCtrlPress ? 'accent1' : null} /> : <Icon_Clock color={isCtrlPress ? 'accent1' : 'sub'} />}
 						</IconBox>
-						<FolderName color={open ? null : 'sub'}>{name}</FolderName>
+						<EllipsisText color={isCtrlPress ? 'accent1' : open ? undefined : 'sub'} underline={isCtrlPress}>
+							{name}
+						</EllipsisText>
 					</IconText>
-				)}
+				</SwitchLink>
 				<FolderContentList parentOpen={open}>{props.children}</FolderContentList>
 			</li>
 		)
@@ -87,40 +75,17 @@ const FolderExplorer = (props) => {
 
 		return (
 			<li>
-				{isCtrlPress ? (
-					<IconText title={name} lineHeight="1.25rem" between="2rem">
+				<SwitchLink href={'/folder/' + code} state={!isCtrlPress} passHref>
+					<IconText title={name} lineHeight="1.25rem" between="2rem" cursorPointer>
 						<IconBox width="1rem" height="1rem" absolute selectNone>
-							{open ? <Icon_Home color="sub" /> : <Icon_Clock color="sub" />}
+							{open && !isCtrlPress ? <Icon_Home /> : <Icon_Clock color="sub" />}
 						</IconBox>
-						<EllipsisText color="sub">{name}</EllipsisText>
+						<EllipsisText color={open && !isCtrlPress ? undefined : 'sub'}>{name}</EllipsisText>
 					</IconText>
-				) : (
-					<Link href={'/folder/' + code}>
-						<IconText title={name} lineHeight="1.25rem" between="2rem" cursorPointer>
-							<IconBox width="1rem" height="1rem" absolute selectNone>
-								{open ? <Icon_Home /> : <Icon_Clock color="sub" />}
-							</IconBox>
-							<EllipsisText color={open ? null : 'sub'}>{name}</EllipsisText>
-						</IconText>
-					</Link>
-				)}
+				</SwitchLink>
 			</li>
 		)
 	}
-
-	useEffect(() => {
-		window.addEventListener('keydown', function (e) {
-			if (e.key === 'Control') {
-				setIsCtrlPress(true)
-			}
-		})
-
-		window.addEventListener('keyup', function (e) {
-			if (e.key === 'Control') {
-				setIsCtrlPress(false)
-			}
-		})
-	}, [])
 
 	return (
 		<Container>
