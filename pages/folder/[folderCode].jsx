@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { menuActions } from '@reducers/menuSlice'
 import { folderActions } from '@reducers/folderSlice'
@@ -9,7 +10,7 @@ import { PageContainer, Left, Center } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
-import PostLinkBox from '@pageComponents/common/PostLinkBox'
+import PostDataBox from '@pageComponents/common/PostDataBox'
 import FolderLinkBox from '@pageComponents/common/FolderLinkBox'
 import PagenationNav from '@pageComponents/common/PagenationNav'
 import { PostFolderContainer, FolderContainer, FolderInfo, WrapBox } from '@pageComponents/folder'
@@ -98,7 +99,11 @@ const FolderDetail = (props) => {
 						<ColumnList between="3rem">
 							{postData.getPostLinkDataList(folderChildPagenation.getPagenationDataList(currentPage)).map((data) => (
 								<li key={data.postCode}>
-									<PostLinkBox data={data} />
+									<Link href={'/post/' + data.postCode} passHref>
+										<a>
+											<PostDataBox data={data.postData} />
+										</a>
+									</Link>
 								</li>
 							))}
 						</ColumnList>

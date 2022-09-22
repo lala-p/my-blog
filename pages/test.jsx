@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import useKeyPressState from '../hooks/useKeyPressEvent'
 
@@ -12,6 +13,8 @@ const Example1 = styled.div`
 
 const Test = () => {
 	const ctrlPress = useKeyPressState('Control')
+
+	const router = useRouter()
 
 	// useEffect(() => {
 	// document.addEventListener('keydown', function (e) {
@@ -31,7 +34,13 @@ const Test = () => {
 					<Example1>zxczxczxczxczxczxczxc</Example1>
 				</a>
 			</Link>
-			<SwitchLink href="/" state={ctrlPress}>
+			<Link href="/" passHref>
+				<a>
+					<Example1>zxczxczxczxczxczxczxc</Example1>
+				</a>
+			</Link>
+
+			{/* <SwitchLink href="/" state={ctrlPress}>
 				<Example1>zxczxczxczxczxczxczxc</Example1>
 			</SwitchLink>
 			<br />
@@ -42,6 +51,18 @@ const Test = () => {
 			<SwitchLink href="/" state={ctrlPress} passHref>
 				<Example1>zxczxczxczxczxczxczxc</Example1>
 			</SwitchLink>
+			<br />
+			<br />
+			<br />
+			<h1
+				onClick={() => {
+					router.replace('/search?q=react').then(() => {
+						router.push('/post/file5')
+					})
+				}}
+			>
+				zxczxczxczxczxc
+			</h1> */}
 		</div>
 	)
 }

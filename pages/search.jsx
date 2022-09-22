@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 import { PageContainer, Left, Center, MainContainer } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
-import PostLinkBox from '@pageComponents/common/PostLinkBox'
+import PostDataBox from '@pageComponents/common/PostDataBox'
 import PagenationNav from '@pageComponents/common/PagenationNav'
 import SearchInput from '@pageComponents/search/SearchInput'
 import { ColumnList } from '@components/List'
@@ -19,28 +20,46 @@ const Search = () => {
 
 	const [searchResult, setSearchResult] = useState(new Array())
 	const [resultPagenation, setResultPagenation] = useState(null)
-	const [currentPage, setCurrentPage] = useState(1)
 
 	const search = (key) => {
-		if (searchInputRef.current.value.length !== 0 && key === 'Enter') {
-			router.push('/search?q=' + encodeURI(searchInputRef.current.value))
+		if (key === 'Enter') {
+			if (Object.keys(router.query).length === 0) {
+				router.replace('/search?q=' + encodeURI(searchInputRef.current.value) + '&page=1')
+			} else if (searchInputRef.current.value.length !== 0) {
+				router.push('/search?q=' + encodeURI(searchInputRef.current.value) + '&page=1')
+			}
 		}
 	}
 
+	const setPage = (pageNum) => {
+		router.push('/search?q=' + router.query.q + '&page=' + pageNum)
+	}
+
 	useEffect(() => {
-		if (Object.keys(router.query).length !== 0) {
-			setCurrentPage(1)
+		if (router.query.q !== undefined && router.query.page !== undefined) {
 			searchInputRef.current.value = decodeURI(router.query.q)
 
 			const result = postData.getSearchResult(router.query.q.replace(/\s+/g, ' ').trim())
-			setSearchResult(result)
-			setResultPagenation(new Pagenation(result, 5, 2))
+			const resultPagenation = new Pagenation(result, 5, 2)
+
+			if (isNaN(router.query.page)) {
+				router.replace('/search')
+			} else if (parseInt(router.query.page) < 1) {
+				router.replace('/search?q=' + router.query.q + '&page=1')
+			} else if (parseInt(router.query.page) > resultPagenation.getLastPageNum()) {
+				router.replace('/search?q=' + router.query.q + '&page=' + resultPagenation.getLastPageNum())
+			} else {
+				setSearchResult(result)
+				setResultPagenation(resultPagenation)
+			}
+		} else if (router.query.q !== undefined || router.query.page !== undefined) {
+			router.replace('search')
 		} else {
 			searchInputRef.current.value = ''
 			setSearchResult(new Array())
 			setResultPagenation(null)
 		}
-	}, [router.isReady, router.query])
+	}, [router.isReady, router.query.q])
 
 	return (
 		<PageContainer>
@@ -51,16 +70,24 @@ const Search = () => {
 				<HeadTab />
 				<MainContainer>
 					<SearchInput ref={searchInputRef} onKeyPress={(e) => search(e.key)} />
-					{searchResult.length !== 0 ? (
+					{searchResult.length !== 0 &&
+					resultPagenation !== null &&
+					!isNaN(router.query.page) &&
+					parseInt(router.query.page) > 0 &&
+					parseInt(router.query.page) <= resultPagenation.getLastPageNum() ? (
 						<>
 							<ColumnList between="3rem">
-								{postData.getPostLinkDataList(resultPagenation.getPagenationDataList(currentPage)).map((data) => (
+								{postData.getPostLinkDataList(resultPagenation.getPagenationDataList(router.query.page)).map((data) => (
 									<li key={data.postCode}>
-										<PostLinkBox data={data} />
+										<Link href={'/post/' + data.postCode} passHref>
+											<a>
+												<PostDataBox data={data.postData} />
+											</a>
+										</Link>
 									</li>
 								))}
 							</ColumnList>
-							<PagenationNav currentPage={currentPage} pagenation={resultPagenation} setPageEvent={setCurrentPage} />
+							<PagenationNav currentPage={router.query.page} pagenation={resultPagenation} setPageEvent={setPage} />
 						</>
 					) : null}
 

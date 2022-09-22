@@ -22,6 +22,7 @@ const SwitchLink = (props) => {
 						if (isSetOnEvent) {
 							props.onEvent()
 						}
+						console.log('route')
 						router.push(props.href)
 					} else if (isSetOffEvent) {
 						props.offEvent()

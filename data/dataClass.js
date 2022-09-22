@@ -140,12 +140,14 @@ export class PostData {
 		for (const postCode of postCodeList) {
 			postLinkDataList.push({
 				postCode,
-				thumbnail: this.#postObject[postCode].thumbnail,
-				title: this.#postObject[postCode].title,
-				subTitle: this.#postObject[postCode].subTitle,
-				createdDate: this.#postObject[postCode].createdDate,
-				updatedDate: this.#postObject[postCode].updatedDate,
-				tagList: this.#postObject[postCode].tagList,
+				postData: {
+					thumbnail: this.#postObject[postCode].thumbnail,
+					title: this.#postObject[postCode].title,
+					subTitle: this.#postObject[postCode].subTitle,
+					createdDate: this.#postObject[postCode].createdDate,
+					updatedDate: this.#postObject[postCode].updatedDate,
+					tagList: this.#postObject[postCode].tagList,
+				},
 			})
 		}
 
