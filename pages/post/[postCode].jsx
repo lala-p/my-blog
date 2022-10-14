@@ -65,8 +65,10 @@ const PostDetail = (props) => {
 							</DateBox1>
 							<TagContainer horizontalGap="0.625rem" verticalGap="0.625rem">
 								{post.tagList.map((tag) => (
-									<Link href={'/search?q=' + tag} key={tag}>
-										<TagType1 cursorPointer>{tag}</TagType1>
+									<Link href={'/search?q=' + tag} key={tag} passHref>
+										<a>
+											<TagType1 cursorPointer>{tag}</TagType1>
+										</a>
 									</Link>
 								))}
 							</TagContainer>

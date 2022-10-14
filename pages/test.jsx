@@ -1,68 +1,35 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { CodeBlock, dracula } from 'react-code-blocks'
 
-import useKeyPressState from '../hooks/useKeyPressEvent'
+const code = `import { useState } from 'react'
 
-import SwitchLink from '../components/SwitchLink'
+const Test = (props) => {
 
-const Example1 = styled.div`
-	color: yellowgreen;
-`
+	const [value, setValue] = useState('hello')
 
-const Test = () => {
-	const ctrlPress = useKeyPressState('Control')
-
-	const router = useRouter()
-
-	// useEffect(() => {
-	// document.addEventListener('keydown', function (e) {
-	// 	console.log(e.key)
-	// })
-	// })
 
 	return (
 		<div>
-			<h1>ctrl</h1>
-			<a href="/">asjkdlfa;skdfj;lskdjf;alksdjf</a>
-			<br />
-			{ctrlPress ? 'ctrl' : 'no'}
-			<br />
-			<Link href="/" passHref={false}>
-				<a>
-					<Example1>zxczxczxczxczxczxczxc</Example1>
-				</a>
-			</Link>
-			<Link href="/" passHref>
-				<a>
-					<Example1>zxczxczxczxczxczxczxc</Example1>
-				</a>
-			</Link>
+			<h1>Test</h1>
+		
+		</div>
+	)
+}
 
-			{/* <SwitchLink href="/" state={ctrlPress}>
-				<Example1>zxczxczxczxczxczxczxc</Example1>
-			</SwitchLink>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<SwitchLink href="/" state={ctrlPress} passHref>
-				<Example1>zxczxczxczxczxczxczxc</Example1>
-			</SwitchLink>
-			<br />
-			<br />
-			<br />
-			<h1
-				onClick={() => {
-					router.replace('/search?q=react').then(() => {
-						router.push('/post/file5')
-					})
-				}}
-			>
-				zxczxczxczxczxc
-			</h1> */}
+
+export default Test
+`
+
+const Container = styled.div`
+	width: 50rem;
+`
+
+const Test = () => {
+	return (
+		<div>
+			<Container>
+				<CodeBlock text={code} language={'jsx'} showLineNumbers={true} theme={dracula} />
+			</Container>
 		</div>
 	)
 }

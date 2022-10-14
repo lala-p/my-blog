@@ -1,4 +1,7 @@
+import { useRouter } from 'next/router'
+import Link from 'next/link'
 import styled from 'styled-components'
+import _ from 'lodash'
 
 import { Icon_Left, Icon_Right, Icon_DoubleLeft, Icon_DoubleRight } from '@components/Icon'
 
@@ -88,7 +91,9 @@ const Container = styled.div`
 `
 
 const PagenationNav = (props) => {
-	const currentPage = props.currentPage
+	const router = useRouter()
+
+	const currentPage = router.query.page ?? 1
 	const pagenation = props.pagenation
 	const { nextPage, prevPage, firstPage, lastPage, isFirstPages, isLastPages } = {
 		nextPage: pagenation.getNextPage(currentPage),
@@ -99,57 +104,58 @@ const PagenationNav = (props) => {
 		isLastPages: pagenation.isLastPages(currentPage),
 	}
 
-	const setPage = (pageNum) => {
-		props.setPageEvent(pageNum)
-		window.scrollTo(0, 0)
+	const getPagePath = (pageNum) => {
+		let newQuery = _.cloneDeep(router.query)
+		newQuery['page'] = pageNum
+
+		return {
+			pathname: router.pathname,
+			query: newQuery,
+		}
 	}
 
 	return (
 		<Container>
 			<ArrowBox show={!isFirstPages}>
-				<Arrow
-					onClick={() => {
-						setPage(firstPage)
-					}}
-				>
-					<Icon_DoubleLeft />
-				</Arrow>
-				<Arrow
-					onClick={() => {
-						setPage(prevPage)
-					}}
-				>
-					<Icon_Left />
-				</Arrow>
+				<Link href={getPagePath(firstPage)} passHref>
+					<a>
+						<Arrow>
+							<Icon_DoubleLeft />
+						</Arrow>
+					</a>
+				</Link>
+				<Link href={getPagePath(prevPage)} passHref>
+					<a>
+						<Arrow>
+							<Icon_Left />
+						</Arrow>
+					</a>
+				</Link>
 			</ArrowBox>
 			<PageNumberList>
 				{pagenation.getPageList(currentPage).map((page) => (
-					<PageNumber
-						key={page}
-						onClick={() => {
-							setPage(page)
-						}}
-						current={currentPage == page}
-					>
-						n{page}
-					</PageNumber>
+					<Link key={page} href={getPagePath(page)} passHref>
+						<a>
+							<PageNumber current={currentPage == page}>n{page}</PageNumber>
+						</a>
+					</Link>
 				))}
 			</PageNumberList>
 			<ArrowBox show={!isLastPages}>
-				<Arrow
-					onClick={() => {
-						setPage(nextPage)
-					}}
-				>
-					<Icon_Right />
-				</Arrow>
-				<Arrow
-					onClick={() => {
-						setPage(lastPage)
-					}}
-				>
-					<Icon_DoubleRight />
-				</Arrow>
+				<Link href={getPagePath(nextPage)} passHref>
+					<a>
+						<Arrow>
+							<Icon_Right />
+						</Arrow>
+					</a>
+				</Link>
+				<Link href={getPagePath(lastPage)} passHref>
+					<a>
+						<Arrow>
+							<Icon_DoubleRight />
+						</Arrow>
+					</a>
+				</Link>
 			</ArrowBox>
 		</Container>
 	)

@@ -45,7 +45,6 @@ const FolderDetail = (props) => {
 
 	const folderCode = props.folderCode
 	const subTabOpenState = useSelector((state) => state.menu.subTabOpenState)
-	const currentPage = useSelector((state) => state.folder.currentPage)
 
 	const folderType = folderData.getFolderType(folderCode)
 	const folderChildPagenation = new Pagenation([...folderData.getChildList(folderCode)].reverse(), 5, 10)
@@ -97,7 +96,7 @@ const FolderDetail = (props) => {
 							</DateBox4>
 						</FolderInfo>
 						<ColumnList between="3rem">
-							{postData.getPostLinkDataList(folderChildPagenation.getPagenationDataList(currentPage)).map((data) => (
+							{postData.getPostLinkDataList(folderChildPagenation.getPagenationDataList(router.query.page ?? 1)).map((data) => (
 								<li key={data.postCode}>
 									<Link href={'/post/' + data.postCode} passHref>
 										<a>
@@ -107,7 +106,7 @@ const FolderDetail = (props) => {
 								</li>
 							))}
 						</ColumnList>
-						<PagenationNav currentPage={currentPage} pagenation={folderChildPagenation} setPageEvent={setCurrentPage} />
+						<PagenationNav pagenation={folderChildPagenation} />
 					</PostFolderContainer>
 				)}
 			</Center>

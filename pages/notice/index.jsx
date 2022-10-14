@@ -1,4 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
+
 import { PageContainer, Left, Center } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
@@ -8,23 +9,15 @@ import NoticeLinkBox from '@pageComponents/notice/NoticeLinkBox'
 import { ColumnList } from '@components/List'
 import { IconText, IconBox, Icon_Megaphone1 } from '@components/Icon'
 
-import { noticeActions } from '@reducers/noticeSlice'
-
 import { dateFormat1 } from '@commonFun/date'
 
 import { noticeData } from '@data'
 import { Pagenation } from '@data/dataClass'
 
-const noticePagenation = new Pagenation(noticeData.getSortedNoticeNoList(), 5, 10)
+const noticePagenation = new Pagenation(noticeData.getSortedNoticeNoList(), 2, 10)
 
 const NoticeHome = () => {
-	const dispatch = useDispatch()
-
-	const currentPage = useSelector((state) => state.notice.currentPage)
-
-	const setCurrentPage = (pageNum) => {
-		dispatch(noticeActions.setCurrentPage(pageNum))
-	}
+	const router = useRouter()
 
 	return (
 		<PageContainer>
@@ -41,7 +34,7 @@ const NoticeHome = () => {
 						<Notice>공지사항</Notice>
 					</IconText>
 					<ColumnList between="2rem">
-						{noticeData.getNoticeLinkDataList(noticePagenation.getPagenationDataList(currentPage)).map((data) => (
+						{noticeData.getNoticeLinkDataList(noticePagenation.getPagenationDataList(router.query.page ?? 1)).map((data) => (
 							<li key={data.noticeNo}>
 								<NoticeLinkBox
 									noticeNo={data.noticeNo}
@@ -52,7 +45,7 @@ const NoticeHome = () => {
 							</li>
 						))}
 					</ColumnList>
-					<PagenationNav currentPage={currentPage} pagenation={noticePagenation} setPageEvent={setCurrentPage} />
+					<PagenationNav pagenation={noticePagenation} />
 				</IndexMainContainer>
 			</Center>
 		</PageContainer>
