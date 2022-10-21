@@ -14,6 +14,12 @@ export class Pagenation {
 	}
 
 	getPagenationDataList(pageNum) {
+		if (pageNum === undefined) {
+			pageNum = 1
+		}
+
+		pageNum = Number(pageNum)
+
 		let pagenationDataList = new Array()
 
 		const startNum = (pageNum - 1) * this.#limit

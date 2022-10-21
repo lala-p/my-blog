@@ -1,5 +1,7 @@
 import { useRouter } from 'next/router'
 
+import usePagenation from '../../hooks/usePagenation'
+
 import { PageContainer, Left, Center } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
@@ -18,6 +20,7 @@ const noticePagenation = new Pagenation(noticeData.getSortedNoticeNoList(), 2, 1
 
 const NoticeHome = () => {
 	const router = useRouter()
+	const isReady = usePagenation(noticePagenation, router)
 
 	return (
 		<PageContainer>
@@ -33,19 +36,25 @@ const NoticeHome = () => {
 						</IconBox>
 						<Notice>공지사항</Notice>
 					</IconText>
-					<ColumnList between="2rem">
-						{noticeData.getNoticeLinkDataList(noticePagenation.getPagenationDataList(router.query.page ?? 1)).map((data) => (
-							<li key={data.noticeNo}>
-								<NoticeLinkBox
-									noticeNo={data.noticeNo}
-									title={data.title}
-									createdDate={dateFormat1(data.createdDate)}
-									updatedDate={data.updatedDate !== undefined ? dateFormat1(data.updatedDate) : undefined}
-								/>
-							</li>
-						))}
-					</ColumnList>
-					<PagenationNav pagenation={noticePagenation} />
+					{isReady ? (
+						<>
+							<ColumnList between="2rem">
+								{noticeData.getNoticeLinkDataList(noticePagenation.getPagenationDataList(router.query.page)).map((data) => (
+									<li key={data.noticeNo}>
+										<NoticeLinkBox
+											noticeNo={data.noticeNo}
+											title={data.title}
+											createdDate={dateFormat1(data.createdDate)}
+											updatedDate={data.updatedDate !== undefined ? dateFormat1(data.updatedDate) : undefined}
+										/>
+									</li>
+								))}
+							</ColumnList>
+							<PagenationNav pagenation={noticePagenation} />
+						</>
+					) : (
+						<h1>Loading...</h1>
+					)}
 				</IndexMainContainer>
 			</Center>
 		</PageContainer>

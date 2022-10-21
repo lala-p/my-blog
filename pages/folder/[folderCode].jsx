@@ -23,6 +23,7 @@ import { folderData, postData } from '@data'
 import { Pagenation } from '@data/dataClass'
 
 import { dateFormat1 } from '@commonFun/date'
+import usePagenation from '../../hooks/usePagenation'
 
 export async function getStaticPaths() {
 	return {
@@ -41,32 +42,24 @@ export async function getStaticProps({ params }) {
 
 const FolderDetail = (props) => {
 	const router = useRouter()
-	const dispatch = useDispatch()
-
 	const folderCode = props.folderCode
+	const folderChildPagenation = new Pagenation([...folderData.getChildList(folderCode)].reverse(), 5, 1)
+	const isReady = usePagenation(folderChildPagenation, router)
+
+	const dispatch = useDispatch()
 	const subTabOpenState = useSelector((state) => state.menu.subTabOpenState)
 
 	const folderType = folderData.getFolderType(folderCode)
-	const folderChildPagenation = new Pagenation([...folderData.getChildList(folderCode)].reverse(), 5, 10)
 
 	const folderLinkBoxClick = (folderCode) => {
 		dispatch(folderActions.folderOpen(new Array(folderCode)))
 		router.push('/folder/' + folderCode)
 	}
 
-	const setCurrentPage = (pageNum) => {
-		dispatch(folderActions.setCurrentPage(pageNum))
-	}
-
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
 		dispatch(folderActions.folderOpen(folderData.getFolderPath(folderCode, folderType === 'folder')))
 	}, [])
-
-	useEffect(() => {
-		setCurrentPage(1)
-		window.scrollTo(0, 0)
-	}, [folderCode])
 
 	return (
 		<PageContainer>
@@ -95,18 +88,24 @@ const FolderDetail = (props) => {
 								{folderData.getChildLastUpdatedDate(folderCode) !== undefined ? <Text>{dateFormat1(folderData.getChildLastUpdatedDate(folderCode))}</Text> : null}
 							</DateBox4>
 						</FolderInfo>
-						<ColumnList between="3rem">
-							{postData.getPostLinkDataList(folderChildPagenation.getPagenationDataList(router.query.page ?? 1)).map((data) => (
-								<li key={data.postCode}>
-									<Link href={'/post/' + data.postCode} passHref>
-										<a>
-											<PostDataBox data={data.postData} />
-										</a>
-									</Link>
-								</li>
-							))}
-						</ColumnList>
-						<PagenationNav pagenation={folderChildPagenation} />
+						{isReady ? (
+							<>
+								<ColumnList between="3rem">
+									{postData.getPostLinkDataList(folderChildPagenation.getPagenationDataList(router.query.page)).map((data) => (
+										<li key={data.postCode}>
+											<Link href={'/post/' + data.postCode} passHref>
+												<a>
+													<PostDataBox data={data.postData} />
+												</a>
+											</Link>
+										</li>
+									))}
+								</ColumnList>
+								<PagenationNav pagenation={folderChildPagenation} />
+							</>
+						) : (
+							<h1>Loading...</h1>
+						)}
 					</PostFolderContainer>
 				)}
 			</Center>

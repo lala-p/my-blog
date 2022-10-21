@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import { CodeBlock, dracula } from 'react-code-blocks'
 
@@ -24,9 +25,12 @@ const Container = styled.div`
 	width: 50rem;
 `
 
-const Test = () => {
+const Test = (props) => {
+	const router = useRouter()
+
 	return (
 		<div>
+			<h1>{router.query.page}</h1>
 			<Container>
 				<CodeBlock text={code} language={'jsx'} showLineNumbers={true} theme={dracula} />
 			</Container>

@@ -12,15 +12,17 @@ import { ColumnList } from '@components/List'
 
 import { postData } from '@data'
 import { Pagenation } from '@data/dataClass'
+import usePagenation from '../hooks/usePagenation'
 
 const Search = () => {
 	const router = useRouter()
-	const currentPage = router.query.page ?? 1
+	const [resultPagenation, setResultPagenation] = useState(null)
+	const isReady = usePagenation(resultPagenation, router, [resultPagenation])
+
+	const currentPage = router.query.page !== undefined ? Number(router.query.page) : 1
 
 	const searchInputRef = useRef()
-
 	const [searchResult, setSearchResult] = useState(new Array())
-	const [resultPagenation, setResultPagenation] = useState(null)
 
 	const search = (key) => {
 		if (key === 'Enter') {
@@ -31,24 +33,14 @@ const Search = () => {
 	}
 
 	useEffect(() => {
-		if (router.query.q !== undefined && !isNaN(currentPage)) {
+		if (router.query.q !== undefined) {
 			searchInputRef.current.value = decodeURI(router.query.q)
 
 			const result = postData.getSearchResult(router.query.q.replace(/\s+/g, ' ').trim())
 			const resultPagenation = new Pagenation(result, 5, 2)
 
-			if (result.length === 0) {
-				router.replace('/search?q=' + router.query.q)
-			} else if (Number(currentPage) < 1) {
-				router.replace('/search?q=' + router.query.q + '&page=1')
-			} else if (Number(currentPage) > resultPagenation.getLastPageNum()) {
-				router.replace('/search?q=' + router.query.q + '&page=' + resultPagenation.getLastPageNum())
-			}
-
 			setSearchResult(result)
 			setResultPagenation(resultPagenation)
-		} else if (router.query.q !== undefined && isNaN(currentPage)) {
-			router.replace('search')
 		} else {
 			searchInputRef.current.value = ''
 			setSearchResult(new Array())
@@ -65,15 +57,10 @@ const Search = () => {
 				<HeadTab />
 				<MainContainer>
 					<SearchInput ref={searchInputRef} onKeyPress={(e) => search(e.key)} />
-					{searchResult.length !== 0 &&
-					resultPagenation !== null &&
-					router.query.q !== undefined &&
-					!isNaN(currentPage) &&
-					Number(currentPage) > 0 &&
-					Number(currentPage) <= resultPagenation.getLastPageNum() ? (
+					{isReady && searchResult.length !== 0 && resultPagenation !== null && router.query.q !== undefined ? (
 						<>
 							<ColumnList between="3rem">
-								{postData.getPostLinkDataList(resultPagenation.getPagenationDataList(currentPage)).map((data) => (
+								{postData.getPostLinkDataList(resultPagenation.getPagenationDataList(router.query.page)).map((data) => (
 									<li key={data.postCode}>
 										<Link href={'/post/' + data.postCode} passHref>
 											<a>

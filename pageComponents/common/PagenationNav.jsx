@@ -92,9 +92,10 @@ const Container = styled.div`
 
 const PagenationNav = (props) => {
 	const router = useRouter()
-
-	const currentPage = router.query.page ?? 1
 	const pagenation = props.pagenation
+
+	const currentPage = router.query.page !== undefined ? Number(router.query.page) : 1
+
 	const { nextPage, prevPage, firstPage, lastPage, isFirstPages, isLastPages } = {
 		nextPage: pagenation.getNextPage(currentPage),
 		prevPage: pagenation.getPrevPage(currentPage),
@@ -106,7 +107,7 @@ const PagenationNav = (props) => {
 
 	const getPagePath = (pageNum) => {
 		let newQuery = _.cloneDeep(router.query)
-		newQuery['page'] = pageNum
+		newQuery.page = pageNum
 
 		return {
 			pathname: router.pathname,

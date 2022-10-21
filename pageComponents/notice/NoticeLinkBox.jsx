@@ -49,17 +49,19 @@ const NoticeInfo = styled.div`
 
 const NoticeLinkBox = (props) => {
 	return (
-		<Link href={'/notice/' + props.noticeNo}>
-			<ContainerBox title={props.title} cursorPointer>
-				<NoticeNo size="3rem">No.{props.noticeNo}</NoticeNo>
-				<NoticeInfo>
-					<EllipsisH4>{props.title}</EllipsisH4>
-					<DateBox2>
-						<CreatedDate2>{props.createdDate}</CreatedDate2>
-						{props.updatedDate !== undefined ? <UpdatedDate2>{props.updatedDate}</UpdatedDate2> : null}
-					</DateBox2>
-				</NoticeInfo>
-			</ContainerBox>
+		<Link href={'/notice/' + props.noticeNo} passHref>
+			<a>
+				<ContainerBox title={props.title} cursorPointer>
+					<NoticeNo size="3rem">No.{props.noticeNo}</NoticeNo>
+					<NoticeInfo>
+						<EllipsisH4>{props.title}</EllipsisH4>
+						<DateBox2>
+							<CreatedDate2>{props.createdDate}</CreatedDate2>
+							{props.updatedDate !== undefined ? <UpdatedDate2>{props.updatedDate}</UpdatedDate2> : null}
+						</DateBox2>
+					</NoticeInfo>
+				</ContainerBox>
+			</a>
 		</Link>
 	)
 }
