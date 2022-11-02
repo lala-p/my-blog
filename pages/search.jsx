@@ -19,8 +19,6 @@ const Search = () => {
 	const [resultPagenation, setResultPagenation] = useState(null)
 	const isReady = usePagenation(resultPagenation, router, [resultPagenation])
 
-	const currentPage = router.query.page !== undefined ? Number(router.query.page) : 1
-
 	const searchInputRef = useRef()
 	const [searchResult, setSearchResult] = useState(new Array())
 

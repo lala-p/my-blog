@@ -56,7 +56,7 @@ export const PostFoot = styled.div`
 export const SideContainer = styled.div`
 	width: 250px;
 
-	background-color: yellow;
+	/* background-color: yellow; */
 	margin-left: 30px;
 	@media (max-width: ${({ subTabOpen }) => (subTabOpen ? '1450px' : '1250px')}) {
 		display: none;

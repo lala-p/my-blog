@@ -35,7 +35,7 @@ folderObject1['example2'].type = 'postFolder'
 
 folderObject1['example2'].name = 'folder2'
 folderObject1['example2'].parent = 'FolderExample'
-folderObject1['example2'].childList = ['file4', 'file5']
+folderObject1['example2'].childList = ['file4', 'file5', 'test']
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 

@@ -13,6 +13,7 @@ import PostExplorer from '@components/PostExplorer'
 import { TagContainer, TagType1 } from '@components/Tag'
 import { DateBox1 } from '@components/DateBox'
 import { CreatedDate3, UpdatedDate1 } from '@components/Date'
+import TableOfContents from '@components/TableOfContents'
 
 import { dateFormat1 } from '@commonFun/date'
 
@@ -76,7 +77,11 @@ const PostDetail = (props) => {
 						<PostBody>{post.PostContent()}</PostBody>
 						<PostFoot></PostFoot>
 					</PostContainer>
-					<SideContainer subTabOpen={subTabOpenState}>asasdasdasdasdasd</SideContainer>
+					{post.tableOfContents != undefined && post.tableOfContents.length != 0 ? (
+						<SideContainer subTabOpen={subTabOpenState}>
+							<TableOfContents data={post.tableOfContents} />
+						</SideContainer>
+					) : null}
 				</MainContainer>
 			</Center>
 		</PageContainer>

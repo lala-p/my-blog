@@ -21,12 +21,6 @@ const ContainerBox = styled(Box)`
 
 const NoticeNo = styled(Text)`
 	margin: auto 0;
-
-	/* ::after {
-		content: '';
-		margin: 0 1rem;
-		border-right: 0.063rem solid ${({ theme }) => theme.color.text};
-	} */
 `
 
 const NoticeInfo = styled.div`

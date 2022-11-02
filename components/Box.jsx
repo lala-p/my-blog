@@ -3,13 +3,7 @@ import styled from 'styled-components'
 const Box = styled.div`
 	${({ cursorPointer }) => (cursorPointer ? 'cursor: pointer;' : null)}
 	${({ selectNone }) =>
-		selectNone
-			? '-ms-user-select: none;' +
-			  '-moz-user-select: -moz-none;' +
-			  '-khml-user-select: none;' +
-			  '-webkit-user-select: none;' +
-			  'user-select: none;'
-			: null}
+		selectNone ? '-ms-user-select: none;' + '-moz-user-select: -moz-none;' + '-khml-user-select: none;' + '-webkit-user-select: none;' + 'user-select: none;' : null}
 `
 
 export const MarginBox = styled.div`
@@ -37,7 +31,7 @@ export const MarginBox = styled.div`
 export const PaddingBox = styled.div`
 	${({ padding }) => {
 		if (typeof padding === 'string') {
-			return `${padding};`
+			return `padding: ${padding};`
 		} else if (typeof padding === 'object') {
 			return `
                 ${padding?.top ? 'padding-top: ' + padding.top + ';' : null}
