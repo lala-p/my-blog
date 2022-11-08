@@ -53,10 +53,6 @@ export const Writer = (props) => {
 	)
 }
 
-export const Hr = styled.hr`
-	color: ${({ theme }) => theme.color.text};
-`
-
 export const Content = styled.div`
 	width: 100%;
 
@@ -83,9 +79,14 @@ export const Content = styled.div`
 		font-size: 1.5rem;
 	}
 
+	strong {
+		font-weight: bold;
+	}
+
 	a {
 		color: ${({ theme }) => theme.color.accent1};
 	}
+
 	ol {
 	}
 

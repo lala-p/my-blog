@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import styled from 'styled-components'
 
-import Text, { EllipsisText, SelectNoneText } from '@components/Text'
+import Text, { SelectNoneText } from '@components/Text'
 
 import { dateFormat2 } from '@commonFun/date'
 
@@ -9,43 +9,30 @@ export const NoticeContainerBox = styled.div`
 	display: flex;
 	flex-direction: row;
 
-	> div {
+	> * {
 		width: auto;
+		white-space: nowrap;
 
 		&:nth-child(2) {
-			margin-left: 1rem;
-			max-width: 70%;
-
-			@media (max-width: 768px) {
-				max-width: 60%;
-			}
-
-			@media (max-width: 600px) {
-				max-width: 55%;
-			}
-
-			@media (max-width: 480px) {
-				max-width: 43%;
-			}
-
-			@media (max-width: 375px) {
-				max-width: 40%;
-			}
+			margin: 0 1rem;
 		}
 		&:nth-child(3) {
 			margin-left: auto;
 		}
 	}
 `
-const NoticeTitle = styled(EllipsisText)`
-	cursor: pointer;
+const NoticeTitle = styled.a`
+	font-size: 1rem;
+
+	text-overflow: ellipsis;
+	overflow: hidden;
 `
 
 export const NextNotice = (props) => {
 	return (
 		<NoticeContainerBox>
 			<SelectNoneText>다음글&nbsp;|</SelectNoneText>
-			<Link href={'/notice/' + props.data.noticeNo}>
+			<Link href={'/notice/' + props.data.noticeNo} passHref>
 				<NoticeTitle>{props.data.title}</NoticeTitle>
 			</Link>
 			<Text>{dateFormat2(props.data.createdDate)}</Text>
@@ -57,7 +44,7 @@ export const PrevNotice = (props) => {
 	return (
 		<NoticeContainerBox>
 			<SelectNoneText>이전글&nbsp;|</SelectNoneText>
-			<Link href={'/notice/' + props.data.noticeNo}>
+			<Link href={'/notice/' + props.data.noticeNo} passHref>
 				<NoticeTitle>{props.data.title}</NoticeTitle>
 			</Link>
 			<Text>{dateFormat2(props.data.createdDate)}</Text>

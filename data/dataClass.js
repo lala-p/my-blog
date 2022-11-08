@@ -102,7 +102,7 @@ export class PostData {
 	}
 
 	getIndexInParentChildList(postCode) {
-		this.#folderObject[this.#postObject[postCode].parent].childList.indexOf(postCode)
+		return this.#folderObject[this.#postObject[postCode].parent].childList.indexOf(postCode)
 	}
 
 	getPost(postCode) {
@@ -113,14 +113,26 @@ export class PostData {
 		const currentIndex = this.getIndexInParentChildList(postCode)
 		const parentChildList = this.getParentChildList(postCode)
 
-		return this.#postObject[parentChildList[currentIndex + 1]]
+		if (parentChildList[currentIndex + 1] != undefined) {
+			let nextPost = this.#postObject[parentChildList[currentIndex + 1]]
+			nextPost.postCode = parentChildList[currentIndex + 1]
+			return nextPost
+		} else {
+			return undefined
+		}
 	}
 
 	getPrevPost(postCode) {
 		const currentIndex = this.getIndexInParentChildList(postCode)
 		const parentChildList = this.getParentChildList(postCode)
 
-		return this.#postObject[parentChildList[currentIndex - 1]]
+		if (parentChildList[currentIndex - 1] != undefined) {
+			let prevPost = this.#postObject[parentChildList[currentIndex - 1]]
+			prevPost.postCode = parentChildList[currentIndex - 1]
+			return prevPost
+		} else {
+			return undefined
+		}
 	}
 
 	getAllPostCode() {

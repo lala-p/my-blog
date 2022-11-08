@@ -50,7 +50,8 @@ export const PostBody = styled(Content)`
 `
 
 export const PostFoot = styled.div`
-	margin-top: 3.25;
+	margin-top: 5rem;
+	margin-bottom: 3.25rem;
 `
 
 export const SideContainer = styled.div`

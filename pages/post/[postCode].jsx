@@ -9,11 +9,12 @@ import MenuTab from '@pageComponents/common/MenuTab'
 import SubTab from '@pageComponents/common/SubTab'
 import HeadTab from '@pageComponents/common/HeadTab'
 import { MainContainer, PostContainer, PostHead, PostBody, PostFoot, SideContainer } from '@pageComponents/post'
+import TableOfContents from '@pageComponents/post/TableOfContents'
+import { PostDetailNav, NextPost, PrevPost } from '@pageComponents/post/PostDetailNav'
 import PostExplorer from '@components/PostExplorer'
 import { TagContainer, TagType1 } from '@components/Tag'
 import { DateBox1 } from '@components/DateBox'
 import { CreatedDate3, UpdatedDate1 } from '@components/Date'
-import TableOfContents from '@components/TableOfContents'
 
 import { dateFormat1 } from '@commonFun/date'
 
@@ -40,6 +41,9 @@ const PostDetail = (props) => {
 	const postCode = props.postCode
 	const post = postData.getPost(postCode)
 	const subTabOpenState = useSelector((state) => state.menu.subTabOpenState)
+
+	const nextPost = postData.getNextPost(postCode)
+	const prevPost = postData.getPrevPost(postCode)
 
 	useEffect(() => {
 		dispatch(menuActions.subTabOpen())
@@ -75,7 +79,12 @@ const PostDetail = (props) => {
 							</TagContainer>
 						</PostHead>
 						<PostBody>{post.PostContent()}</PostBody>
-						<PostFoot></PostFoot>
+						<PostFoot>
+							<PostDetailNav>
+								<PrevPost data={prevPost} />
+								<NextPost data={nextPost} />
+							</PostDetailNav>
+						</PostFoot>
 					</PostContainer>
 					{post.tableOfContents != undefined && post.tableOfContents.length != 0 ? (
 						<SideContainer subTabOpen={subTabOpenState}>

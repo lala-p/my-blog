@@ -1,17 +1,22 @@
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 
-const Container = styled.div`
+import { ColumnBox } from '@components/Box'
+
+const Container = styled(ColumnBox)`
 	position: sticky;
 	top: 100px;
 
-	width: 200px;
-	height: 300px;
+	width: 12.5rem;
+	height: auto;
 `
 
 const Heading = styled.div`
-	margin: 0.25rem 0;
 	cursor: pointer;
+
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 
 	color: ${({ active, theme }) => (active ? theme.color.text : theme.color.sub)};
 	${({ sub }) => (sub ? 'padding-left: 1rem;' : null)}
@@ -50,12 +55,11 @@ const TableOfContents = (props) => {
 
 		return () => {
 			window.removeEventListener('scroll', activeHandle)
-			console.log('remove')
 		}
-	}, [])
+	}, [props.data])
 
 	return (
-		<Container>
+		<Container between="0.5rem">
 			{props.data.map((data, index) => {
 				return (
 					<Heading

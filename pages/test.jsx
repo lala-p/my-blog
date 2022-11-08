@@ -25,15 +25,30 @@ const Container = styled.div`
 	width: 50rem;
 `
 
+const Span1 = styled.span`
+	display: block;
+`
+
+const Span2 = styled.span`
+	display: inline-block;
+`
+
 const Test = (props) => {
 	const router = useRouter()
 
 	return (
 		<div>
 			<h1>{router.query.page}</h1>
-			<Container>
+			<div>
+				<Span1>asdadasd</Span1>
+			</div>
+			<div>
+				<Span2>asdadasd</Span2>
+			</div>
+
+			{/* <Container>
 				<CodeBlock text={code} language={'jsx'} showLineNumbers={true} theme={dracula} />
-			</Container>
+			</Container> */}
 		</div>
 	)
 }
