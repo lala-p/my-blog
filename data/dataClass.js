@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 export class Pagenation {
 	#dataList
 	#pageLimit
@@ -81,12 +83,19 @@ export class PostData {
 	#allPostCodeList
 	#allPostDataList
 
+	// createdDate 최신 순으로 정렬됨
+	#sortedPostList
+
 	constructor(postObject, folderObject) {
 		this.#postObject = postObject
 		this.#folderObject = folderObject
 
 		this.#allPostCodeList = Object.keys(postObject)
 		this.#allPostDataList = Object.values(postObject)
+
+		this.#sortedPostList = _.cloneDeep(this.#allPostDataList).sort((a, b) => {
+			return b.createdDate - a.createdDate
+		})
 	}
 
 	getParentCode(postCode) {
@@ -170,6 +179,14 @@ export class PostData {
 		}
 
 		return postLinkDataList
+	}
+
+	getPostListingData(startIndex, size) {
+		if (startIndex > this.#sortedPostList.length - 1) {
+			return undefined
+		} else {
+			return this.#sortedPostList.slice(startIndex, startIndex + size)
+		}
 	}
 
 	sortCreatedDateDesc(postCodeList) {
@@ -381,9 +398,13 @@ export class FolderData {
 
 export class NoticeData {
 	#noticeObject
+	#sortedNoticeList
 
 	constructor(noticeObject) {
 		this.#noticeObject = noticeObject
+		this.#sortedNoticeList = Object.values(noticeObject).sort((a, b) => {
+			b.createdDate - a.createdDate
+		})
 	}
 
 	getCurrentNotice(noticeNo) {
@@ -449,5 +470,9 @@ export class NoticeData {
 		}
 
 		return noticeLinkDataList
+	}
+
+	getRecentNotice(size) {
+		return [...this.#sortedNoticeList].reverse().slice(0, size)
 	}
 }

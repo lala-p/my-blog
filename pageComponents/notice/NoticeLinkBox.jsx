@@ -48,7 +48,7 @@ const NoticeLinkBox = (props) => {
 				<ContainerBox title={props.title} cursorPointer>
 					<NoticeNo size="3rem">No.{props.noticeNo}</NoticeNo>
 					<NoticeInfo>
-						<EllipsisH4>{props.title}</EllipsisH4>
+						<EllipsisH4 lineHeight="3rem">{props.title}</EllipsisH4>
 						<DateBox2>
 							<CreatedDate2>{props.createdDate}</CreatedDate2>
 							{props.updatedDate !== undefined ? <UpdatedDate2>{props.updatedDate}</UpdatedDate2> : null}
