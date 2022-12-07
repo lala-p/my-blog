@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { PageContainer, Left, Center, MainContainer, Box, Content } from '@pageComponents/common'
 import MenuTab from '@pageComponents/common/MenuTab'
 import HeadTab from '@pageComponents/common/HeadTab'
+import PostLinkBox from '@pageComponents/home/PostLinkBox'
 import NoticeLinkBox from '@pageComponents/home/NoticeLinkBox'
 
 import { ColumnList } from '@components/List'
@@ -24,7 +25,11 @@ const Home = () => {
 		}
 	}
 
-	console.log(noticeData.getRecentNotice(3))
+	useEffect(() => {
+		console.log(postListData)
+	}, [postListData])
+
+	// console.log(noticeData.getRecentNotice(3))
 
 	return (
 		<PageContainer>
@@ -45,6 +50,14 @@ const Home = () => {
 							</li>
 						))}
 					</ColumnList>
+					<br />
+					{postListData.map((data, index) => (
+						<div key={index}>
+							<PostLinkBox data={data} />
+						</div>
+					))}
+
+					{/* <PostLinkBox /> */}
 				</MainContainer>
 			</Center>
 		</PageContainer>
